@@ -9,3 +9,4 @@ yarn-error.log
 
 /.cursor/commands/*
 
+src/lab_1/data/arrests_upd.csv
