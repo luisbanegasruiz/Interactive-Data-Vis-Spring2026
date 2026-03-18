@@ -1,7 +1,3 @@
----
-title: "Lab 0: Getting Started"
-toc: true
----
 # Gender, Enforcement, and Power in US Immigration Policy 
 ## Trends in ICE Apprehensions Between 2023 and 2025
 
@@ -21,7 +17,7 @@ toc: true
     h2 { margin: 0 0 12px; }
     table { border-collapse: collapse; width: 760px; max-width: 100%; }
     th, td { border: 1px solid #2b2b2b; padding: 10px 12px; }
-    thead th { background: #6fb2d6; color: #000; text-align: left; }
+    thead th { background:rgb(111, 176, 214); color: #000; text-align: left; }
     tbody td { background: #cfe6f3; }
     td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
     tbody tr.total td { font-weight: 700; }
