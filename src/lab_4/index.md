@@ -214,9 +214,9 @@ import { feature } from "npm:topojson-client";
 ```
 
 ```js
-const data = await FileAttachment("data/arrestsdata.csv").csv({ typed: true });
+const data = await FileAttachment("data/arrestsfiltered2.csv").csv({ typed: true });
 const today = new Date();
-const cleanData = data.filter(d => d.apprehension_date <= today);
+const cleanData = data.filter(d => d.apprehension_date !== null && d.apprehension_date <= today);
 const genderCounts = d3.rollup(cleanData, v => v.length, d => d.gender);
 const totalCount = cleanData.length;
 const maleCount = genderCounts.get("Male");
@@ -311,32 +311,40 @@ const heroMap = Plot.plot({
 <div class="hero">
   <div class="hero-map">${heroMap}</div>
   <div class="hero-text">
-    <div class="hero-kicker">An Analysis of ICE Arrest Data, September 2022 – March 2026</div>
+    <div class="hero-kicker">An Analysis of ICE Arrest Data, 2024–2025</div>
     <div class="hero-title">Invisible Targets</div>
-    <div class="hero-subtitle">What the data on 713,464 ICE arrests reveals about gender, race,<br>and who gets left out of the conversation.</div>
-    <div class="hero-byline"><strong>Luis E. Banegas</strong> &nbsp;·&nbsp; May 23, 2026</div>
+    <div class="hero-subtitle">What the data on 432,924 ICE arrests reveals about gender, race,<br>and who gets left out of the conversation.</div>
+    <div class="hero-byline"><strong>Luis E. Banegas</strong> &nbsp;·&nbsp; May 2026</div>
   </div>
 </div>
 
 <div class="article-body">
 <div class="drop-cap">
 
-<p> Between September 2022 and March 2026, ICE arrested 713,464 immigrants across the United States. Researchers have tracked their nationalities, where they were apprehended, and where they were deported.</p>
+<p>In 2024 and 2025, ICE arrested 432,924 immigrants across the United States. Researchers have tracked their nationalities, where they were apprehended, and where they were deported.</p>
 
 <p>But not their gender.</p>
 
-<p>Although the vast majority of those arrested have been Latino and Caribbean men, no one is talking about it.</p>
+<p>Although the vast majority of those arrested were Latino and Caribbean men, no one is talking about it.</p>
 
 <p>This project addresses that gap.</p>
 
+</div>
+</div>
+
+<div class="stat-block" style="margin: 2rem auto; max-width: 720px;">
+  <span class="number">${malePct}%</span>
+  <span class="label">of all ICE arrests in 2024 and 2025 were men. The gender gap persisted across every country of origin and every state in the dataset.</span>
+</div>
+
 <div class="article-body">
 <div class="section-label">Who ICE Arrests</div>
-<p>Of the 713,464 people arrested, 602,654 were men and 108,531 were women. The remaining 2,278 were recorded as unknown. Men outnumbered women by a ratio of nearly six to one. </p>
+<p>Of the 432,924 people arrested, 381,728 were men and 49,591 were women. The remaining 1,605 were recorded as unknown. Men outnumbered women by a ratio of nearly eight to one. That ratio held across both years.</p>
 </div>
 
 ```js
 display(Plot.plot({
-  title: "Gender Distribution of ICE Arrests",
+  title: "Gender Distribution of ICE Arrests (2024-2025)",
   marginLeft: 80,
   style: { background: "#f5f4f0", fontFamily: "Source Serif 4, Georgia, serif" },
   color: { range: ["#8b1a1a", "#2c3e50", "#95a5a6"] },
@@ -354,7 +362,7 @@ display(Plot.plot({
 
 <div class="article-body">
 <div class="section-label">Where They Come From</div>
-<p>Ten countries account for 88.3 percent of all arrests. Mexico leads with 255,344. Guatemala, Honduras, and Venezuela follow. Across every one of these countries, men vastly outnumber women. The pattern does not waver by nationality. It holds in every case, without exception.</p>
+<p>Ten countries account for the vast majority of all arrests. Mexico leads by a wide margin. Guatemala, Honduras, and Venezuela follow. Across every one of these countries, men vastly outnumber women. The pattern does not waver by nationality. It holds in every case, without exception.</p>
 </div>
 
 ```js
@@ -376,7 +384,7 @@ const genderByCountryFlat = Array.from(genderByCountry, ([country, genders]) =>
 ).flat();
 
 display(Plot.plot({
-  title: "Gender Breakdown Among Top 10 Countries of Citizenship",
+  title: "Gender Breakdown Among Top 10 Countries of Citizenship (2024-2025)",
   marginLeft: 120,
   style: { background: "#f5f4f0", fontFamily: "Source Serif 4, Georgia, serif" },
   color: { legend: true, range: ["#8b1a1a", "#2c3e50", "#95a5a6"] },
@@ -393,21 +401,21 @@ display(Plot.plot({
 }))
 ```
 
-<p class="chart-caption">Source: Deportation Data Project. These ten countries accounted for 88.3% of all arrests. Hover over bars to see the breakdown by gender.</p>
+<p class="chart-caption">Source: Deportation Data Project. Hover over bars to see the breakdown by gender.</p>
 
 <div class="article-body">
 <div class="section-label">A Global Pattern</div>
-<p>ICE arrested people from 206 countries. The concentration in Latin America and the Caribbean is unmistakable, but enforcement reached every continent. Hover over any country to see the total arrests and gender breakdown.</p>
+<p>ICE arrested people from over 100 countries in this period. The concentration in Latin America and the Caribbean is unmistakable, but enforcement reached every continent. Hover over any country to see the total arrests and gender breakdown.</p>
 </div>
 
 ```js
 display(Plot.plot({
-  title: "ICE Arrests by Country of Citizenship",
+  title: "ICE Arrests by Country of Citizenship (2024-2025)",
   width: 900,
   height: 500,
   style: { background: "#f5f4f0", fontFamily: "Source Serif 4, Georgia, serif" },
   projection: { type: "equal-earth" },
-  color: { legend: true, type: "log", scheme: "YlOrRd", label: "Total Arrests", unknown: "#e0e0e0" },
+  color: { legend: true, type: "log", scheme: "YlOrRd", label: "Total Arrests", unknown: "#e0e0e0", ticks: 4 },
   marks: [
     Plot.geo(countries110, {
       fill: d => allTotalArrestsMap.get(d.id) ?? null,
@@ -431,7 +439,7 @@ display(Plot.plot({
 
 <div class="article-body">
 <div class="section-label">Where in the United States</div>
-<p>Enforcement is concentrated in border states, but it reaches every corner of the country. Texas alone recorded over 153,000 arrests. Florida recorded nearly 54,000. New York, over 30,000. Georgia, nearly 19,000. In every state, men account for the overwhelming majority of those arrested. Hover over any state to see the numbers.</p>
+<p>Enforcement is concentrated in border states, but it reaches every corner of the country. In every state, men account for the overwhelming majority of those arrested. Hover over any state to see the numbers.</p>
 </div>
 
 ```js
@@ -463,17 +471,17 @@ const stateArrestById = new Map(
 );
 
 display(Plot.plot({
-  title: "ICE Arrests by State",
+  title: "ICE Arrests by State (2024-2025)",
   width: 900,
   height: 560,
   style: { background: "#f5f4f0", fontFamily: "Source Serif 4, Georgia, serif" },
   projection: "albers-usa",
-  color: { legend: true, type: "log", scheme: "YlOrRd", label: "Total Arrests", unknown: "#e0e0e0" },
+  color: { legend: true, type: "linear", scheme: "YlOrRd", label: "Total Arrests", unknown: "#e0e0e0", ticks: 4 },
   marks: [
     Plot.geo(usStates, {
       fill: d => stateArrestById.get(d.id) ?? null,
-      stroke: "white",
-      strokeWidth: 0.5,
+      stroke: "#f5f4f0",
+      strokeWidth: 0.8,
       tip: true,
       title: d => {
         const name = idToStateName.get(d.id);
@@ -493,8 +501,7 @@ display(Plot.plot({
 <div class="article-body">
 <div class="section-label">The Surge</div>
 <p>Then came January 2025.</p>
-<p>Deportations that had held steady at around 5,000 per month surged past 28,000. Men bore that surge almost entirely. In 2023, men accounted for 57 percent of removals. In 2024, 75.8 percent. In 2025, the first full calendar year of the second Trump Administration, more men were arrested and removed than in the entire Biden era combined.</p>
-<p>Of the 349,467 people who received a final order of removal, 318,285 were men. 31,182 were women. That is not a rounding error. That is a pattern sustained across every year, every nationality, and every criminal category in the dataset.</p>
+<p>Deportations that had held steady throughout 2024 surged dramatically in 2025, the first full calendar year of the second Trump Administration. Men bore that surge almost entirely. The gap between male and female deportations, already wide in 2024, became a chasm in 2025.</p>
 </div>
 
 ```js
@@ -503,7 +510,7 @@ const deported = cleanData.filter(d => d.departed_date !== null);
 const deportationsByMonthGender = d3.rollup(
   deported.filter(d => {
     const date = new Date(d.departed_date);
-    return date >= new Date("2022-09-01") && date < new Date("2026-03-01");
+    return date >= new Date("2024-01-01") && date < new Date("2026-03-01");
   }),
   v => v.length,
   d => d3.timeMonth.floor(new Date(d.departed_date)),
@@ -515,13 +522,13 @@ const deportationsFlat2 = Array.from(deportationsByMonthGender, ([date, genders]
 ).flat().sort((a, b) => a.date - b.date);
 
 display(Plot.plot({
-  title: "ICE Deportations Over Time by Gender",
+  title: "ICE Deportations Over Time by Gender (2024-2025)",
   width: 900,
   height: 400,
   marginLeft: 80,
   marginRight: 40,
   style: { background: "#f5f4f0", fontFamily: "Source Serif 4, Georgia, serif" },
-  x: { label: "Month", type: "utc", domain: [new Date("2022-09-01"), new Date("2026-03-01")] },
+  x: { label: "Month", type: "utc", domain: [new Date("2024-01-01"), new Date("2026-03-01")] },
   y: { label: "Deportations", grid: true },
   color: { legend: true, range: ["#8b1a1a", "#2c3e50", "#95a5a6"] },
   marks: [
@@ -533,13 +540,6 @@ display(Plot.plot({
       tip: true,
       title: d => `${d.gender}: ${d.count.toLocaleString()}`
     }),
-    Plot.dot(deportationsFlat2.filter(d => d.date.getTime() === new Date("2022-09-01").getTime()), {
-      x: "date",
-      y: "count",
-      stroke: "gender",
-      fill: "gender",
-      r: 4
-    }),
     Plot.ruleY([0])
   ]
 }))
@@ -548,7 +548,7 @@ display(Plot.plot({
 <p class="chart-caption">Source: Deportation Data Project. The sharp spike beginning January 2025 corresponds to the start of the second Trump Administration. Hover over lines to see monthly counts by gender.</p>
 
 <div class="closing">
-<p>The gender dimension of immigration enforcement is not a side story. It is the story the data keeps telling, year after year, state after state, country after country. Latino and Caribbean men are the primary target of the deportation regime. The numbers are unambiguous. The question is whether we are willing to see them.</p>
+<p>The gender dimension of immigration enforcement is not a side story. It is the story the data keeps telling, month after month, state after state, country after country. Latino and Caribbean men are the primary target of the deportation regime. The numbers are unambiguous. The question is whether we are willing to see them.</p>
 </div>
 
-<p class="footnote">Data: Deportation Data Project, September 2022 – March 2026.</p>
+<p class="footnote">Data: Deportation Data Project, 2024–2025.</p>
