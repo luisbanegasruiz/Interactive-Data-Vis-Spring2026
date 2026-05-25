@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>Different Charts With d3.js | Interactive Data Visualization (Spring 2026)</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-air.aad62322.css">
+<link rel="preload" as="style" href="../_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-air.aad62322.css">
+<link rel="stylesheet" type="text/css" href="../_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="modulepreload" href="../_observablehq/client.3fa0f62a.js">
+<link rel="modulepreload" href="../_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.73a8ec5a.js">
+<link rel="modulepreload" href="../_npm/d3@7.9.0/e324157d.js">
+<link rel="modulepreload" href="../_observablehq/stdlib/inputs.4ef1d259.js">
+<link rel="modulepreload" href="../_npm/htl@0.3.1/72f4716c.js">
+<link rel="modulepreload" href="../_npm/isoformat@0.2.1/18cbf477.js">
+<link rel="modulepreload" href="../_npm/d3-array@3.2.4/e93ca09f.js">
+<link rel="modulepreload" href="../_npm/d3-axis@3.0.0/0f2de24d.js">
+<link rel="modulepreload" href="../_npm/d3-brush@3.0.0/65eb105b.js">
+<link rel="modulepreload" href="../_npm/d3-chord@3.0.1/7ef8fb2e.js">
+<link rel="modulepreload" href="../_npm/d3-color@3.1.0/aeb57b94.js">
+<link rel="modulepreload" href="../_npm/d3-contour@4.0.2/1d2aed74.js">
+<link rel="modulepreload" href="../_npm/d3-delaunay@6.0.4/5ced1d52.js">
+<link rel="modulepreload" href="../_npm/d3-dispatch@3.0.1/9ba9c7f3.js">
+<link rel="modulepreload" href="../_npm/d3-drag@3.0.0/4202580c.js">
+<link rel="modulepreload" href="../_npm/d3-dsv@3.0.1/9cffc2bd.js">
+<link rel="modulepreload" href="../_npm/d3-ease@3.0.1/cdd7e898.js">
+<link rel="modulepreload" href="../_npm/d3-fetch@3.0.1/b4e2ad9a.js">
+<link rel="modulepreload" href="../_npm/d3-force@3.0.0/5e804d15.js">
+<link rel="modulepreload" href="../_npm/d3-format@3.1.2/3785bf2d.js">
+<link rel="modulepreload" href="../_npm/d3-geo@3.1.1/40599fb3.js">
+<link rel="modulepreload" href="../_npm/d3-hierarchy@3.1.2/e49e792c.js">
+<link rel="modulepreload" href="../_npm/d3-interpolate@3.0.1/8d1e5425.js">
+<link rel="modulepreload" href="../_npm/d3-path@3.1.0/20d3f133.js">
+<link rel="modulepreload" href="../_npm/d3-polygon@3.0.1/7553081f.js">
+<link rel="modulepreload" href="../_npm/d3-quadtree@3.0.1/0dfd751c.js">
+<link rel="modulepreload" href="../_npm/d3-random@3.0.1/3c90ee06.js">
+<link rel="modulepreload" href="../_npm/d3-scale@4.0.2/720b7f0a.js">
+<link rel="modulepreload" href="../_npm/d3-scale-chromatic@3.1.0/ba24c2e7.js">
+<link rel="modulepreload" href="../_npm/d3-selection@3.0.0/4d94e5b7.js">
+<link rel="modulepreload" href="../_npm/d3-shape@3.2.0/6d3a6726.js">
+<link rel="modulepreload" href="../_npm/d3-time@3.1.0/9f03c579.js">
+<link rel="modulepreload" href="../_npm/d3-time-format@4.1.0/07c9626f.js">
+<link rel="modulepreload" href="../_npm/d3-timer@3.0.1/b58a267d.js">
+<link rel="modulepreload" href="../_npm/d3-transition@3.0.1/004da2ac.js">
+<link rel="modulepreload" href="../_npm/d3-zoom@3.0.0/b5786b3f.js">
+<link rel="modulepreload" href="../_npm/internmap@2.0.3/e08981d9.js">
+<link rel="modulepreload" href="../_npm/delaunator@5.0.1/02d43215.js">
+<link rel="modulepreload" href="../_npm/robust-predicates@3.0.2/aa00730b.js">
+<link rel="icon" href="../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "../_observablehq/client.3fa0f62a.js";
+
+define({id: "867a6601", outputs: ["generateRandomPoints"], body: () => {
+function generateRandomPoints(count = 10, domainMax = 100) {
+  const points = [];
+
+  for (let i = 0; i < count; i++) {
+    const x = Math.floor(Math.random() * domainMax) + 1;
+    const y = Math.floor(Math.random() * domainMax) + 1;
+    points.push({ x, y });
+  }
+
+  return points;
+}
+return {generateRandomPoints};
+}});
+
+define({id: "594e70a9", inputs: ["generateRandomPoints","display"], outputs: ["data"], body: (generateRandomPoints,display) => {
+const data = generateRandomPoints();
+display(data);
+return {data};
+}});
+
+define({id: "ea1d55b6", inputs: ["d3","data","display"], outputs: ["svg","circles"], body: (d3,data,display) => {
+  // create an svg with d3, which automatically operates as a selector
+  const svg = d3.create("svg")
+    .style("border", "1px solid black")
+    .attr("width", 100)
+    .attr("height", 100)
+  // create the circles selection by selecting something that doesn't exist, but matches what we intend to make
+  const circles = svg
+    // css selector that would match the resulting added nodes
+    .selectAll("circle.data-join")
+    .data(data)
+    // join = create one circle for every data element
+    .join("circle")
+    .attr("class", "data-join")
+    // the x and y should be based on the x and y from the data
+    .attr("cx", (d) => d.x)
+    .attr("cy", (d) => d.y)
+    .attr("r", 3);
+
+  // this next display is observable specific, so it renders in the markdown file
+  display(svg.node())
+return {svg,circles};
+}});
+
+define({id: "7427f95e", inputs: ["generateRandomPoints","display"], outputs: ["biggerData"], body: (generateRandomPoints,display) => {
+const biggerData = generateRandomPoints(10, 500)
+display(biggerData)
+return {biggerData};
+}});
+
+define({id: "fd543828", inputs: ["d3","biggerData","display"], outputs: ["svg","scale","circles","middleData","annotation"], body: (d3,biggerData,display) => {
+  const svg = d3.create("svg")
+    .style("border", "1px solid black")
+    .attr("width", 100)
+    .attr("height", 100)
+    .style("overflow", "visible")
+  
+  const scale = d3.scaleLinear()
+    .domain([0, 500])
+    .range([0, 100])
+  
+  const circles = svg
+    .selectAll("circle.data-join")
+    .data(biggerData)
+    .join("circle")
+    .attr("class", "data-join")
+    // apply the scale function when positioning them via x and y
+    .attr("cx", (d) => scale(d.x))
+    .attr("cy", (d) => scale(d.y))
+    .attr("r", 3);
+
+  // find some middle point on the x axis
+  const middleData = [...biggerData].sort((a, b) => a.x - b.x)[Math.floor(biggerData.length / 2)]
+  
+  // add a basic annotation with append
+  const annotation = svg
+    .append("text")
+    .datum(middleData)
+    .text(d => `(${d.x}, ${d.y})`)
+    .attr("x", d => scale(d.x))
+    .attr("y", d => scale(d.y))
+    .attr("text-anchor", "middle")
+    .attr("dominant-baseline", "middle")
+    .attr("dy", 8)
+    .style("font-size", 8)
+
+  display(svg.node())
+return {svg,scale,circles,middleData,annotation};
+}});
+
+define({id: "efdc6861", inputs: ["d3","display"], outputs: ["bandData","svg","bandScale","bands","letters"], body: (d3,display) => {
+const bandData = ["A", "B", "C", "D", "E", "F", "G"]
+
+const svg = d3.create("svg")
+    .style("border", "1px solid black")
+    .attr("width", 300)
+    .attr("height", 100)
+
+const bandScale = d3.scaleBand()
+  .domain(bandData)
+  .range([0, 300])
+
+// Add rects that are the size of each band
+const bands = svg.selectAll(".band-rect")
+  .data(bandData)
+  .join("rect")
+  .attr("class", "band-rect")
+  .attr("x", d => bandScale(d))
+  .attr("y", 0)
+  .attr("width", bandScale.bandwidth())
+  .attr("height", 100)
+  .attr("fill", (d, i) => i % 2 ? "lightgrey" : "white")
+
+// annotate the rects with the band's domain value
+const letters = svg.selectAll(".band-letter")
+  .data(bandData)
+  .join("text")
+  .text(d => d)
+  .attr("class", "band-letter")
+  .attr("x", d => bandScale(d) + bandScale.bandwidth() / 2)
+  .attr("y", 50)
+  .style("fill", "grey")
+  .style("font-size", "0.8em")
+  .attr("text-anchor", "middle")
+  .attr("dominant-baseline", "middle")
+
+display(svg.node())
+return {bandData,svg,bandScale,bands,letters};
+}});
+
+define({id: "56c6a6c4", inputs: ["Inputs","alphabet","display"], body: async (Inputs,alphabet,display) => {
+display(await(
+Inputs.table(alphabet)
+))
+}});
+
+define({id: "21f5dd79", inputs: ["d3","alphabet","display"], outputs: ["svg","xScale","min","max","yScale","bars","letters"], body: (d3,alphabet,display) => {
+const svg = d3.create("svg")
+    .style("border", "1px solid black")
+    .attr("width", 400)
+    .attr("height", 200)
+    .attr("overflow", "visible")
+
+const xScale = d3.scaleBand()
+  .domain(alphabet.map(d => d.letter))
+  .range([0, 400])
+  .paddingInner(0.1)
+
+// calculate the min and max of the alphabet dataset
+const [min, max] = d3.extent(alphabet.map(d => d.frequency))
+const yScale = d3.scaleLinear()
+  .domain([min, max])
+  .range([180, 0]) // this is conceptually backwards. See the note for more details. 
+  .nice()
+
+console.log(alphabet.map(d => xScale(d.letter)))
+// Add rects that are the size of each band
+const bars = svg.selectAll(".bar")
+  .data(alphabet)
+  .join("rect")
+  .attr("class", "bar")
+  .attr("x", d => xScale(d.letter))
+  .attr("y", d => 20 + yScale(d.frequency)) // slight padding down
+  .attr("width", xScale.bandwidth())
+  .attr("height", d => 180 - yScale(d.frequency))
+  .attr("fill", "lightgrey")
+
+// annotate the rects with the letter
+const letters = svg.selectAll(".letter")
+  .data(alphabet)
+  .join("text")
+  .text(d => d.letter)
+  .attr("class", "letter")
+  .attr("x", d => xScale(d.letter) + xScale.bandwidth() / 2) // position center of the bar
+  .attr("y", d => 20 + yScale(d.frequency)) // slight padding down
+  .attr("dy", -3) // bump up a tiny bit
+  .style("fill", "grey")
+  .style("font-size", "0.8em")
+  .attr("text-anchor", "middle")
+
+display(svg.node())
+return {svg,xScale,min,max,yScale,bars,letters};
+}});
+
+define({id: "92e1db03", inputs: ["d3","display"], outputs: ["timedata","width","height","margin","x","y","svg"], body: (d3,display) => {
+const timedata = [
+  { date: new Date("2025-06-01"), n: 40 },
+  { date: new Date("2025-06-15"), n: 55 },
+  { date: new Date("2025-07-01"), n: 35 },
+  { date: new Date("2025-07-20"), n: 62 },
+];
+
+const width = 400;
+const height = 180;
+const margin = { top: 12, right: 20, bottom: 32, left: 32 };
+
+const x = d3
+  .scaleTime()
+  .domain(d3.extent(timedata, (d) => d.date))
+  .range([margin.left, width - margin.right])
+  .nice();
+
+const y = d3
+  .scaleLinear()
+  .domain([0, d3.max(timedata, (d) => d.n)])
+  .range([height - margin.bottom, margin.top])
+  .nice();
+
+const svg = d3
+  .create("svg")
+  .style("border", "1px solid black")
+  .attr("width", width)
+  .attr("height", height)
+  .attr("font-size", 10);
+
+svg
+  .append("g")
+  .attr("transform", `translate(0,${height - margin.bottom})`)
+  .call(d3.axisBottom(x).ticks(4));
+
+svg
+  .append("g")
+  .attr("transform", `translate(${margin.left},0)`)
+  .call(d3.axisLeft(y).ticks(4));
+
+svg
+  .selectAll("circle")
+  .data(timedata)
+  .join("circle")
+  .attr("cx", (d) => x(d.date))
+  .attr("cy", (d) => y(d.n))
+  .attr("r", 6)
+  .attr("fill", "steelblue");
+
+display(svg.node());
+return {timedata,width,height,margin,x,y,svg};
+}});
+
+define({id: "bccc6dab", outputs: ["linedata"], body: () => {
+const linedata = [
+  { date: new Date("2025-06-01"), n: 40 },
+  { date: new Date("2025-06-10"), n: 55 },
+  { date: new Date("2025-06-15"), n: 55 },
+  { date: new Date("2025-07-01"), n: 35 },
+  { date: new Date("2025-07-04"), n: 62 },
+];
+return {linedata};
+}});
+
+define({id: "d7d459ea", inputs: ["d3","linedata","display"], outputs: ["width","height","margin","x","y","pathFn","svg"], body: (d3,linedata,display) => {
+const width = 400;
+const height = 180;
+const margin = { top: 12, right: 20, bottom: 32, left: 32 };
+
+const x = d3
+  .scaleTime()
+  .domain(d3.extent(linedata, (d) => d.date))
+  .range([margin.left, width - margin.right])
+  .nice();
+
+// linedata.map(d => console.log(x))
+
+const y = d3
+  .scaleLinear()
+  .domain([0, d3.max(linedata, (d) => d.n)])
+  .range([height - margin.bottom, margin.top])
+  .nice();
+
+// This is where we translate from data to path—a helper to compute the path's `d` attribute.
+const pathFn = d3.line()
+  // this is where we scale it for both x and y—the path should be created in pixel coordinates
+  .x(d => x(d.date))
+  .y(d => y(d.n))
+
+const svg = d3
+  .create("svg")
+  .style("border", "1px solid black")
+  .attr("width", width)
+  .attr("height", height)
+  .attr("font-size", 10);
+
+svg.selectAll(".line")
+  .data([linedata])
+  .join("path")
+  .attr("class", "line")
+  .attr("d", d => pathFn(d))
+  .attr("stroke", "black")
+  .attr("fill", "none")
+
+svg
+  .append("g")
+  .attr("transform", `translate(0,${height - margin.bottom})`)
+  .call(d3.axisBottom(x).ticks(4));
+
+svg
+  .append("g")
+  .attr("transform", `translate(${margin.left},0)`)
+  .call(d3.axisLeft(y).ticks(4));
+
+display(svg.node())
+return {width,height,margin,x,y,pathFn,svg};
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Interactive Data Visualization (Spring 2026)</a></li>
+  </ol>
+  <section class="observablehq-section-active">
+    <summary>Lessons</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./1_intro_to_web_development">Intro to Web Development</a></li>
+    <li class="observablehq-link"><a href="./2_working_in_cursor">Working in Cursor</a></li>
+    <li class="observablehq-link"><a href="./3_intro_to_observable_framework">Intro to Observable Framework</a></li>
+    <li class="observablehq-link"><a href="./4_confirming_spring_upstream">Confirming Spring Upstream</a></li>
+    <li class="observablehq-link"><a href="./5_intro_to_observable_plot">Intro to Observable Plot</a></li>
+    <li class="observablehq-link"><a href="./6_transforms_and_data_manipulation">Transforms and Data Manipulation</a></li>
+    <li class="observablehq-link"><a href="./7_data_types_scales_marks">Data Types, Scales, Marks</a></li>
+    <li class="observablehq-link"><a href="./8_data_joins_and_annotations">Data Joins and Annotations</a></li>
+    <li class="observablehq-link"><a href="./9_faceting_and_svgs">Faceting and SVGs</a></li>
+    <li class="observablehq-link"><a href="./10_libraries_and_imports">Libraries and Imports</a></li>
+    <li class="observablehq-link"><a href="./11_intro_to_d3">Intro to d3.js</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./12_charts_in_d3">Different Charts With d3.js</a></li>
+    </ol>
+  </section>
+  <details>
+    <summary>Lab 0: Getting Started</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_0/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_0/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 1: Prolific Pollinators</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_1/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_1/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 2: Subway Staffing</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_2/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_2/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 3: Mayoral Mystery</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_3/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_3/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 4: Clearwater Crisis</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_4/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_4/">Dashboard</a></li>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#adding-scales">Adding scales</a></li>
+<li class="observablehq-secondary-link"><a href="#band-scale">Band scale</a></li>
+<li class="observablehq-secondary-link"><a href="#time-scale">Time scale</a></li>
+<li class="observablehq-secondary-link"><a href="#reducing-data-into-visuals">Reducing data into visuals</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="simplest-data-join" tabindex="-1"><a class="observablehq-header-anchor" href="#simplest-data-join">Simplest data join</a></h1>
+<p>The easiest exploration of data to elements is something like a scatterplot because the data and elements have the same number. In the example random data in the <a href="./11_intro_to_d3">previous lesson</a>, we created one circle for every data point. Their position was random, but usually associated with data. Let's expand that example. First, the generator function:</p>
+<div class="observablehq observablehq--block"><!--:867a6601:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">generateRandomPoints</span>(<span class="hljs-params">count = <span class="hljs-number">10</span>, domainMax = <span class="hljs-number">100</span></span>) {
+  <span class="hljs-keyword">const</span> points = [];
+
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; count; i++) {
+    <span class="hljs-keyword">const</span> x = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * domainMax) + <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">const</span> y = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * domainMax) + <span class="hljs-number">1</span>;
+    points.<span class="hljs-title function_">push</span>({ x, y });
+  }
+
+  <span class="hljs-keyword">return</span> points;
+}
+</code></pre>
+<p>Now let's make some data by invoking the function:</p>
+<div class="observablehq observablehq--block"><!--:594e70a9:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> data = <span class="hljs-title function_">generateRandomPoints</span>();
+<span class="hljs-title function_">display</span>(data);
+</code></pre>
+<p>Now, let's visualize it in a small chart. This time, I will use d3 to make an svg in every block, rather than selecting and modifying the svg. This is more of a specific pattern to framework and how it works, less so for d3 as a js library in a larger application. If you're using d3 outside of framework, you'll want to follow the select / modify flow of the previous lesson.</p>
+<div class="observablehq observablehq--block"><!--:ea1d55b6:--></div>
+<pre data-language="js"><code class="language-js">  <span class="hljs-comment">// create an svg with d3, which automatically operates as a selector</span>
+  <span class="hljs-keyword">const</span> svg = d3.<span class="hljs-title function_">create</span>(<span class="hljs-string">"svg"</span>)
+    .<span class="hljs-title function_">style</span>(<span class="hljs-string">"border"</span>, <span class="hljs-string">"1px solid black"</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"width"</span>, <span class="hljs-number">100</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"height"</span>, <span class="hljs-number">100</span>)
+  <span class="hljs-comment">// create the circles selection by selecting something that doesn't exist, but matches what we intend to make</span>
+  <span class="hljs-keyword">const</span> circles = svg
+    <span class="hljs-comment">// css selector that would match the resulting added nodes</span>
+    .<span class="hljs-title function_">selectAll</span>(<span class="hljs-string">"circle.data-join"</span>)
+    .<span class="hljs-title function_">data</span>(data)
+    <span class="hljs-comment">// join = create one circle for every data element</span>
+    .<span class="hljs-title function_">join</span>(<span class="hljs-string">"circle"</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"class"</span>, <span class="hljs-string">"data-join"</span>)
+    <span class="hljs-comment">// the x and y should be based on the x and y from the data</span>
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"cx"</span>, <span class="hljs-function">(<span class="hljs-params">d</span>) =&gt;</span> d.<span class="hljs-property">x</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"cy"</span>, <span class="hljs-function">(<span class="hljs-params">d</span>) =&gt;</span> d.<span class="hljs-property">y</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"r"</span>, <span class="hljs-number">3</span>);
+
+  <span class="hljs-comment">// this next display is observable specific, so it renders in the markdown file</span>
+  <span class="hljs-title function_">display</span>(svg.<span class="hljs-title function_">node</span>())
+</code></pre>
+<p>10 points, 10 circles. Each circle positioned by its x and y.</p>
+<h1 id="adding-scales" tabindex="-1"><a class="observablehq-header-anchor" href="#adding-scales">Adding scales</a></h1>
+<h2 id="linear-scale" tabindex="-1"><a class="observablehq-header-anchor" href="#linear-scale">Linear scale</a></h2>
+<p>In the above example we don't need to worry about scales because the random data generator only returns x and y values that fit within the svg's width and height. That example is just for simplicity of seeing data --&gt; circles, but we will almost always need scales.</p>
+<p>We've discussed this a bit in <a href="./9_faceting_and_svgs.md">faceting and svgs</a>, but let's apply it within the data join more explicitly.</p>
+<p>Let's keep it simple by just expanding the data from 0 -&gt; 100 to 0 -&gt; 500, but <em>keep the svg sizing at 100 pixels wide</em>. Conceptually we can make this jump pretty easily -- its a matter of dividing by 5 to get from data to pixels. We have data that spans all numbers between 0 and 500, but they need to fit in the space of 0 to 100 pixels. The value for 250 is in the middle of our data domain, so it should be right in the middle at 50 pixels. That makes logical sense: <code>250 / 5 = 50</code>.</p>
+<p>It is almost never that easy, so let's add d3 scales to do this math for us, no matter the data domain and complexity. We will stick with our data generator but expand the domain to 500.</p>
+<div class="observablehq observablehq--block"><!--:7427f95e:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> biggerData = <span class="hljs-title function_">generateRandomPoints</span>(<span class="hljs-number">10</span>, <span class="hljs-number">500</span>)
+<span class="hljs-title function_">display</span>(biggerData)
+</code></pre>
+<p>Now let's plot the same with scales, and annotate one of the circles so we can confirm:</p>
+<div class="observablehq observablehq--block"><!--:fd543828:--></div>
+<pre data-language="js"><code class="language-js">  <span class="hljs-keyword">const</span> svg = d3.<span class="hljs-title function_">create</span>(<span class="hljs-string">"svg"</span>)
+    .<span class="hljs-title function_">style</span>(<span class="hljs-string">"border"</span>, <span class="hljs-string">"1px solid black"</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"width"</span>, <span class="hljs-number">100</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"height"</span>, <span class="hljs-number">100</span>)
+    .<span class="hljs-title function_">style</span>(<span class="hljs-string">"overflow"</span>, <span class="hljs-string">"visible"</span>)
+  
+  <span class="hljs-keyword">const</span> scale = d3.<span class="hljs-title function_">scaleLinear</span>()
+    .<span class="hljs-title function_">domain</span>([<span class="hljs-number">0</span>, <span class="hljs-number">500</span>])
+    .<span class="hljs-title function_">range</span>([<span class="hljs-number">0</span>, <span class="hljs-number">100</span>])
+  
+  <span class="hljs-keyword">const</span> circles = svg
+    .<span class="hljs-title function_">selectAll</span>(<span class="hljs-string">"circle.data-join"</span>)
+    .<span class="hljs-title function_">data</span>(biggerData)
+    .<span class="hljs-title function_">join</span>(<span class="hljs-string">"circle"</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"class"</span>, <span class="hljs-string">"data-join"</span>)
+    <span class="hljs-comment">// apply the scale function when positioning them via x and y</span>
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"cx"</span>, <span class="hljs-function">(<span class="hljs-params">d</span>) =&gt;</span> <span class="hljs-title function_">scale</span>(d.<span class="hljs-property">x</span>))
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"cy"</span>, <span class="hljs-function">(<span class="hljs-params">d</span>) =&gt;</span> <span class="hljs-title function_">scale</span>(d.<span class="hljs-property">y</span>))
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"r"</span>, <span class="hljs-number">3</span>);
+
+  <span class="hljs-comment">// find some middle point on the x axis</span>
+  <span class="hljs-keyword">const</span> middleData = [...biggerData].<span class="hljs-title function_">sort</span>(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a.<span class="hljs-property">x</span> - b.<span class="hljs-property">x</span>)[<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(biggerData.<span class="hljs-property">length</span> / <span class="hljs-number">2</span>)]
+  
+  <span class="hljs-comment">// add a basic annotation with append</span>
+  <span class="hljs-keyword">const</span> annotation = svg
+    .<span class="hljs-title function_">append</span>(<span class="hljs-string">"text"</span>)
+    .<span class="hljs-title function_">datum</span>(middleData)
+    .<span class="hljs-title function_">text</span>(<span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> <span class="hljs-string">`(<span class="hljs-subst">${d.x}</span>, <span class="hljs-subst">${d.y}</span>)`</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"x"</span>, <span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> <span class="hljs-title function_">scale</span>(d.<span class="hljs-property">x</span>))
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"y"</span>, <span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> <span class="hljs-title function_">scale</span>(d.<span class="hljs-property">y</span>))
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"text-anchor"</span>, <span class="hljs-string">"middle"</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"dominant-baseline"</span>, <span class="hljs-string">"middle"</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"dy"</span>, <span class="hljs-number">8</span>)
+    .<span class="hljs-title function_">style</span>(<span class="hljs-string">"font-size"</span>, <span class="hljs-number">8</span>)
+
+  <span class="hljs-title function_">display</span>(svg.<span class="hljs-title function_">node</span>())
+</code></pre>
+<h2 id="band-scale" tabindex="-1"><a class="observablehq-header-anchor" href="#band-scale">Band scale</a></h2>
+<p>Linear scale is the easiest to understand but we can also use something like a band scale (<code>d3.scaleBand()</code>), which automatically splits data across the available range into bands. Let's just quickly visualize what band scales look like across a larger width:</p>
+<div class="observablehq observablehq--block"><!--:efdc6861:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> bandData = [<span class="hljs-string">"A"</span>, <span class="hljs-string">"B"</span>, <span class="hljs-string">"C"</span>, <span class="hljs-string">"D"</span>, <span class="hljs-string">"E"</span>, <span class="hljs-string">"F"</span>, <span class="hljs-string">"G"</span>]
+
+<span class="hljs-keyword">const</span> svg = d3.<span class="hljs-title function_">create</span>(<span class="hljs-string">"svg"</span>)
+    .<span class="hljs-title function_">style</span>(<span class="hljs-string">"border"</span>, <span class="hljs-string">"1px solid black"</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"width"</span>, <span class="hljs-number">300</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"height"</span>, <span class="hljs-number">100</span>)
+
+<span class="hljs-keyword">const</span> bandScale = d3.<span class="hljs-title function_">scaleBand</span>()
+  .<span class="hljs-title function_">domain</span>(bandData)
+  .<span class="hljs-title function_">range</span>([<span class="hljs-number">0</span>, <span class="hljs-number">300</span>])
+
+<span class="hljs-comment">// Add rects that are the size of each band</span>
+<span class="hljs-keyword">const</span> bands = svg.<span class="hljs-title function_">selectAll</span>(<span class="hljs-string">".band-rect"</span>)
+  .<span class="hljs-title function_">data</span>(bandData)
+  .<span class="hljs-title function_">join</span>(<span class="hljs-string">"rect"</span>)
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"class"</span>, <span class="hljs-string">"band-rect"</span>)
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"x"</span>, <span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> <span class="hljs-title function_">bandScale</span>(d))
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"y"</span>, <span class="hljs-number">0</span>)
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"width"</span>, bandScale.<span class="hljs-title function_">bandwidth</span>())
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"height"</span>, <span class="hljs-number">100</span>)
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"fill"</span>, <span class="hljs-function">(<span class="hljs-params">d, i</span>) =&gt;</span> i % <span class="hljs-number">2</span> ? <span class="hljs-string">"lightgrey"</span> : <span class="hljs-string">"white"</span>)
+
+<span class="hljs-comment">// annotate the rects with the band's domain value</span>
+<span class="hljs-keyword">const</span> letters = svg.<span class="hljs-title function_">selectAll</span>(<span class="hljs-string">".band-letter"</span>)
+  .<span class="hljs-title function_">data</span>(bandData)
+  .<span class="hljs-title function_">join</span>(<span class="hljs-string">"text"</span>)
+  .<span class="hljs-title function_">text</span>(<span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> d)
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"class"</span>, <span class="hljs-string">"band-letter"</span>)
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"x"</span>, <span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> <span class="hljs-title function_">bandScale</span>(d) + bandScale.<span class="hljs-title function_">bandwidth</span>() / <span class="hljs-number">2</span>)
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"y"</span>, <span class="hljs-number">50</span>)
+  .<span class="hljs-title function_">style</span>(<span class="hljs-string">"fill"</span>, <span class="hljs-string">"grey"</span>)
+  .<span class="hljs-title function_">style</span>(<span class="hljs-string">"font-size"</span>, <span class="hljs-string">"0.8em"</span>)
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"text-anchor"</span>, <span class="hljs-string">"middle"</span>)
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"dominant-baseline"</span>, <span class="hljs-string">"middle"</span>)
+
+<span class="hljs-title function_">display</span>(svg.<span class="hljs-title function_">node</span>())
+</code></pre>
+<p>We can try this with an actual bar chart now. Let's use the alphabet dataset available to us in the observable universe to explore it:</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:56c6a6c4:--></div>
+<p>We only had a band scale, which helps us size in the x direction. Let's expand this to also size in the y direction with a linear scale.</p>
+<div class="observablehq observablehq--block"><!--:21f5dd79:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> svg = d3.<span class="hljs-title function_">create</span>(<span class="hljs-string">"svg"</span>)
+    .<span class="hljs-title function_">style</span>(<span class="hljs-string">"border"</span>, <span class="hljs-string">"1px solid black"</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"width"</span>, <span class="hljs-number">400</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"height"</span>, <span class="hljs-number">200</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"overflow"</span>, <span class="hljs-string">"visible"</span>)
+
+<span class="hljs-keyword">const</span> xScale = d3.<span class="hljs-title function_">scaleBand</span>()
+  .<span class="hljs-title function_">domain</span>(alphabet.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> d.<span class="hljs-property">letter</span>))
+  .<span class="hljs-title function_">range</span>([<span class="hljs-number">0</span>, <span class="hljs-number">400</span>])
+  .<span class="hljs-title function_">paddingInner</span>(<span class="hljs-number">0.1</span>)
+
+<span class="hljs-comment">// calculate the min and max of the alphabet dataset</span>
+<span class="hljs-keyword">const</span> [min, max] = d3.<span class="hljs-title function_">extent</span>(alphabet.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> d.<span class="hljs-property">frequency</span>))
+<span class="hljs-keyword">const</span> yScale = d3.<span class="hljs-title function_">scaleLinear</span>()
+  .<span class="hljs-title function_">domain</span>([min, max])
+  .<span class="hljs-title function_">range</span>([<span class="hljs-number">180</span>, <span class="hljs-number">0</span>]) <span class="hljs-comment">// this is conceptually backwards. See the note for more details. </span>
+  .<span class="hljs-title function_">nice</span>()
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(alphabet.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> <span class="hljs-title function_">xScale</span>(d.<span class="hljs-property">letter</span>)))
+<span class="hljs-comment">// Add rects that are the size of each band</span>
+<span class="hljs-keyword">const</span> bars = svg.<span class="hljs-title function_">selectAll</span>(<span class="hljs-string">".bar"</span>)
+  .<span class="hljs-title function_">data</span>(alphabet)
+  .<span class="hljs-title function_">join</span>(<span class="hljs-string">"rect"</span>)
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"class"</span>, <span class="hljs-string">"bar"</span>)
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"x"</span>, <span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> <span class="hljs-title function_">xScale</span>(d.<span class="hljs-property">letter</span>))
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"y"</span>, <span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> <span class="hljs-number">20</span> + <span class="hljs-title function_">yScale</span>(d.<span class="hljs-property">frequency</span>)) <span class="hljs-comment">// slight padding down</span>
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"width"</span>, xScale.<span class="hljs-title function_">bandwidth</span>())
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"height"</span>, <span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> <span class="hljs-number">180</span> - <span class="hljs-title function_">yScale</span>(d.<span class="hljs-property">frequency</span>))
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"fill"</span>, <span class="hljs-string">"lightgrey"</span>)
+
+<span class="hljs-comment">// annotate the rects with the letter</span>
+<span class="hljs-keyword">const</span> letters = svg.<span class="hljs-title function_">selectAll</span>(<span class="hljs-string">".letter"</span>)
+  .<span class="hljs-title function_">data</span>(alphabet)
+  .<span class="hljs-title function_">join</span>(<span class="hljs-string">"text"</span>)
+  .<span class="hljs-title function_">text</span>(<span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> d.<span class="hljs-property">letter</span>)
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"class"</span>, <span class="hljs-string">"letter"</span>)
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"x"</span>, <span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> <span class="hljs-title function_">xScale</span>(d.<span class="hljs-property">letter</span>) + xScale.<span class="hljs-title function_">bandwidth</span>() / <span class="hljs-number">2</span>) <span class="hljs-comment">// position center of the bar</span>
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"y"</span>, <span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> <span class="hljs-number">20</span> + <span class="hljs-title function_">yScale</span>(d.<span class="hljs-property">frequency</span>)) <span class="hljs-comment">// slight padding down</span>
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"dy"</span>, -<span class="hljs-number">3</span>) <span class="hljs-comment">// bump up a tiny bit</span>
+  .<span class="hljs-title function_">style</span>(<span class="hljs-string">"fill"</span>, <span class="hljs-string">"grey"</span>)
+  .<span class="hljs-title function_">style</span>(<span class="hljs-string">"font-size"</span>, <span class="hljs-string">"0.8em"</span>)
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"text-anchor"</span>, <span class="hljs-string">"middle"</span>)
+
+<span class="hljs-title function_">display</span>(svg.<span class="hljs-title function_">node</span>())
+</code></pre>
+<div class="note">
+You may notice that the `range` for the `yScale` starts from the height, rather than starting from 0. That's because the SVG origin is in the top left. We respect this when making scales, and the [d3 axis helper](https://d3js.org/d3-axis) methods assume this approach. 
+</div>
+<h2 id="time-scale" tabindex="-1"><a class="observablehq-header-anchor" href="#time-scale">Time scale</a></h2>
+<p>Lastly, there are time scales (<code>d3.scaleTime</code>) for mapping <code>Date</code> values to horizontal positions. In this example, each row has a <code>date</code> and a count <code>n</code>; we plot a dot at that date and value—no fixed bar width. Let's take this a step further: extract helpful constants (width, height, margins) and add axes.</p>
+<div class="observablehq observablehq--block"><!--:92e1db03:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> timedata = [
+  { <span class="hljs-attr">date</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(<span class="hljs-string">"2025-06-01"</span>), <span class="hljs-attr">n</span>: <span class="hljs-number">40</span> },
+  { <span class="hljs-attr">date</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(<span class="hljs-string">"2025-06-15"</span>), <span class="hljs-attr">n</span>: <span class="hljs-number">55</span> },
+  { <span class="hljs-attr">date</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(<span class="hljs-string">"2025-07-01"</span>), <span class="hljs-attr">n</span>: <span class="hljs-number">35</span> },
+  { <span class="hljs-attr">date</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(<span class="hljs-string">"2025-07-20"</span>), <span class="hljs-attr">n</span>: <span class="hljs-number">62</span> },
+];
+
+<span class="hljs-keyword">const</span> width = <span class="hljs-number">400</span>;
+<span class="hljs-keyword">const</span> height = <span class="hljs-number">180</span>;
+<span class="hljs-keyword">const</span> margin = { <span class="hljs-attr">top</span>: <span class="hljs-number">12</span>, <span class="hljs-attr">right</span>: <span class="hljs-number">20</span>, <span class="hljs-attr">bottom</span>: <span class="hljs-number">32</span>, <span class="hljs-attr">left</span>: <span class="hljs-number">32</span> };
+
+<span class="hljs-keyword">const</span> x = d3
+  .<span class="hljs-title function_">scaleTime</span>()
+  .<span class="hljs-title function_">domain</span>(d3.<span class="hljs-title function_">extent</span>(timedata, <span class="hljs-function">(<span class="hljs-params">d</span>) =&gt;</span> d.<span class="hljs-property">date</span>))
+  .<span class="hljs-title function_">range</span>([margin.<span class="hljs-property">left</span>, width - margin.<span class="hljs-property">right</span>])
+  .<span class="hljs-title function_">nice</span>();
+
+<span class="hljs-keyword">const</span> y = d3
+  .<span class="hljs-title function_">scaleLinear</span>()
+  .<span class="hljs-title function_">domain</span>([<span class="hljs-number">0</span>, d3.<span class="hljs-title function_">max</span>(timedata, <span class="hljs-function">(<span class="hljs-params">d</span>) =&gt;</span> d.<span class="hljs-property">n</span>)])
+  .<span class="hljs-title function_">range</span>([height - margin.<span class="hljs-property">bottom</span>, margin.<span class="hljs-property">top</span>])
+  .<span class="hljs-title function_">nice</span>();
+
+<span class="hljs-keyword">const</span> svg = d3
+  .<span class="hljs-title function_">create</span>(<span class="hljs-string">"svg"</span>)
+  .<span class="hljs-title function_">style</span>(<span class="hljs-string">"border"</span>, <span class="hljs-string">"1px solid black"</span>)
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"width"</span>, width)
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"height"</span>, height)
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"font-size"</span>, <span class="hljs-number">10</span>);
+
+svg
+  .<span class="hljs-title function_">append</span>(<span class="hljs-string">"g"</span>)
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"transform"</span>, <span class="hljs-string">`translate(0,<span class="hljs-subst">${height - margin.bottom}</span>)`</span>)
+  .<span class="hljs-title function_">call</span>(d3.<span class="hljs-title function_">axisBottom</span>(x).<span class="hljs-title function_">ticks</span>(<span class="hljs-number">4</span>));
+
+svg
+  .<span class="hljs-title function_">append</span>(<span class="hljs-string">"g"</span>)
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"transform"</span>, <span class="hljs-string">`translate(<span class="hljs-subst">${margin.left}</span>,0)`</span>)
+  .<span class="hljs-title function_">call</span>(d3.<span class="hljs-title function_">axisLeft</span>(y).<span class="hljs-title function_">ticks</span>(<span class="hljs-number">4</span>));
+
+svg
+  .<span class="hljs-title function_">selectAll</span>(<span class="hljs-string">"circle"</span>)
+  .<span class="hljs-title function_">data</span>(timedata)
+  .<span class="hljs-title function_">join</span>(<span class="hljs-string">"circle"</span>)
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"cx"</span>, <span class="hljs-function">(<span class="hljs-params">d</span>) =&gt;</span> <span class="hljs-title function_">x</span>(d.<span class="hljs-property">date</span>))
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"cy"</span>, <span class="hljs-function">(<span class="hljs-params">d</span>) =&gt;</span> <span class="hljs-title function_">y</span>(d.<span class="hljs-property">n</span>))
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"r"</span>, <span class="hljs-number">6</span>)
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"fill"</span>, <span class="hljs-string">"steelblue"</span>);
+
+<span class="hljs-title function_">display</span>(svg.<span class="hljs-title function_">node</span>());
+</code></pre>
+<h1 id="reducing-data-into-visuals" tabindex="-1"><a class="observablehq-header-anchor" href="#reducing-data-into-visuals">Reducing data into visuals</a></h1>
+<p>One visual per data point is not always what we want to visualize, so we need to use d3.js to help us reduce data into the appropriate visual. Let's consider this with lines—we have to go from several points over time to one path element.</p>
+<p>Luckily, D3 has helpers to build the SVG elements. Here is some sample line data:</p>
+<div class="observablehq observablehq--block"><!--:bccc6dab:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> linedata = [
+  { <span class="hljs-attr">date</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(<span class="hljs-string">"2025-06-01"</span>), <span class="hljs-attr">n</span>: <span class="hljs-number">40</span> },
+  { <span class="hljs-attr">date</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(<span class="hljs-string">"2025-06-10"</span>), <span class="hljs-attr">n</span>: <span class="hljs-number">55</span> },
+  { <span class="hljs-attr">date</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(<span class="hljs-string">"2025-06-15"</span>), <span class="hljs-attr">n</span>: <span class="hljs-number">55</span> },
+  { <span class="hljs-attr">date</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(<span class="hljs-string">"2025-07-01"</span>), <span class="hljs-attr">n</span>: <span class="hljs-number">35</span> },
+  { <span class="hljs-attr">date</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(<span class="hljs-string">"2025-07-04"</span>), <span class="hljs-attr">n</span>: <span class="hljs-number">62</span> },
+];
+</code></pre>
+<div class="observablehq observablehq--block"><!--:d7d459ea:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> width = <span class="hljs-number">400</span>;
+<span class="hljs-keyword">const</span> height = <span class="hljs-number">180</span>;
+<span class="hljs-keyword">const</span> margin = { <span class="hljs-attr">top</span>: <span class="hljs-number">12</span>, <span class="hljs-attr">right</span>: <span class="hljs-number">20</span>, <span class="hljs-attr">bottom</span>: <span class="hljs-number">32</span>, <span class="hljs-attr">left</span>: <span class="hljs-number">32</span> };
+
+<span class="hljs-keyword">const</span> x = d3
+  .<span class="hljs-title function_">scaleTime</span>()
+  .<span class="hljs-title function_">domain</span>(d3.<span class="hljs-title function_">extent</span>(linedata, <span class="hljs-function">(<span class="hljs-params">d</span>) =&gt;</span> d.<span class="hljs-property">date</span>))
+  .<span class="hljs-title function_">range</span>([margin.<span class="hljs-property">left</span>, width - margin.<span class="hljs-property">right</span>])
+  .<span class="hljs-title function_">nice</span>();
+
+<span class="hljs-comment">// linedata.map(d =&gt; console.log(x))</span>
+
+<span class="hljs-keyword">const</span> y = d3
+  .<span class="hljs-title function_">scaleLinear</span>()
+  .<span class="hljs-title function_">domain</span>([<span class="hljs-number">0</span>, d3.<span class="hljs-title function_">max</span>(linedata, <span class="hljs-function">(<span class="hljs-params">d</span>) =&gt;</span> d.<span class="hljs-property">n</span>)])
+  .<span class="hljs-title function_">range</span>([height - margin.<span class="hljs-property">bottom</span>, margin.<span class="hljs-property">top</span>])
+  .<span class="hljs-title function_">nice</span>();
+
+<span class="hljs-comment">// This is where we translate from data to path—a helper to compute the path's `d` attribute.</span>
+<span class="hljs-keyword">const</span> pathFn = d3.<span class="hljs-title function_">line</span>()
+  <span class="hljs-comment">// this is where we scale it for both x and y—the path should be created in pixel coordinates</span>
+  .<span class="hljs-title function_">x</span>(<span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> <span class="hljs-title function_">x</span>(d.<span class="hljs-property">date</span>))
+  .<span class="hljs-title function_">y</span>(<span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> <span class="hljs-title function_">y</span>(d.<span class="hljs-property">n</span>))
+
+<span class="hljs-keyword">const</span> svg = d3
+  .<span class="hljs-title function_">create</span>(<span class="hljs-string">"svg"</span>)
+  .<span class="hljs-title function_">style</span>(<span class="hljs-string">"border"</span>, <span class="hljs-string">"1px solid black"</span>)
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"width"</span>, width)
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"height"</span>, height)
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"font-size"</span>, <span class="hljs-number">10</span>);
+
+svg.<span class="hljs-title function_">selectAll</span>(<span class="hljs-string">".line"</span>)
+  .<span class="hljs-title function_">data</span>([linedata])
+  .<span class="hljs-title function_">join</span>(<span class="hljs-string">"path"</span>)
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"class"</span>, <span class="hljs-string">"line"</span>)
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"d"</span>, <span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> <span class="hljs-title function_">pathFn</span>(d))
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"stroke"</span>, <span class="hljs-string">"black"</span>)
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"fill"</span>, <span class="hljs-string">"none"</span>)
+
+svg
+  .<span class="hljs-title function_">append</span>(<span class="hljs-string">"g"</span>)
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"transform"</span>, <span class="hljs-string">`translate(0,<span class="hljs-subst">${height - margin.bottom}</span>)`</span>)
+  .<span class="hljs-title function_">call</span>(d3.<span class="hljs-title function_">axisBottom</span>(x).<span class="hljs-title function_">ticks</span>(<span class="hljs-number">4</span>));
+
+svg
+  .<span class="hljs-title function_">append</span>(<span class="hljs-string">"g"</span>)
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"transform"</span>, <span class="hljs-string">`translate(<span class="hljs-subst">${margin.left}</span>,0)`</span>)
+  .<span class="hljs-title function_">call</span>(d3.<span class="hljs-title function_">axisLeft</span>(y).<span class="hljs-title function_">ticks</span>(<span class="hljs-number">4</span>));
+
+<span class="hljs-title function_">display</span>(svg.<span class="hljs-title function_">node</span>())
+</code></pre>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./11_intro_to_d3"><span>Intro to d3.js</span></a><a rel="next" href="../lab_0/readme"><span>Instructions</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-05-25T00:23:06">May 25, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>

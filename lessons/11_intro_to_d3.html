@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>Intro to d3.js | Interactive Data Visualization (Spring 2026)</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-air.aad62322.css">
+<link rel="preload" as="style" href="../_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-air.aad62322.css">
+<link rel="stylesheet" type="text/css" href="../_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="modulepreload" href="../_observablehq/client.3fa0f62a.js">
+<link rel="modulepreload" href="../_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.73a8ec5a.js">
+<link rel="modulepreload" href="../_npm/d3@7.9.0/e324157d.js">
+<link rel="modulepreload" href="../_observablehq/stdlib/inputs.4ef1d259.js">
+<link rel="modulepreload" href="../_npm/htl@0.3.1/72f4716c.js">
+<link rel="modulepreload" href="../_npm/isoformat@0.2.1/18cbf477.js">
+<link rel="modulepreload" href="../_npm/d3-array@3.2.4/e93ca09f.js">
+<link rel="modulepreload" href="../_npm/d3-axis@3.0.0/0f2de24d.js">
+<link rel="modulepreload" href="../_npm/d3-brush@3.0.0/65eb105b.js">
+<link rel="modulepreload" href="../_npm/d3-chord@3.0.1/7ef8fb2e.js">
+<link rel="modulepreload" href="../_npm/d3-color@3.1.0/aeb57b94.js">
+<link rel="modulepreload" href="../_npm/d3-contour@4.0.2/1d2aed74.js">
+<link rel="modulepreload" href="../_npm/d3-delaunay@6.0.4/5ced1d52.js">
+<link rel="modulepreload" href="../_npm/d3-dispatch@3.0.1/9ba9c7f3.js">
+<link rel="modulepreload" href="../_npm/d3-drag@3.0.0/4202580c.js">
+<link rel="modulepreload" href="../_npm/d3-dsv@3.0.1/9cffc2bd.js">
+<link rel="modulepreload" href="../_npm/d3-ease@3.0.1/cdd7e898.js">
+<link rel="modulepreload" href="../_npm/d3-fetch@3.0.1/b4e2ad9a.js">
+<link rel="modulepreload" href="../_npm/d3-force@3.0.0/5e804d15.js">
+<link rel="modulepreload" href="../_npm/d3-format@3.1.2/3785bf2d.js">
+<link rel="modulepreload" href="../_npm/d3-geo@3.1.1/40599fb3.js">
+<link rel="modulepreload" href="../_npm/d3-hierarchy@3.1.2/e49e792c.js">
+<link rel="modulepreload" href="../_npm/d3-interpolate@3.0.1/8d1e5425.js">
+<link rel="modulepreload" href="../_npm/d3-path@3.1.0/20d3f133.js">
+<link rel="modulepreload" href="../_npm/d3-polygon@3.0.1/7553081f.js">
+<link rel="modulepreload" href="../_npm/d3-quadtree@3.0.1/0dfd751c.js">
+<link rel="modulepreload" href="../_npm/d3-random@3.0.1/3c90ee06.js">
+<link rel="modulepreload" href="../_npm/d3-scale@4.0.2/720b7f0a.js">
+<link rel="modulepreload" href="../_npm/d3-scale-chromatic@3.1.0/ba24c2e7.js">
+<link rel="modulepreload" href="../_npm/d3-selection@3.0.0/4d94e5b7.js">
+<link rel="modulepreload" href="../_npm/d3-shape@3.2.0/6d3a6726.js">
+<link rel="modulepreload" href="../_npm/d3-time@3.1.0/9f03c579.js">
+<link rel="modulepreload" href="../_npm/d3-time-format@4.1.0/07c9626f.js">
+<link rel="modulepreload" href="../_npm/d3-timer@3.0.1/b58a267d.js">
+<link rel="modulepreload" href="../_npm/d3-transition@3.0.1/004da2ac.js">
+<link rel="modulepreload" href="../_npm/d3-zoom@3.0.0/b5786b3f.js">
+<link rel="modulepreload" href="../_npm/internmap@2.0.3/e08981d9.js">
+<link rel="modulepreload" href="../_npm/delaunator@5.0.1/02d43215.js">
+<link rel="modulepreload" href="../_npm/robust-predicates@3.0.2/aa00730b.js">
+<link rel="icon" href="../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "../_observablehq/client.3fa0f62a.js";
+
+define({id: "27314572", inputs: ["d3","display"], outputs: ["svgSelection"], body: (d3,display) => {
+const svgSelection = d3.select("#svg-component");
+display(svgSelection);
+return {svgSelection};
+}});
+
+define({id: "19330590", inputs: ["view","Inputs","changeColor","addCircle","changeText","reset"], body: (view,Inputs,changeColor,addCircle,changeText,reset) => {
+view(
+  Inputs.button("abra", {
+    label: "Change the background color",
+    reduce: changeColor,
+  }),
+);
+view(Inputs.button("kadabra", { label: "Add a circle", reduce: addCircle }));
+view(
+  Inputs.button("alakazam", {
+    label: "Change the text value",
+    reduce: changeText,
+  }),
+);
+view(
+  Inputs.button("undo", {
+    label: "Reset the svg",
+    reduce: reset,
+  }),
+);
+}});
+
+define({id: "eab7570c", inputs: ["svgSelection"], outputs: ["changeColor","addCircle","changeText","reset"], body: (svgSelection) => {
+function changeColor() {
+  // edit the style of the element
+  svgSelection.style("background-color", "pink");
+}
+
+function addCircle() {
+  svgSelection
+    // append a circle
+    .append("circle")
+    .attr("id", "appended-circle")
+    .attr("cx", 40)
+    .attr("cy", 40)
+    .attr("r", 20)
+    // style the appended circle (notice this style is not on the svg, but the circle)
+    .style("fill", "lightblue")
+    .style("stroke", "white");
+}
+
+function changeText() {
+  // select the text component within the svg and change the text value
+  svgSelection.select("#text-component").text("🎉 BOO! new text!!! 🎉");
+}
+
+function reset() {
+  // select the text component within the svg and revert it back to original text
+  svgSelection.select("#text-component").text("this is our svg for selection");
+  // unset the background color
+  svgSelection.style("background-color", "unset");
+  // remove appended circle
+  svgSelection.select("#appended-circle").remove();
+}
+return {changeColor,addCircle,changeText,reset};
+}});
+
+define({id: "594e70a9", inputs: ["generateRandomPoints","display"], outputs: ["data"], body: (generateRandomPoints,display) => {
+const data = generateRandomPoints();
+display(data);
+return {data};
+}});
+
+define({id: "bd2ad80c", outputs: ["generateRandomPoints"], body: () => {
+function generateRandomPoints(count = 10) {
+  const points = [];
+
+  for (let i = 0; i < count; i++) {
+    const x = Math.floor(Math.random() * 100) + 1;
+    const y = Math.floor(Math.random() * 100) + 1;
+    points.push({ x, y });
+  }
+
+  return points;
+}
+return {generateRandomPoints};
+}});
+
+define({id: "426a6444", inputs: ["d3","data"], outputs: ["svg","circles"], body: (d3,data) => {
+// grab the other svg with the appropriate id / css selector
+const svg = d3.select("#svg-component-circles");
+// create the circles selection by selecting something that doesn't exist, but matches what we intend to make
+const circles = svg
+  .selectAll("circle.data-join")
+  .data(data)
+  // join = create one circle for every data element
+  .join("circle")
+  // add the class so it matches the original selection ("circle.data-join")
+  .attr("class", "data-join")
+  // the x and y should be based on the x and y from the data
+  .attr("cx", (d) => d.x)
+  .attr("cy", (d) => d.y)
+  .attr("r", 3);
+return {svg,circles};
+}});
+
+define({id: "7680abc2", inputs: ["d3"], outputs: ["draw"], body: (d3) => {
+function draw(data) {
+  // grab the new svg with the appropriate id / css selector
+  const svg = d3.select("#svg-component-changes");
+  // create the circles selection by selecting something that doesn't exist, but matches what we intend to make
+  const circles = svg
+    .selectAll("circle.data-join")
+    .data(data)
+    // join = create one circle for every data element
+    .join("circle")
+    .attr("class", "data-join")
+    // the x and y should be based on the x and y from the data
+    .attr("cx", (d) => d.x)
+    .attr("cy", (d) => d.y)
+    .attr("r", 3);
+
+  // this next return is observable specific, so it renders in the markdown file
+  return svg.node();
+}
+return {draw};
+}});
+
+define({id: "43924e36", inputs: ["draw","changingData"], body: (draw,changingData) => {
+draw(changingData);
+}});
+
+define({id: "acc2294f", inputs: ["view","Inputs","changeData","addPoints","deletePoints"], body: (view,Inputs,changeData,addPoints,deletePoints) => {
+view(
+  Inputs.button("refresh", {
+    label: "Refresh the points",
+    reduce: changeData,
+  }),
+);
+view(
+  Inputs.button("add", {
+    label: "Add new points",
+    reduce: addPoints,
+  }),
+);
+view(Inputs.button("delete", { label: "Delete points", reduce: deletePoints }));
+}});
+
+define({id: "e9b87075", inputs: ["generateRandomPoints","draw"], outputs: ["changingData","changeData","addPoints","deletePoints"], body: (generateRandomPoints,draw) => {
+let changingData = generateRandomPoints();
+
+function changeData() {
+  // regenerate random points
+  changingData = generateRandomPoints();
+  // re-draw with the new random points
+  draw(changingData);
+}
+
+function addPoints() {
+  // create three new points
+  const newPoints = generateRandomPoints(3);
+  // add those three new points to the existing points
+  changingData = [...changingData, ...newPoints];
+  // re-run the draw function with more data
+  draw(changingData);
+}
+
+function deletePoints() {
+  const length = changingData.length;
+  // remove the last three points
+  changingData = changingData.slice(0, changingData.length - 3);
+  // re-draw with those points removed
+  draw(changingData);
+}
+return {changingData,changeData,addPoints,deletePoints};
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Interactive Data Visualization (Spring 2026)</a></li>
+  </ol>
+  <section class="observablehq-section-active">
+    <summary>Lessons</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./1_intro_to_web_development">Intro to Web Development</a></li>
+    <li class="observablehq-link"><a href="./2_working_in_cursor">Working in Cursor</a></li>
+    <li class="observablehq-link"><a href="./3_intro_to_observable_framework">Intro to Observable Framework</a></li>
+    <li class="observablehq-link"><a href="./4_confirming_spring_upstream">Confirming Spring Upstream</a></li>
+    <li class="observablehq-link"><a href="./5_intro_to_observable_plot">Intro to Observable Plot</a></li>
+    <li class="observablehq-link"><a href="./6_transforms_and_data_manipulation">Transforms and Data Manipulation</a></li>
+    <li class="observablehq-link"><a href="./7_data_types_scales_marks">Data Types, Scales, Marks</a></li>
+    <li class="observablehq-link"><a href="./8_data_joins_and_annotations">Data Joins and Annotations</a></li>
+    <li class="observablehq-link"><a href="./9_faceting_and_svgs">Faceting and SVGs</a></li>
+    <li class="observablehq-link"><a href="./10_libraries_and_imports">Libraries and Imports</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./11_intro_to_d3">Intro to d3.js</a></li>
+    <li class="observablehq-link"><a href="./12_charts_in_d3">Different Charts With d3.js</a></li>
+    </ol>
+  </section>
+  <details>
+    <summary>Lab 0: Getting Started</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_0/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_0/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 1: Prolific Pollinators</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_1/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_1/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 2: Subway Staffing</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_2/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_2/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 3: Mayoral Mystery</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_3/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_3/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 4: Clearwater Crisis</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_4/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_4/">Dashboard</a></li>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#selection">Selection</a></li>
+<li class="observablehq-secondary-link"><a href="#action">Action</a></li>
+<li class="observablehq-secondary-link"><a href="#data-binding">Data Binding</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="d3-js" tabindex="-1"><a class="observablehq-header-anchor" href="#d3-js">d3.js</a></h1>
+<p>We reviewed d3 a bit in our introduction to svgs in <a href="./9_faceting_and_svgs">Faceting and SVGs</a>, but let's take it more step by step and review the concepts.</p>
+<h2 id="selection" tabindex="-1"><a class="observablehq-header-anchor" href="#selection">Selection</a></h2>
+<p>D3.js uses DOM manipulation to add, change, or remove elements that are already on the screen. This is usually used to attach DOM elements to data, but we can also just select and manipulate any element with the same methods.</p>
+<p>First, we use <code>d3.select</code> to "select" everything on the page that fits the selector criteria. We can start with just selecting any pre-existing element, with the help of css selectors. Let's make an svg and select it with javascript:</p>
+<svg id="svg-component" style="border: 1px solid" width="${width}">
+  <text id="text-component" style="font-style: italic; transform: translate(50%, 50%); text-anchor: middle">this is our svg for selection</text>
+</svg>
+<p>SVG selection, from d3:</p>
+<div class="observablehq observablehq--block"><!--:27314572:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> svgSelection = d3.<span class="hljs-title function_">select</span>(<span class="hljs-string">"#svg-component"</span>);
+<span class="hljs-title function_">display</span>(svgSelection);
+</code></pre>
+<p>This looks like a bunch of code nonesense, and it somewhat is. But now that we have that DOM element saved in a variable, we can make changes to it with d3 methods.</p>
+<h2 id="action" tabindex="-1"><a class="observablehq-header-anchor" href="#action">Action</a></h2>
+<p>The next step in the d3 process is actions on a selection. We can do many things with the selection, including simply modifying the style, or appending more elements, or changing elements, etc. Each of these buttons runs a function that does something to the selection (the svg above):</p>
+<div class="observablehq observablehq--block"><!--:19330590:--></div>
+<p>The functions used in each button to manipulate the DOM are as follows:</p>
+<div class="observablehq observablehq--block"><!--:eab7570c:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">changeColor</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-comment">// edit the style of the element</span>
+  svgSelection.<span class="hljs-title function_">style</span>(<span class="hljs-string">"background-color"</span>, <span class="hljs-string">"pink"</span>);
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">addCircle</span>(<span class="hljs-params"></span>) {
+  svgSelection
+    <span class="hljs-comment">// append a circle</span>
+    .<span class="hljs-title function_">append</span>(<span class="hljs-string">"circle"</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"id"</span>, <span class="hljs-string">"appended-circle"</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"cx"</span>, <span class="hljs-number">40</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"cy"</span>, <span class="hljs-number">40</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"r"</span>, <span class="hljs-number">20</span>)
+    <span class="hljs-comment">// style the appended circle (notice this style is not on the svg, but the circle)</span>
+    .<span class="hljs-title function_">style</span>(<span class="hljs-string">"fill"</span>, <span class="hljs-string">"lightblue"</span>)
+    .<span class="hljs-title function_">style</span>(<span class="hljs-string">"stroke"</span>, <span class="hljs-string">"white"</span>);
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">changeText</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-comment">// select the text component within the svg and change the text value</span>
+  svgSelection.<span class="hljs-title function_">select</span>(<span class="hljs-string">"#text-component"</span>).<span class="hljs-title function_">text</span>(<span class="hljs-string">"🎉 BOO! new text!!! 🎉"</span>);
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">reset</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-comment">// select the text component within the svg and revert it back to original text</span>
+  svgSelection.<span class="hljs-title function_">select</span>(<span class="hljs-string">"#text-component"</span>).<span class="hljs-title function_">text</span>(<span class="hljs-string">"this is our svg for selection"</span>);
+  <span class="hljs-comment">// unset the background color</span>
+  svgSelection.<span class="hljs-title function_">style</span>(<span class="hljs-string">"background-color"</span>, <span class="hljs-string">"unset"</span>);
+  <span class="hljs-comment">// remove appended circle</span>
+  svgSelection.<span class="hljs-title function_">select</span>(<span class="hljs-string">"#appended-circle"</span>).<span class="hljs-title function_">remove</span>();
+}
+</code></pre>
+<p>If we look at the SVG node (element) after clicking some buttons, we can see those changes exist on the element itself. Check it out in the inspector, and you can see the function style and element changes exist in the DOM tree.</p>
+<h2 id="data-binding" tabindex="-1"><a class="observablehq-header-anchor" href="#data-binding">Data Binding</a></h2>
+<p>This is enough if all we wanted to do was modify elements on the page, but we want to actually bind the elements on the page to data. To do this, we join elements to data, and rely on d3 to reconcile. Let's make a new SVG and some fake data to append to it.</p>
+<p>We will start with just some random data generated with a points generator to make an object with an x and y betweeon 0 and 100:</p>
+<div class="observablehq observablehq--block"><!--:594e70a9:--></div>
+<p>Circles SVG:</p>
+<p><svg id="svg-component-circles" style="border: 1px solid" width="100" height="100"></svg></p>
+<div class="observablehq observablehq--block"><!--:bd2ad80c:--></div>
+<p>We've already used selections for things that exist already, but d3 is a bit confusing in that when doing your first data join when the pages loads, we often start by selecting things that <em>don't (yet) exist</em>. We start with a selection of the svg, then <code>selectAll</code> of the elements we <em>intend</em> to make.</p>
+<p>Then, in that sub-selection, we use <code>join</code> to create the new element that should be joined to data, and pass in functions to help determine the relevant properties of the svg element, like <code>cx</code> and <code>cy</code> in a <code>&lt;circle&gt;</code>, or <code>width</code> and <code>height</code> in a <code>&lt;rect&gt;</code>.</p>
+<div class="observablehq observablehq--block"><!--:426a6444:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-comment">// grab the other svg with the appropriate id / css selector</span>
+<span class="hljs-keyword">const</span> svg = d3.<span class="hljs-title function_">select</span>(<span class="hljs-string">"#svg-component-circles"</span>);
+<span class="hljs-comment">// create the circles selection by selecting something that doesn't exist, but matches what we intend to make</span>
+<span class="hljs-keyword">const</span> circles = svg
+  .<span class="hljs-title function_">selectAll</span>(<span class="hljs-string">"circle.data-join"</span>)
+  .<span class="hljs-title function_">data</span>(data)
+  <span class="hljs-comment">// join = create one circle for every data element</span>
+  .<span class="hljs-title function_">join</span>(<span class="hljs-string">"circle"</span>)
+  <span class="hljs-comment">// add the class so it matches the original selection ("circle.data-join")</span>
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"class"</span>, <span class="hljs-string">"data-join"</span>)
+  <span class="hljs-comment">// the x and y should be based on the x and y from the data</span>
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"cx"</span>, <span class="hljs-function">(<span class="hljs-params">d</span>) =&gt;</span> d.<span class="hljs-property">x</span>)
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"cy"</span>, <span class="hljs-function">(<span class="hljs-params">d</span>) =&gt;</span> d.<span class="hljs-property">y</span>)
+  .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"r"</span>, <span class="hljs-number">3</span>);
+</code></pre>
+<p>You can think of this selection as a declaration of the items on the screen that <em>will</em> match the visual when the data join is reflected. This probably seems backwards (or, overly complex) as you think about creating visualizations that render on the page right away. But this approach of <code>join</code>ing with an empty <code>selection</code> is optimized for the potential next step, in which the data can change.</p>
+<div class="observablehq observablehq--block"><!--:7680abc2:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">draw</span>(<span class="hljs-params">data</span>) {
+  <span class="hljs-comment">// grab the new svg with the appropriate id / css selector</span>
+  <span class="hljs-keyword">const</span> svg = d3.<span class="hljs-title function_">select</span>(<span class="hljs-string">"#svg-component-changes"</span>);
+  <span class="hljs-comment">// create the circles selection by selecting something that doesn't exist, but matches what we intend to make</span>
+  <span class="hljs-keyword">const</span> circles = svg
+    .<span class="hljs-title function_">selectAll</span>(<span class="hljs-string">"circle.data-join"</span>)
+    .<span class="hljs-title function_">data</span>(data)
+    <span class="hljs-comment">// join = create one circle for every data element</span>
+    .<span class="hljs-title function_">join</span>(<span class="hljs-string">"circle"</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"class"</span>, <span class="hljs-string">"data-join"</span>)
+    <span class="hljs-comment">// the x and y should be based on the x and y from the data</span>
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"cx"</span>, <span class="hljs-function">(<span class="hljs-params">d</span>) =&gt;</span> d.<span class="hljs-property">x</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"cy"</span>, <span class="hljs-function">(<span class="hljs-params">d</span>) =&gt;</span> d.<span class="hljs-property">y</span>)
+    .<span class="hljs-title function_">attr</span>(<span class="hljs-string">"r"</span>, <span class="hljs-number">3</span>);
+
+  <span class="hljs-comment">// this next return is observable specific, so it renders in the markdown file</span>
+  <span class="hljs-keyword">return</span> svg.<span class="hljs-title function_">node</span>();
+}
+</code></pre>
+<p>The above function is when we draw, or actually run, the d3 code to append, update, and remove the circles. You can think of this function as instructions for how the SVG should reflect the data. By re-running these instructions over and over, we are re-drawing the visual with the same instructions but new data.</p>
+<p>We will start by calling it to add data to the svg node:</p>
+<div class="observablehq observablehq--block"><!--:43924e36:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-title function_">draw</span>(changingData);
+</code></pre>
+<p><svg id="svg-component-changes" style="border: 1px solid" width="100" height="100"></svg></p>
+<p>Then we can manipulate the visual with buttons. Each of these buttons call a function that does two things: (1) change the data in some way, and (2) trigger the draw function to re-draw on the svg.</p>
+<div class="observablehq observablehq--block"><!--:acc2294f:--></div>
+<p>If it simply changed the data but didn't re-run the draw function, the SVG would not reflect the new values. When working with d3, you have to be very explicit about each step -- data change, update visual (<code>draw()</code>). With observable framework, we have the luxury of not having to deal with all the steps of updates (managing data, triggering a change) because of its built in <a href="https://observablehq.com/framework/reactivity" target="_blank" rel="noopener noreferrer">reactivity</a>.</p>
+<p>The functions for changing, adding points, or deleting points are as follows.</p>
+<div class="observablehq observablehq--block"><!--:e9b87075:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">let</span> changingData = <span class="hljs-title function_">generateRandomPoints</span>();
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">changeData</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-comment">// regenerate random points</span>
+  changingData = <span class="hljs-title function_">generateRandomPoints</span>();
+  <span class="hljs-comment">// re-draw with the new random points</span>
+  <span class="hljs-title function_">draw</span>(changingData);
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">addPoints</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-comment">// create three new points</span>
+  <span class="hljs-keyword">const</span> newPoints = <span class="hljs-title function_">generateRandomPoints</span>(<span class="hljs-number">3</span>);
+  <span class="hljs-comment">// add those three new points to the existing points</span>
+  changingData = [...changingData, ...newPoints];
+  <span class="hljs-comment">// re-run the draw function with more data</span>
+  <span class="hljs-title function_">draw</span>(changingData);
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">deletePoints</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> length = changingData.<span class="hljs-property">length</span>;
+  <span class="hljs-comment">// remove the last three points</span>
+  changingData = changingData.<span class="hljs-title function_">slice</span>(<span class="hljs-number">0</span>, changingData.<span class="hljs-property">length</span> - <span class="hljs-number">3</span>);
+  <span class="hljs-comment">// re-draw with those points removed</span>
+  <span class="hljs-title function_">draw</span>(changingData);
+}
+</code></pre>
+<p>This example is complex in that it spans multiple js blocks and requires a function to update, but the intended concept is that, whenever actions / instructions are called on a selection, it remedies with whatever state the data is at that point.</p>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./10_libraries_and_imports"><span>Libraries and Imports</span></a><a rel="next" href="./12_charts_in_d3"><span>Different Charts With d3.js</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-05-25T00:23:06">May 25, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>Gender, Enforcement, and Power in US Immigration Policy | Interactive Data Visualization (Spring 2026)</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-air.aad62322.css">
+<link rel="preload" as="style" href="../_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-air.aad62322.css">
+<link rel="stylesheet" type="text/css" href="../_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="modulepreload" href="../_observablehq/client.3fa0f62a.js">
+<link rel="modulepreload" href="../_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.73a8ec5a.js">
+<link rel="modulepreload" href="../_observablehq/stdlib/inputs.4ef1d259.js">
+<link rel="modulepreload" href="../_npm/htl@0.3.1/72f4716c.js">
+<link rel="modulepreload" href="../_npm/isoformat@0.2.1/18cbf477.js">
+<link rel="icon" href="../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "../_observablehq/client.3fa0f62a.js";
+
+define({id: "0b272ef7", inputs: ["view","html"], outputs: ["Inputs","topic"], body: async (view,html) => {
+const Inputs = await import("../_observablehq/stdlib/inputs.4ef1d259.js");
+
+// Create a dropdown input using view()
+const topic = view(
+  Inputs.select(
+    ["ICE Arrests", "Court Outcomes", "Detainers"],
+    {
+      label: "Choose topic:",
+      value: "ICE Arrests"
+    }
+  )
+);
+
+// Display a visible reference that changes
+html`<h3>You selected: <strong>${topic}</strong></h3>`
+return {Inputs,topic};
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Interactive Data Visualization (Spring 2026)</a></li>
+  </ol>
+  <section>
+    <summary>Lessons</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lessons/1_intro_to_web_development">Intro to Web Development</a></li>
+    <li class="observablehq-link"><a href="../lessons/2_working_in_cursor">Working in Cursor</a></li>
+    <li class="observablehq-link"><a href="../lessons/3_intro_to_observable_framework">Intro to Observable Framework</a></li>
+    <li class="observablehq-link"><a href="../lessons/4_confirming_spring_upstream">Confirming Spring Upstream</a></li>
+    <li class="observablehq-link"><a href="../lessons/5_intro_to_observable_plot">Intro to Observable Plot</a></li>
+    <li class="observablehq-link"><a href="../lessons/6_transforms_and_data_manipulation">Transforms and Data Manipulation</a></li>
+    <li class="observablehq-link"><a href="../lessons/7_data_types_scales_marks">Data Types, Scales, Marks</a></li>
+    <li class="observablehq-link"><a href="../lessons/8_data_joins_and_annotations">Data Joins and Annotations</a></li>
+    <li class="observablehq-link"><a href="../lessons/9_faceting_and_svgs">Faceting and SVGs</a></li>
+    <li class="observablehq-link"><a href="../lessons/10_libraries_and_imports">Libraries and Imports</a></li>
+    <li class="observablehq-link"><a href="../lessons/11_intro_to_d3">Intro to d3.js</a></li>
+    <li class="observablehq-link"><a href="../lessons/12_charts_in_d3">Different Charts With d3.js</a></li>
+    </ol>
+  </section>
+  <details open class="observablehq-section-active">
+    <summary>Lab 0: Getting Started</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./readme">Instructions</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 1: Prolific Pollinators</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_1/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_1/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 2: Subway Staffing</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_2/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_2/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 3: Mayoral Mystery</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_3/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_3/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 4: Clearwater Crisis</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_4/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_4/">Dashboard</a></li>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#conclusions">Conclusions</a></li>
+<li class="observablehq-secondary-link"><a href="#instagram-picture-attached">Instagram Picture Attached</a></li>
+<li class="observablehq-secondary-link"><a href="#fun-fact-did-you-know-that-in-the-wild-orangutan-babies-learn-necessary-survival-skills-by-observing-their-mothers-they-have-one-of-the-longest-interbirth-intervals-of-any-mammal">Fun Fact: Did you know that in the wild, orangutan babies learn necessary survival skills by observing their mothers? They have one of the longest interbirth intervals of any mammal.</a></li>
+<li class="observablehq-secondary-link"><a href="#interactive-element">Interactive Element</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="gender-enforcement-and-power-in-us-immigration-policy" tabindex="-1"><a class="observablehq-header-anchor" href="#gender-enforcement-and-power-in-us-immigration-policy">Gender, Enforcement, and Power in US Immigration Policy</a></h1>
+<h2 id="trends-in-ice-apprehensions-between-2023-and-2025" tabindex="-1"><a class="observablehq-header-anchor" href="#trends-in-ice-apprehensions-between-2023-and-2025">Trends in ICE Apprehensions Between 2023 and 2025</a></h2>
+<h5 id="welcome-to-my-first-lab-i-m-luis-a-ph-d-student-in-sociology-at-the-cuny-graduate-center-this-project-explores-how-gender-shapes-outcomes-in-the-us-immigration-enforcement-pipeline-using-recent-ice-apprehension-data-i-analyze-who-is-arrested-how-cases-move-through-the-system-and-whether-enforcement-patterns-differ-between-men-and-women-below-you-ll-find-an-interactive-table-and-visualizations-from-my-statistical-analysis" tabindex="-1">Welcome to my first lab! I'm Luis, a PhD student in sociology at the CUNY Graduate Center. This project explores how gender shapes outcomes in the US immigration enforcement pipeline. Using recent ICE apprehension data, I analyze who is arrested, how cases move through the system, and whether enforcement patterns differ between men and women. Below, you'll find an interactive table and visualizations from my statistical analysis.</h5>
+
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2023-2025 Top Ten Countries of Arrests</title>
+  <style>
+    body { font-family: Aptos, sans-serif; padding: 20px; }
+    h2 { margin: 0 0 12px; }
+    table { border-collapse: collapse; width: 760px; max-width: 100%; }
+    th, td { border: 1px solid #2b2b2b; padding: 10px 12px; }
+    thead th { background:rgb(111, 176, 214); color: #000; text-align: left; }
+    tbody td { background: #cfe6f3; }
+    td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+    tbody tr.total td { font-weight: 700; }
+    caption { caption-side: top; text-align: left; font-weight: 700; margin-bottom: 8px; }
+  </style>
+
+
+  <table>
+    <caption>2023-2025 Top Ten Countries of Arrests</caption>
+    <thead>
+      <tr>
+        <th>Country</th>
+        <th class="num">Female</th>
+        <th class="num">Male</th>
+        <th class="num">Total Number of arrests</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Mexico</td>
+        <td class="num">10,031</td>
+        <td class="num">130,653</td>
+        <td class="num">140,684</td>
+      </tr>
+      <tr>
+        <td>Guatemala</td>
+        <td class="num">4,100</td>
+        <td class="num">43,369</td>
+        <td class="num">47,469</td>
+      </tr>
+      <tr>
+        <td>Honduras</td>
+        <td class="num">4,520</td>
+        <td class="num">35,909</td>
+        <td class="num">40,429</td>
+      </tr>
+      <tr>
+        <td>Venezuela</td>
+        <td class="num">3,665</td>
+        <td class="num">17,713</td>
+        <td class="num">21,378</td>
+      </tr>
+      <tr>
+        <td>Nicaragua</td>
+        <td class="num">4,273</td>
+        <td class="num">13,469</td>
+        <td class="num">17,742</td>
+      </tr>
+      <tr>
+        <td>El Salvador</td>
+        <td class="num">2,148</td>
+        <td class="num">14,689</td>
+        <td class="num">16,837</td>
+      </tr>
+      <tr>
+        <td>Colombia</td>
+        <td class="num">3,370</td>
+        <td class="num">9,528</td>
+        <td class="num">12,898</td>
+      </tr>
+      <tr>
+        <td>Ecuador</td>
+        <td class="num">3,168</td>
+        <td class="num">8,969</td>
+        <td class="num">12,137</td>
+      </tr>
+      <tr>
+        <td>Cuba</td>
+        <td class="num">1,658</td>
+        <td class="num">7,048</td>
+        <td class="num">8,706</td>
+      </tr>
+      <tr>
+        <td>Dominican Republic</td>
+        <td class="num">794</td>
+        <td class="num">5,468</td>
+        <td class="num">6,262</td>
+      </tr>
+      <tr class="total">
+        <td>Total</td>
+        <td class="num">37,727</td>
+        <td class="num">286,815</td>
+        <td class="num">324,542</td>
+      </tr>
+    </tbody>
+  </table>
+<div class="source">
+  <p><strong>Source:</strong> Data gathered from the Deportation Data Project.</p>
+  <p><strong>Code Source:</strong> 
+    <a href="https://www.htmlgoodies.com/html5/advanced-html-table-features/" target="_blank" rel="noopener noreferrer">
+      https://www.htmlgoodies.com/html5/advanced-html-table-features/
+    </a>
+  </p>
+</div>
+
+
+<h1 id="conclusions" tabindex="-1"><a class="observablehq-header-anchor" href="#conclusions">Conclusions</a></h1>
+<ul>
+  <li>Mexican nationals have the highest total arrests (2023–2025).</li>
+  <li>Men account for most arrests across all top countries.</li>
+  <li>Women’s arrests are smaller but still substantial in several countries.</li>
+</ul>
+<h1 id="instagram-picture-attached" tabindex="-1"><a class="observablehq-header-anchor" href="#instagram-picture-attached">Instagram Picture Attached</a></h1>
+<div style="margin-top:20px; text-align:center;">
+  <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DSnl0UtEzlx/" data-instgrm-version="14">
+  </blockquote>
+</div>
+<script async="" src="https://www.instagram.com/embed.js"></script>
+<div class="source">
+  <p><strong>Source:</strong> The Guardian.</p>
+  <p><strong>Code Source:</strong> 
+    <a href="https://www.commoninja.com/blog/providing-sample-html-code-for-manually-embedding-instagram-feeds#Sample-HTML-Code-for-an-Instagram-Feed-Widget" target="_blank" rel="noopener noreferrer">
+      https://www.commoninja.com/blog/providing-sample-html-code-for-manually-embedding-instagram-feeds#Sample-HTML-Code-for-an-Instagram-Feed-Widget
+    </a>
+  </p>
+</div>
+
+
+<h1 id="fun-fact-did-you-know-that-in-the-wild-orangutan-babies-learn-necessary-survival-skills-by-observing-their-mothers-they-have-one-of-the-longest-interbirth-intervals-of-any-mammal" tabindex="-1"><a class="observablehq-header-anchor" href="#fun-fact-did-you-know-that-in-the-wild-orangutan-babies-learn-necessary-survival-skills-by-observing-their-mothers-they-have-one-of-the-longest-interbirth-intervals-of-any-mammal">Fun Fact: Did you know that in the wild, orangutan babies learn necessary survival skills by observing their mothers? They have one of the longest interbirth intervals of any mammal.</a></h1>
+<h2 id="this-is-jambi-the-orangutan-i-met-him-at-the-philly-zoo-last-year" tabindex="-1"><a class="observablehq-header-anchor" href="#this-is-jambi-the-orangutan-i-met-him-at-the-philly-zoo-last-year">This is Jambi the Orangutan. I met him at the Philly Zoo last year.</a></h2>
+<img src="../_file/lab_0/IMG_8351.83d8ce3d.jpg" width="400">
+<h2 id="interactive-element" tabindex="-1"><a class="observablehq-header-anchor" href="#interactive-element">Interactive Element</a></h2>
+<div class="observablehq observablehq--block"><!--:0b272ef7:--></div>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./readme"><span>Instructions</span></a><a rel="next" href="../lab_1/readme"><span>Instructions</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-05-25T00:23:06">May 25, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>

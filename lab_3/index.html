@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>Lab 3: Mayoral Mystery | Interactive Data Visualization (Spring 2026)</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-air.aad62322.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-air.aad62322.css">
+<link rel="modulepreload" href="../_observablehq/client.3fa0f62a.js">
+<link rel="modulepreload" href="../_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.73a8ec5a.js">
+<link rel="modulepreload" href="../_npm/topojson-client@3.1.0/edd9ee95.js">
+<link rel="modulepreload" href="../_npm/@observablehq/plot@0.6.17/7c43807f.js">
+<link rel="modulepreload" href="../_npm/d3-dsv@3.0.1/9cffc2bd.js">
+<link rel="modulepreload" href="../_npm/d3@7.9.0/e324157d.js">
+<link rel="modulepreload" href="../_npm/isoformat@0.2.1/18cbf477.js">
+<link rel="modulepreload" href="../_npm/interval-tree-1d@1.0.4/53fe8176.js">
+<link rel="modulepreload" href="../_npm/d3-array@3.2.4/e93ca09f.js">
+<link rel="modulepreload" href="../_npm/d3-axis@3.0.0/0f2de24d.js">
+<link rel="modulepreload" href="../_npm/d3-brush@3.0.0/65eb105b.js">
+<link rel="modulepreload" href="../_npm/d3-chord@3.0.1/7ef8fb2e.js">
+<link rel="modulepreload" href="../_npm/d3-color@3.1.0/aeb57b94.js">
+<link rel="modulepreload" href="../_npm/d3-contour@4.0.2/1d2aed74.js">
+<link rel="modulepreload" href="../_npm/d3-delaunay@6.0.4/5ced1d52.js">
+<link rel="modulepreload" href="../_npm/d3-dispatch@3.0.1/9ba9c7f3.js">
+<link rel="modulepreload" href="../_npm/d3-drag@3.0.0/4202580c.js">
+<link rel="modulepreload" href="../_npm/d3-ease@3.0.1/cdd7e898.js">
+<link rel="modulepreload" href="../_npm/d3-fetch@3.0.1/b4e2ad9a.js">
+<link rel="modulepreload" href="../_npm/d3-force@3.0.0/5e804d15.js">
+<link rel="modulepreload" href="../_npm/d3-format@3.1.2/3785bf2d.js">
+<link rel="modulepreload" href="../_npm/d3-geo@3.1.1/40599fb3.js">
+<link rel="modulepreload" href="../_npm/d3-hierarchy@3.1.2/e49e792c.js">
+<link rel="modulepreload" href="../_npm/d3-interpolate@3.0.1/8d1e5425.js">
+<link rel="modulepreload" href="../_npm/d3-path@3.1.0/20d3f133.js">
+<link rel="modulepreload" href="../_npm/d3-polygon@3.0.1/7553081f.js">
+<link rel="modulepreload" href="../_npm/d3-quadtree@3.0.1/0dfd751c.js">
+<link rel="modulepreload" href="../_npm/d3-random@3.0.1/3c90ee06.js">
+<link rel="modulepreload" href="../_npm/d3-scale@4.0.2/720b7f0a.js">
+<link rel="modulepreload" href="../_npm/d3-scale-chromatic@3.1.0/ba24c2e7.js">
+<link rel="modulepreload" href="../_npm/d3-selection@3.0.0/4d94e5b7.js">
+<link rel="modulepreload" href="../_npm/d3-shape@3.2.0/6d3a6726.js">
+<link rel="modulepreload" href="../_npm/d3-time@3.1.0/9f03c579.js">
+<link rel="modulepreload" href="../_npm/d3-time-format@4.1.0/07c9626f.js">
+<link rel="modulepreload" href="../_npm/d3-timer@3.0.1/b58a267d.js">
+<link rel="modulepreload" href="../_npm/d3-transition@3.0.1/004da2ac.js">
+<link rel="modulepreload" href="../_npm/d3-zoom@3.0.0/b5786b3f.js">
+<link rel="modulepreload" href="../_npm/binary-search-bounds@2.0.5/cbf6ba23.js">
+<link rel="modulepreload" href="../_npm/internmap@2.0.3/e08981d9.js">
+<link rel="modulepreload" href="../_npm/delaunator@5.0.1/02d43215.js">
+<link rel="modulepreload" href="../_npm/robust-predicates@3.0.2/aa00730b.js">
+<link rel="icon" href="../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "../_observablehq/client.3fa0f62a.js";
+import {registerFile} from "../_observablehq/stdlib.73a8ec5a.js";
+
+registerFile("./data/campaign_events.csv", {"name":"./data/campaign_events.csv","mimeType":"text/csv","path":"../_file/lab_3/data/campaign_events.abc9ffd9.csv","lastModified":1777920292616,"size":8105});
+registerFile("./data/election_results.csv", {"name":"./data/election_results.csv","mimeType":"text/csv","path":"../_file/lab_3/data/election_results.e841635f.csv","lastModified":1777920292616,"size":2892});
+registerFile("./data/nyc.json", {"name":"./data/nyc.json","mimeType":"application/json","path":"../_file/lab_3/data/nyc.7b17f62d.json","lastModified":1777920292619,"size":131971});
+registerFile("./data/survey_responses.csv", {"name":"./data/survey_responses.csv","mimeType":"text/csv","path":"../_file/lab_3/data/survey_responses.0a1905c7.csv","lastModified":1777920292619,"size":6301});
+
+define({id: "9911ca29", inputs: ["FileAttachment"], outputs: ["election","events","survey","nyc"], body: async (FileAttachment) => {
+const election = await FileAttachment("./data/election_results.csv").csv({ typed: true })
+const events = await FileAttachment("./data/campaign_events.csv").csv({ typed: true })
+const survey = await FileAttachment("./data/survey_responses.csv").csv({ typed: true })
+const nyc = await FileAttachment("./data/nyc.json").json()
+return {election,events,survey,nyc};
+}});
+
+define({id: "a950f90d", outputs: ["topojson"], body: async () => {
+const topojson = await import("../_npm/topojson-client@3.1.0/edd9ee95.js");
+
+return {topojson};
+}});
+
+define({id: "d513e7f9", inputs: ["topojson","nyc"], outputs: ["districts"], body: (topojson,nyc) => {
+const districts = topojson.feature(nyc, nyc.objects.districts)
+return {districts};
+}});
+
+define({id: "67ae25b0", inputs: ["election","districts"], outputs: ["electionEnriched","voteShareByDistrict"], body: (election,districts) => {
+const electionEnriched = election.map(d => ({
+  ...d,
+  vote_share: d.votes_candidate / (d.votes_candidate + d.votes_opponent),
+  won: d.votes_candidate > d.votes_opponent,
+  borough: d.boro_cd < 200 ? "Manhattan"
+         : d.boro_cd < 300 ? "Bronx"
+         : d.boro_cd < 400 ? "Brooklyn"
+         : d.boro_cd < 500 ? "Queens"
+         : "Staten Island"
+}))
+
+const voteShareByDistrict = new Map(electionEnriched.map(d => [d.boro_cd, d.vote_share]))
+
+districts.features.forEach(f => {
+  f.properties.vote_share = voteShareByDistrict.get(f.properties.BoroCD) ?? null
+})
+return {electionEnriched,voteShareByDistrict};
+}});
+
+define({id: "ffef12f3", inputs: ["survey"], outputs: ["policies","policyRows"], body: (survey) => {
+const policies = [
+  { key: "affordable_housing_alignment", label: "Affordable housing" },
+  { key: "public_transit_alignment",     label: "Public transit" },
+  { key: "childcare_support_alignment",  label: "Childcare support" },
+  { key: "small_business_tax_alignment", label: "Small business tax" },
+  { key: "police_reform_alignment",      label: "Police reform" }
+]
+
+const policyRows = survey.flatMap(d => {
+  const group = d.voted_for === "Candidate" ? "Voted candidate"
+              : d.voted_for === "Opponent"  ? "Voted opponent"
+              : "Did not vote / no answer"
+  return policies.map(p => ({
+    label: p.label,
+    score: +d[p.key],
+    group
+  }))
+})
+return {policies,policyRows};
+}});
+
+define({id: "0666ef2f", inputs: ["Plot","districts","events","display"], body: async (Plot,districts,events,display) => {
+display(await(
+Plot.plot({
+  title: "Candidate Vote Share by NYC Community District",
+  subtitle: "Blue = candidate stronger · Red = opponent stronger · Dots = campaign events sized by attendance",
+  width: 800,
+  height: 560,
+  projection: { type: "mercator", domain: districts },
+  color: {
+    type: "linear",
+    domain: [0.3, 0.5, 0.7],
+    range: ["#c0392b", "#f5f0e8", "#2980b9"],
+    label: "Candidate vote share",
+    legend: true,
+    tickFormat: d => `${(d * 100).toFixed(0)}%`
+  },
+  marks: [
+    Plot.geo(districts, {
+      fill: f => f.properties.vote_share,
+      stroke: "white",
+      strokeWidth: 0.5,
+      tip: true,
+      title: f =>
+        `District ${f.properties.BoroCD}\n` +
+        (f.properties.vote_share != null
+          ? `Vote share: ${(f.properties.vote_share * 100).toFixed(1)}%`
+          : "No data")
+    }),
+    Plot.dot(events, {
+      x: "longitude",
+      y: "latitude",
+      r: d => Math.sqrt(d.estimated_attendance) * 0.9,
+      fill: "yellow",
+      fillOpacity: 0.7,
+      stroke: "black",
+      strokeWidth: 0.5,
+      tip: true,
+      title: d => `${d.event_type}\nAttendance: ${d.estimated_attendance}\n${d.event_date}`
+    })
+  ]
+})
+))
+}});
+
+define({id: "91589394", inputs: ["Plot","electionEnriched","display"], body: async (Plot,electionEnriched,display) => {
+display(await(
+Plot.plot({
+  title: "Candidate Vote Share by District, Grouped by Income Level",
+  subtitle: "Each dot is one community district · dashed line = 50% threshold",
+  width: 720,
+  height: 300,
+  marginLeft: 90,
+  x: {
+    label: "Candidate vote share →",
+    tickFormat: d => `${(d * 100).toFixed(0)}%`,
+    domain: [0.2, 0.8]
+  },
+  y: { label: null, domain: ["Low", "Middle", "High"] },
+  color: {
+    domain: ["Low", "Middle", "High"],
+    range: ["#2ecc71", "#3498db", "#e67e22"],
+    legend: true,
+    label: "Income category"
+  },
+  marks: [
+    Plot.dot(electionEnriched, {
+      x: "vote_share",
+      y: "income_category",
+      fill: "income_category",
+      r: 6,
+      fillOpacity: 0.75,
+      tip: true,
+      title: d => `District ${d.boro_cd} (${d.borough})\nVote share: ${(d.vote_share * 100).toFixed(1)}%\nIncome: ${d.income_category}`
+    }),
+    Plot.ruleX([0.5], { stroke: "#999", strokeDasharray: "6,3", strokeWidth: 1.5 })
+  ]
+})
+))
+}});
+
+define({id: "06c0523b", inputs: ["Plot","policyRows","display"], body: async (Plot,policyRows,display) => {
+display(await(
+Plot.plot({
+  title: "Average Policy Alignment Score by Issue",
+  subtitle: "Survey respondents rated each issue 1–5 · split by voting behavior",
+  width: 720,
+  height: 320,
+  marginLeft: 140,
+  x: {
+    label: "Average alignment score (1–5) →",
+    domain: [1, 5]
+  },
+  y: { label: null },
+  color: {
+    domain: ["Voted candidate", "Voted opponent", "Did not vote / no answer"],
+    range: ["#2980b9", "#c0392b", "#95a5a6"],
+    legend: true
+  },
+  marks: [
+    Plot.dot(
+      policyRows,
+      Plot.groupY(
+        { x: "mean" },
+        {
+          y: "label",
+          x: "score",
+          fill: "group",
+          stroke: "white",
+          strokeWidth: 0.5,
+          r: 7,
+          tip: true,
+          sort: { y: "-x" }
+        }
+      )
+    ),
+    Plot.ruleX([3], { stroke: "#ccc", strokeDasharray: "4,3" })
+  ]
+})
+))
+}});
+
+define({id: "c1893f12", inputs: ["Plot","electionEnriched","display"], body: async (Plot,electionEnriched,display) => {
+display(await(
+Plot.plot({
+  title: "GOTV Doors Knocked vs. Candidate Vote Share",
+  subtitle: "Each dot = one district · colored by income level · dashed line = trend",
+  width: 720,
+  height: 400,
+  marginLeft: 60,
+  x: {
+    label: "Doors knocked →",
+    tickFormat: d => d.toLocaleString()
+  },
+  y: {
+    label: "↑ Candidate vote share",
+    tickFormat: d => `${(d * 100).toFixed(0)}%`,
+    domain: [0.2, 0.8]
+  },
+  color: {
+    domain: ["Low", "Middle", "High"],
+    range: ["#2ecc71", "#3498db", "#e67e22"],
+    legend: true,
+    label: "Income category"
+  },
+  marks: [
+    Plot.linearRegressionY(electionEnriched, {
+      x: "gotv_doors_knocked",
+      y: "vote_share",
+      stroke: "#333",
+      strokeWidth: 1.5,
+      strokeDasharray: "3,3"
+    }),
+    Plot.dot(electionEnriched, {
+      x: "gotv_doors_knocked",
+      y: "vote_share",
+      fill: "income_category",
+      r: 6,
+      fillOpacity: 0.8,
+      tip: true,
+      title: d =>
+        `District ${d.boro_cd} (${d.borough})\n` +
+        `Doors knocked: ${d.gotv_doors_knocked.toLocaleString()}\n` +
+        `Vote share: ${(d.vote_share * 100).toFixed(1)}%\n` +
+        `Income: ${d.income_category}`
+    }),
+    Plot.ruleY([0.5], { stroke: "#999", strokeDasharray: "6,3", strokeWidth: 1.5 })
+  ]
+})
+))
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Interactive Data Visualization (Spring 2026)</a></li>
+  </ol>
+  <section>
+    <summary>Lessons</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lessons/1_intro_to_web_development">Intro to Web Development</a></li>
+    <li class="observablehq-link"><a href="../lessons/2_working_in_cursor">Working in Cursor</a></li>
+    <li class="observablehq-link"><a href="../lessons/3_intro_to_observable_framework">Intro to Observable Framework</a></li>
+    <li class="observablehq-link"><a href="../lessons/4_confirming_spring_upstream">Confirming Spring Upstream</a></li>
+    <li class="observablehq-link"><a href="../lessons/5_intro_to_observable_plot">Intro to Observable Plot</a></li>
+    <li class="observablehq-link"><a href="../lessons/6_transforms_and_data_manipulation">Transforms and Data Manipulation</a></li>
+    <li class="observablehq-link"><a href="../lessons/7_data_types_scales_marks">Data Types, Scales, Marks</a></li>
+    <li class="observablehq-link"><a href="../lessons/8_data_joins_and_annotations">Data Joins and Annotations</a></li>
+    <li class="observablehq-link"><a href="../lessons/9_faceting_and_svgs">Faceting and SVGs</a></li>
+    <li class="observablehq-link"><a href="../lessons/10_libraries_and_imports">Libraries and Imports</a></li>
+    <li class="observablehq-link"><a href="../lessons/11_intro_to_d3">Intro to d3.js</a></li>
+    <li class="observablehq-link"><a href="../lessons/12_charts_in_d3">Different Charts With d3.js</a></li>
+    </ol>
+  </section>
+  <details>
+    <summary>Lab 0: Getting Started</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_0/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_0/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 1: Prolific Pollinators</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_1/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_1/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 2: Subway Staffing</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_2/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_2/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details open class="observablehq-section-active">
+    <summary>Lab 3: Mayoral Mystery</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./readme">Instructions</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 4: Clearwater Crisis</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_4/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_4/">Dashboard</a></li>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#1-where-did-the-candidate-win-and-lose">1. Where did the candidate win and lose?</a></li>
+<li class="observablehq-secondary-link"><a href="#2-how-did-results-vary-by-income-level">2. How did results vary by income level?</a></li>
+<li class="observablehq-secondary-link"><a href="#3-how-did-people-feel-about-the-issues">3. How did people feel about the issues?</a></li>
+<li class="observablehq-secondary-link"><a href="#4-was-the-get-out-the-vote-campaign-effective">4. Was the Get Out The Vote campaign effective?</a></li>
+<li class="observablehq-secondary-link"><a href="#recommendations-for-the-next-run">Recommendations for the next run</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="mayoral-mystery" tabindex="-1"><a class="observablehq-header-anchor" href="#mayoral-mystery">Mayoral Mystery</a></h1>
+<h3 id="by-luis-e-banegas" tabindex="-1"><a class="observablehq-header-anchor" href="#by-luis-e-banegas">by Luis E. Banegas</a></h3>
+<div class="observablehq observablehq--block"><!--:9911ca29:--></div>
+<div class="observablehq observablehq--block"><!--:a950f90d:--></div>
+<div class="observablehq observablehq--block"><!--:d513e7f9:--></div>
+<div class="observablehq observablehq--block"><!--:67ae25b0:--></div>
+<div class="observablehq observablehq--block"><!--:ffef12f3:--></div>
+<hr>
+<h2 id="1-where-did-the-candidate-win-and-lose" tabindex="-1"><a class="observablehq-header-anchor" href="#1-where-did-the-candidate-win-and-lose">1. Where did the candidate win and lose?</a></h2>
+<p>The map below shows the candidate's vote share across every NYC community district. Blue districts leaned toward the candidate; red districts leaned toward the opponent. Yellow dots show campaign events — larger dots indicate higher attendance. The candidate's strength is concentrated in low-income Bronx and Brooklyn districts. High-income districts in Manhattan, northeast Queens, and across Staten Island went decisively to the opponent.</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:0666ef2f:--></div>
+<hr>
+<h2 id="2-how-did-results-vary-by-income-level" tabindex="-1"><a class="observablehq-header-anchor" href="#2-how-did-results-vary-by-income-level">2. How did results vary by income level?</a></h2>
+<p>The chart below shows the candidate's vote share in each district, grouped by income category. The income divide is stark: the candidate won nearly every low-income district but lost almost all high-income ones. Middle-income districts split almost evenly — that is where the election was decided. Winning even a few more of those would have flipped the outcome.</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:91589394:--></div>
+<hr>
+<h2 id="3-how-did-people-feel-about-the-issues" tabindex="-1"><a class="observablehq-header-anchor" href="#3-how-did-people-feel-about-the-issues">3. How did people feel about the issues?</a></h2>
+<p>Affordable housing and public transit earn the highest alignment scores even among opponent voters — these are broadly popular positions that the candidate should lead with. Police reform stands out as the weakest issue by far: opponent voters rated it around 1.5 out of 5, meaning it is actively alienating potential supporters. This is the single biggest messaging liability in the campaign. The gap on small business tax between candidate voters and everyone else suggests it is polarizing and should be reframed or deprioritized.</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:06c0523b:--></div>
+<hr>
+<h2 id="4-was-the-get-out-the-vote-campaign-effective" tabindex="-1"><a class="observablehq-header-anchor" href="#4-was-the-get-out-the-vote-campaign-effective">4. Was the Get Out The Vote campaign effective?</a></h2>
+<p>More doors knocked correlates with higher vote share — but almost all the heavy canvassing landed in low-income districts the candidate was already winning. Middle-income swing districts received far fewer doors knocked despite being the most competitive. The effort was well-intentioned but mis-targeted.</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:c1893f12:--></div>
+<hr>
+<h2 id="recommendations-for-the-next-run" tabindex="-1"><a class="observablehq-header-anchor" href="#recommendations-for-the-next-run">Recommendations for the next run</a></h2>
+<p><strong>1. Focus canvassing on middle-income swing districts.</strong> Redirecting GOTV effort toward middle-income districts in Queens and Brooklyn — where margins were razor thin — could flip enough districts to change the outcome.</p>
+<p><strong>2. Lead with housing and transit, pull back on police reform.</strong> Housing and transit score above 3.5 even among opponent voters. Police reform scores lowest across every group and likely costs more votes than it wins.</p>
+<p><strong>3. Invest candidate time in high-income districts.</strong> Personal time was lowest in the districts lost by the largest margins. Even modest investment there — especially on transit and small business tax — could convert enough persuadable voters to matter.</p>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./readme"><span>Instructions</span></a><a rel="next" href="../lab_4/readme"><span>Instructions</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-05-25T00:23:06">May 25, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>

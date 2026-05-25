@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>Libraries and Imports | Interactive Data Visualization (Spring 2026)</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-air.aad62322.css">
+<link rel="preload" as="style" href="../_npm/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-air.aad62322.css">
+<link rel="stylesheet" type="text/css" href="../_npm/leaflet@1.9.4/dist/leaflet.css">
+<link rel="modulepreload" href="../_observablehq/client.3fa0f62a.js">
+<link rel="modulepreload" href="../_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.73a8ec5a.js">
+<link rel="modulepreload" href="../_import/lessons/components/charts.4d6966ee.js">
+<link rel="modulepreload" href="../_npm/leaflet@1.9.4/721623d8.js">
+<link rel="modulepreload" href="../_npm/@observablehq/plot@0.6.17/7c43807f.js">
+<link rel="modulepreload" href="../_npm/d3@7.9.0/e324157d.js">
+<link rel="modulepreload" href="../_npm/isoformat@0.2.1/18cbf477.js">
+<link rel="modulepreload" href="../_npm/interval-tree-1d@1.0.4/53fe8176.js">
+<link rel="modulepreload" href="../_npm/d3-array@3.2.4/e93ca09f.js">
+<link rel="modulepreload" href="../_npm/d3-axis@3.0.0/0f2de24d.js">
+<link rel="modulepreload" href="../_npm/d3-brush@3.0.0/65eb105b.js">
+<link rel="modulepreload" href="../_npm/d3-chord@3.0.1/7ef8fb2e.js">
+<link rel="modulepreload" href="../_npm/d3-color@3.1.0/aeb57b94.js">
+<link rel="modulepreload" href="../_npm/d3-contour@4.0.2/1d2aed74.js">
+<link rel="modulepreload" href="../_npm/d3-delaunay@6.0.4/5ced1d52.js">
+<link rel="modulepreload" href="../_npm/d3-dispatch@3.0.1/9ba9c7f3.js">
+<link rel="modulepreload" href="../_npm/d3-drag@3.0.0/4202580c.js">
+<link rel="modulepreload" href="../_npm/d3-dsv@3.0.1/9cffc2bd.js">
+<link rel="modulepreload" href="../_npm/d3-ease@3.0.1/cdd7e898.js">
+<link rel="modulepreload" href="../_npm/d3-fetch@3.0.1/b4e2ad9a.js">
+<link rel="modulepreload" href="../_npm/d3-force@3.0.0/5e804d15.js">
+<link rel="modulepreload" href="../_npm/d3-format@3.1.2/3785bf2d.js">
+<link rel="modulepreload" href="../_npm/d3-geo@3.1.1/40599fb3.js">
+<link rel="modulepreload" href="../_npm/d3-hierarchy@3.1.2/e49e792c.js">
+<link rel="modulepreload" href="../_npm/d3-interpolate@3.0.1/8d1e5425.js">
+<link rel="modulepreload" href="../_npm/d3-path@3.1.0/20d3f133.js">
+<link rel="modulepreload" href="../_npm/d3-polygon@3.0.1/7553081f.js">
+<link rel="modulepreload" href="../_npm/d3-quadtree@3.0.1/0dfd751c.js">
+<link rel="modulepreload" href="../_npm/d3-random@3.0.1/3c90ee06.js">
+<link rel="modulepreload" href="../_npm/d3-scale@4.0.2/720b7f0a.js">
+<link rel="modulepreload" href="../_npm/d3-scale-chromatic@3.1.0/ba24c2e7.js">
+<link rel="modulepreload" href="../_npm/d3-selection@3.0.0/4d94e5b7.js">
+<link rel="modulepreload" href="../_npm/d3-shape@3.2.0/6d3a6726.js">
+<link rel="modulepreload" href="../_npm/d3-time@3.1.0/9f03c579.js">
+<link rel="modulepreload" href="../_npm/d3-time-format@4.1.0/07c9626f.js">
+<link rel="modulepreload" href="../_npm/d3-timer@3.0.1/b58a267d.js">
+<link rel="modulepreload" href="../_npm/d3-transition@3.0.1/004da2ac.js">
+<link rel="modulepreload" href="../_npm/d3-zoom@3.0.0/b5786b3f.js">
+<link rel="modulepreload" href="../_npm/binary-search-bounds@2.0.5/cbf6ba23.js">
+<link rel="modulepreload" href="../_npm/internmap@2.0.3/e08981d9.js">
+<link rel="modulepreload" href="../_npm/delaunator@5.0.1/02d43215.js">
+<link rel="modulepreload" href="../_npm/robust-predicates@3.0.2/aa00730b.js">
+<link rel="icon" href="../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "../_observablehq/client.3fa0f62a.js";
+
+define({id: "0ff9cda5", inputs: ["display","L"], outputs: ["div","cunyLocation","map"], body: (display,L) => {
+// create a div
+const div = display(document.createElement("div"));
+// edit the style of this div directly
+div.style = "height: 400px;";
+
+// lat / long of CUNY
+const cunyLocation = [40.7485, -73.9838];
+
+// create a map with `L` as the leaflet import and `.map` as the method to call
+const map = L.map(div).setView(cunyLocation, 13);
+
+L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  attribution:
+    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+}).addTo(map);
+
+L.marker(cunyLocation).addTo(map).bindPopup("CUNY Graduate Center").openPopup();
+return {div,cunyLocation,map};
+}});
+
+define({id: "79cd7d86", inputs: ["display","penguins"], outputs: ["plotChart","d3Chart","scatterplot"], body: async (display,penguins) => {
+const {plotChart, d3Chart, scatterplot} = await import("../_import/lessons/components/charts.4d6966ee.js");
+display(penguins);
+return {plotChart,d3Chart,scatterplot};
+}});
+
+define({id: "9b551646", mode: "inline", inputs: ["resize","plotChart","display"], body: async (resize,plotChart,display) => {
+display(await(
+resize((width) => plotChart(width))
+))
+}});
+
+define({id: "c5dc49d7", mode: "inline", inputs: ["resize","d3Chart","display"], body: async (resize,d3Chart,display) => {
+display(await(
+resize((width) => d3Chart(width))
+))
+}});
+
+define({id: "3f02b84a", inputs: ["display","scatterplot","width","penguins"], body: (display,scatterplot,width,penguins) => {
+display(
+  scatterplot(width, penguins, "culmen_depth_mm", "culmen_length_mm", "island"),
+);
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Interactive Data Visualization (Spring 2026)</a></li>
+  </ol>
+  <section class="observablehq-section-active">
+    <summary>Lessons</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./1_intro_to_web_development">Intro to Web Development</a></li>
+    <li class="observablehq-link"><a href="./2_working_in_cursor">Working in Cursor</a></li>
+    <li class="observablehq-link"><a href="./3_intro_to_observable_framework">Intro to Observable Framework</a></li>
+    <li class="observablehq-link"><a href="./4_confirming_spring_upstream">Confirming Spring Upstream</a></li>
+    <li class="observablehq-link"><a href="./5_intro_to_observable_plot">Intro to Observable Plot</a></li>
+    <li class="observablehq-link"><a href="./6_transforms_and_data_manipulation">Transforms and Data Manipulation</a></li>
+    <li class="observablehq-link"><a href="./7_data_types_scales_marks">Data Types, Scales, Marks</a></li>
+    <li class="observablehq-link"><a href="./8_data_joins_and_annotations">Data Joins and Annotations</a></li>
+    <li class="observablehq-link"><a href="./9_faceting_and_svgs">Faceting and SVGs</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./10_libraries_and_imports">Libraries and Imports</a></li>
+    <li class="observablehq-link"><a href="./11_intro_to_d3">Intro to d3.js</a></li>
+    <li class="observablehq-link"><a href="./12_charts_in_d3">Different Charts With d3.js</a></li>
+    </ol>
+  </section>
+  <details>
+    <summary>Lab 0: Getting Started</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_0/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_0/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 1: Prolific Pollinators</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_1/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_1/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 2: Subway Staffing</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_2/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_2/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 3: Mayoral Mystery</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_3/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_3/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 4: Clearwater Crisis</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_4/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_4/">Dashboard</a></li>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#mapping-libraries">Mapping libraries</a></li>
+<li class="observablehq-secondary-link"><a href="#imports">Imports</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="libraries" tabindex="-1"><a class="observablehq-header-anchor" href="#libraries">Libraries</a></h1>
+<p>We aren't limited to just Plot within observable markdown files -- we have access to all the libraries that are listed in the observable framework documentation under "libraries" -- and you don't have to import them. This includes libraries like lodash, leaflet, mapbox, and of course, d3.js.</p>
+<h2 id="mapping-libraries" tabindex="-1"><a class="observablehq-header-anchor" href="#mapping-libraries">Mapping libraries</a></h2>
+<h3 id="leaflet" tabindex="-1"><a class="observablehq-header-anchor" href="#leaflet">Leaflet</a></h3>
+<p>We have used SVG for making maps with plot and projections in <a href="./9_faceting_and_svgs">Faceting and SVGs</a>, but observable includes other tile based libraries like leaflet and mapbox.</p>
+<p>To make this work in observable, we leverage <code>display</code> to show an element created via the DOM api (<code>document.createElement("div")</code>). We do this all in the same code block for ease -- creating the div, manipulating the style, appending the map to it, and making customizations to the map.</p>
+<p>The library is already included, and as per <a href="https://observablehq.com/framework/lib/leaflet" target="_blank" rel="noopener noreferrer">the documentation</a>, can be accessed with the letter <code>L</code>.</p>
+<div class="observablehq observablehq--block"><!--:0ff9cda5:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-comment">// create a div</span>
+<span class="hljs-keyword">const</span> div = <span class="hljs-title function_">display</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">"div"</span>));
+<span class="hljs-comment">// edit the style of this div directly</span>
+div.<span class="hljs-property">style</span> = <span class="hljs-string">"height: 400px;"</span>;
+
+<span class="hljs-comment">// lat / long of CUNY</span>
+<span class="hljs-keyword">const</span> cunyLocation = [<span class="hljs-number">40.7485</span>, -<span class="hljs-number">73.9838</span>];
+
+<span class="hljs-comment">// create a map with `L` as the leaflet import and `.map` as the method to call</span>
+<span class="hljs-keyword">const</span> map = L.<span class="hljs-title function_">map</span>(div).<span class="hljs-title function_">setView</span>(cunyLocation, <span class="hljs-number">13</span>);
+
+L.<span class="hljs-title function_">tileLayer</span>(<span class="hljs-string">"https://tile.openstreetmap.org/{z}/{x}/{y}.png"</span>, {
+  <span class="hljs-attr">attribution</span>:
+    <span class="hljs-string">'&amp;copy; &lt;a href="https://www.openstreetmap.org/copyright"&gt;OpenStreetMap&lt;/a&gt;'</span>,
+}).<span class="hljs-title function_">addTo</span>(map);
+
+L.<span class="hljs-title function_">marker</span>(cunyLocation).<span class="hljs-title function_">addTo</span>(map).<span class="hljs-title function_">bindPopup</span>(<span class="hljs-string">"CUNY Graduate Center"</span>).<span class="hljs-title function_">openPopup</span>();
+</code></pre>
+<p>There are many more ways to customize a leaflet map, which can be found in the <a href="https://leafletjs.com/reference.html" target="_blank" rel="noopener noreferrer">leaflet documentation</a>.</p>
+<h3 id="mapbox" tabindex="-1"><a class="observablehq-header-anchor" href="#mapbox">Mapbox</a></h3>
+<p>Another option is mapbox. Mapbox is a comprehensive paid platform that includes mapping tiles, data, and mapping tools. Leaflet is a simpler, open-source JS library that provides the core functionality for displaying maps in web browsers.</p>
+<p>Because mapbox is a paid service, you will need an access code to render something here. You can do so by creating an account with <a href="https://www.mapbox.com/" target="_blank" rel="noopener noreferrer">mapbox</a>.</p>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> div = <span class="hljs-title function_">display</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">"div"</span>));
+div.<span class="hljs-property">style</span> = <span class="hljs-string">"height: 400px;"</span>;
+
+<span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> mapboxgl.<span class="hljs-title class_">Map</span>({
+  <span class="hljs-attr">container</span>: div,
+  <span class="hljs-attr">accessToken</span>: <span class="hljs-variable constant_">ACCESS_TOKEN</span>, <span class="hljs-comment">// replace with your token, "pk.…"</span>
+  <span class="hljs-attr">center</span>: [<span class="hljs-number">2.2932</span>, <span class="hljs-number">48.86069</span>], <span class="hljs-comment">// starting position [longitude, latitude]</span>
+  <span class="hljs-attr">zoom</span>: <span class="hljs-number">15.1</span>,
+  <span class="hljs-attr">pitch</span>: <span class="hljs-number">62</span>,
+  <span class="hljs-attr">bearing</span>: -<span class="hljs-number">20</span>,
+});
+
+invalidation.<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> map.<span class="hljs-title function_">remove</span>());
+</code></pre>
+<hr>
+<h2 id="imports" tabindex="-1"><a class="observablehq-header-anchor" href="#imports">Imports</a></h2>
+<p>Observable framework markdown files also let you organize your code in separate files and import them to render on the page. This could help you structure your dashboard in the sub components -- particularly if you want to use the component more than once.</p>
+<p>In the <code>./components/charts.js</code> file, I've made two functions that render plots. One with Plot, and one with d3.js. Each one looks a little different, but they both can be used to create something similar:</p>
+<div class="observablehq observablehq--block"><!--:79cd7d86:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">import</span> { plotChart, d3Chart, scatterplot } <span class="hljs-keyword">from</span> <span class="hljs-string">"./components/charts.js"</span>;
+<span class="hljs-title function_">display</span>(penguins);
+</code></pre>
+<div style="display: flex; flex-direction: column; gap: 1em;">
+  <div>Plot:</div>
+  <div><observablehq-loading></observablehq-loading><!--:9b551646:--></div>
+  <div>D3:</div>
+  <div><observablehq-loading></observablehq-loading><!--:c5dc49d7:--></div>
+</div>
+<p>We can also make significantly more robust charts with d3, particularly as a component in another file, and import it into our dashboards. If we take the penguins data and create a scatterplot in d3, using the data joins we will learn about in the next lesson, we can import that here:</p>
+<div class="observablehq observablehq--block"><!--:3f02b84a:--></div>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./9_faceting_and_svgs"><span>Faceting and SVGs</span></a><a rel="next" href="./11_intro_to_d3"><span>Intro to d3.js</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-05-25T00:23:06">May 25, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>

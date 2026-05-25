@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>Invisible Targets | Interactive Data Visualization (Spring 2026)</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-air.aad62322.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-air.aad62322.css">
+<link rel="modulepreload" href="../_observablehq/client.3fa0f62a.js">
+<link rel="modulepreload" href="../_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.73a8ec5a.js">
+<link rel="modulepreload" href="../_npm/topojson-client@3.1.0/edd9ee95.js">
+<link rel="modulepreload" href="../_npm/d3@7.9.0/e324157d.js">
+<link rel="modulepreload" href="../_npm/@observablehq/plot@0.6.17/7c43807f.js">
+<link rel="modulepreload" href="../_npm/d3-dsv@3.0.1/9cffc2bd.js">
+<link rel="modulepreload" href="../_npm/d3-array@3.2.4/e93ca09f.js">
+<link rel="modulepreload" href="../_npm/d3-axis@3.0.0/0f2de24d.js">
+<link rel="modulepreload" href="../_npm/d3-brush@3.0.0/65eb105b.js">
+<link rel="modulepreload" href="../_npm/d3-chord@3.0.1/7ef8fb2e.js">
+<link rel="modulepreload" href="../_npm/d3-color@3.1.0/aeb57b94.js">
+<link rel="modulepreload" href="../_npm/d3-contour@4.0.2/1d2aed74.js">
+<link rel="modulepreload" href="../_npm/d3-delaunay@6.0.4/5ced1d52.js">
+<link rel="modulepreload" href="../_npm/d3-dispatch@3.0.1/9ba9c7f3.js">
+<link rel="modulepreload" href="../_npm/d3-drag@3.0.0/4202580c.js">
+<link rel="modulepreload" href="../_npm/d3-ease@3.0.1/cdd7e898.js">
+<link rel="modulepreload" href="../_npm/d3-fetch@3.0.1/b4e2ad9a.js">
+<link rel="modulepreload" href="../_npm/d3-force@3.0.0/5e804d15.js">
+<link rel="modulepreload" href="../_npm/d3-format@3.1.2/3785bf2d.js">
+<link rel="modulepreload" href="../_npm/d3-geo@3.1.1/40599fb3.js">
+<link rel="modulepreload" href="../_npm/d3-hierarchy@3.1.2/e49e792c.js">
+<link rel="modulepreload" href="../_npm/d3-interpolate@3.0.1/8d1e5425.js">
+<link rel="modulepreload" href="../_npm/d3-path@3.1.0/20d3f133.js">
+<link rel="modulepreload" href="../_npm/d3-polygon@3.0.1/7553081f.js">
+<link rel="modulepreload" href="../_npm/d3-quadtree@3.0.1/0dfd751c.js">
+<link rel="modulepreload" href="../_npm/d3-random@3.0.1/3c90ee06.js">
+<link rel="modulepreload" href="../_npm/d3-scale@4.0.2/720b7f0a.js">
+<link rel="modulepreload" href="../_npm/d3-scale-chromatic@3.1.0/ba24c2e7.js">
+<link rel="modulepreload" href="../_npm/d3-selection@3.0.0/4d94e5b7.js">
+<link rel="modulepreload" href="../_npm/d3-shape@3.2.0/6d3a6726.js">
+<link rel="modulepreload" href="../_npm/d3-time@3.1.0/9f03c579.js">
+<link rel="modulepreload" href="../_npm/d3-time-format@4.1.0/07c9626f.js">
+<link rel="modulepreload" href="../_npm/d3-timer@3.0.1/b58a267d.js">
+<link rel="modulepreload" href="../_npm/d3-transition@3.0.1/004da2ac.js">
+<link rel="modulepreload" href="../_npm/d3-zoom@3.0.0/b5786b3f.js">
+<link rel="modulepreload" href="../_npm/isoformat@0.2.1/18cbf477.js">
+<link rel="modulepreload" href="../_npm/interval-tree-1d@1.0.4/53fe8176.js">
+<link rel="modulepreload" href="../_npm/internmap@2.0.3/e08981d9.js">
+<link rel="modulepreload" href="../_npm/delaunator@5.0.1/02d43215.js">
+<link rel="modulepreload" href="../_npm/binary-search-bounds@2.0.5/cbf6ba23.js">
+<link rel="modulepreload" href="../_npm/robust-predicates@3.0.2/aa00730b.js">
+<link rel="icon" href="../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "../_observablehq/client.3fa0f62a.js";
+import {registerFile} from "../_observablehq/stdlib.73a8ec5a.js";
+
+registerFile("./data/arrestsfiltered2.csv", {"name":"./data/arrestsfiltered2.csv","mimeType":"text/csv","path":"../_file/lab_4/data/arrestsfiltered2.b891c178.csv","lastModified":1779681706431,"size":46874032});
+
+define({id: "5f3f5c2b", outputs: ["feature"], body: async () => {
+const {feature} = await import("../_npm/topojson-client@3.1.0/edd9ee95.js");
+
+return {feature};
+}});
+
+define({id: "fcdf31b0", inputs: ["FileAttachment","d3"], outputs: ["data","today","cleanData","genderCounts","totalCount","maleCount","malePct"], body: async (FileAttachment,d3) => {
+const data = await FileAttachment("./data/arrestsfiltered2.csv").csv({ typed: true });
+const today = new Date();
+const cleanData = data.filter(d => d.apprehension_date !== null && d.apprehension_date <= today);
+const genderCounts = d3.rollup(cleanData, v => v.length, d => d.gender);
+const totalCount = cleanData.length;
+const maleCount = genderCounts.get("Male");
+const malePct = ((maleCount / totalCount) * 100).toFixed(1);
+return {data,today,cleanData,genderCounts,totalCount,maleCount,malePct};
+}});
+
+define({id: "5fcfd47d", inputs: ["feature","d3","cleanData","Plot"], outputs: ["world","countries110","allCountryNames","allGenderByCountry","fullCountryMap","allTotalArrestsMap","heroMap"], body: async (feature,d3,cleanData,Plot) => {
+const world = await fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json").then(r => r.json());
+const countries110 = feature(world, world.objects.countries);
+
+const allCountryNames = Array.from(
+  d3.rollup(cleanData, v => v.length, d => d.citizenship_country),
+  ([country, count]) => ({ country, count })
+);
+
+const allGenderByCountry = new Map(
+  Array.from(
+    d3.rollup(cleanData, v => v.length, d => d.citizenship_country, d => d.gender)
+  )
+);
+
+const fullCountryMap = new Map([
+  ["484", "MEXICO"], ["320", "GUATEMALA"], ["340", "HONDURAS"], ["862", "VENEZUELA"],
+  ["558", "NICARAGUA"], ["170", "COLOMBIA"], ["222", "EL SALVADOR"], ["192", "CUBA"],
+  ["218", "ECUADOR"], ["604", "PERU"], ["214", "DOMINICAN REPUBLIC"], ["076", "BRAZIL"],
+  ["356", "INDIA"], ["156", "CHINA, PEOPLES REPUBLIC OF"], ["332", "HAITI"], ["388", "JAMAICA"],
+  ["704", "VIETNAM"], ["642", "ROMANIA"], ["643", "RUSSIA"], ["792", "TURKIYE"],
+  ["152", "CHILE"], ["860", "UZBEKISTAN"], ["068", "BOLIVIA"], ["566", "NIGERIA"],
+  ["686", "SENEGAL"], ["478", "MAURITANIA"], ["024", "ANGOLA"], ["124", "CANADA"],
+  ["418", "LAOS"], ["804", "UKRAINE"], ["004", "AFGHANISTAN"], ["268", "GEORGIA"],
+  ["364", "IRAN"], ["818", "EGYPT"], ["188", "COSTA RICA"], ["400", "JORDAN"],
+  ["120", "CAMEROON"], ["044", "BAHAMAS"], ["724", "SPAIN"], ["706", "SOMALIA"],
+  ["288", "GHANA"], ["826", "UNITED KINGDOM"], ["524", "NEPAL"], ["586", "PAKISTAN"],
+  ["608", "PHILIPPINES"], ["591", "PANAMA"], ["324", "GUINEA"], ["050", "BANGLADESH"],
+  ["410", "SOUTH KOREA"], ["084", "BELIZE"], ["032", "ARGENTINA"], ["180", "DEM REP OF THE CONGO"],
+  ["360", "INDONESIA"], ["404", "KENYA"], ["231", "ETHIOPIA"], ["583", "MICRONESIA, FEDERATED STATES OF"],
+  ["104", "BURMA"], ["729", "SUDAN"], ["417", "KYRGYZSTAN"], ["584", "MARSHALL ISLANDS"],
+  ["430", "LIBERIA"], ["051", "ARMENIA"], ["380", "ITALY"], ["328", "GUYANA"],
+  ["616", "POLAND"], ["368", "IRAQ"], ["780", "TRINIDAD AND TOBAGO"], ["232", "ERITREA"],
+  ["504", "MOROCCO"], ["762", "TAJIKISTAN"], ["398", "KAZAKHSTAN"], ["250", "FRANCE"],
+  ["116", "CAMBODIA"], ["376", "ISRAEL"], ["764", "THAILAND"], ["760", "SYRIA"],
+  ["620", "PORTUGAL"], ["178", "CONGO"], ["710", "SOUTH AFRICA"], ["112", "BELARUS"],
+  ["031", "AZERBAIJAN"], ["372", "IRELAND"], ["858", "URUGUAY"], ["144", "SRI LANKA"],
+  ["012", "ALGERIA"], ["008", "ALBANIA"], ["694", "SIERRA LEONE"], ["276", "GERMANY"],
+  ["422", "LEBANON"], ["854", "BURKINA FASO"], ["070", "BOSNIA-HERZEGOVINA"], ["270", "GAMBIA"],
+  ["716", "ZIMBABWE"], ["788", "TUNISIA"], ["064", "BHUTAN"], ["132", "CAPE VERDE"],
+  ["466", "MALI"], ["498", "MOLDOVA"], ["384", "IVORY COAST"], ["768", "TOGO"],
+  ["600", "PARAGUAY"], ["158", "TAIWAN"], ["887", "YEMEN"], ["348", "HUNGARY"],
+  ["682", "SAUDI ARABIA"], ["800", "UGANDA"], ["646", "RWANDA"], ["562", "NIGER"],
+  ["036", "AUSTRALIA"], ["226", "EQUATORIAL GUINEA"], ["834", "TANZANIA"], ["148", "CHAD"],
+  ["528", "NETHERLANDS"], ["688", "SERBIA"], ["728", "SOUTH SUDAN"], ["056", "BELGIUM"],
+  ["440", "LITHUANIA"], ["496", "MONGOLIA"], ["203", "CZECH REPUBLIC"], ["499", "MONTENEGRO"],
+  ["383", "KOSOVO"], ["776", "TONGA"], ["428", "LATVIA"], ["100", "BULGARIA"],
+  ["894", "ZAMBIA"], ["052", "BARBADOS"], ["204", "BENIN"], ["585", "PALAU"],
+  ["554", "NEW ZEALAND"], ["300", "GREECE"], ["392", "JAPAN"], ["458", "MALAYSIA"],
+  ["795", "TURKMENISTAN"], ["752", "SWEDEN"], ["308", "GRENADA"], ["882", "SAMOA"],
+  ["242", "FIJI"], ["703", "SLOVAKIA"], ["624", "GUINEA-BISSAU"], ["659", "ST. KITTS-NEVIS"],
+  ["434", "LIBYA"], ["414", "KUWAIT"], ["807", "NORTH MACEDONIA"], ["028", "ANTIGUA-BARBUDA"],
+  ["480", "MAURITIUS"], ["670", "ST. VINCENT-GRENADINES"], ["266", "GABON"], ["191", "CROATIA"],
+  ["262", "DJIBOUTI"], ["454", "MALAWI"], ["784", "UNITED ARAB EMIRATES"], ["756", "SWITZERLAND"],
+  ["208", "DENMARK"], ["233", "ESTONIA"], ["140", "CENTRAL AFRICAN REPUBLIC"], ["508", "MOZAMBIQUE"],
+  ["450", "MADAGASCAR"], ["246", "FINLAND"], ["598", "PAPUA NEW GUINEA"], ["705", "SLOVENIA"],
+  ["072", "BOTSWANA"], ["516", "NAMIBIA"], ["040", "AUSTRIA"], ["702", "SINGAPORE"],
+  ["048", "BAHRAIN"], ["578", "NORWAY"], ["408", "NORTH KOREA"], ["020", "ANDORRA"],
+  ["196", "CYPRUS"], ["470", "MALTA"], ["352", "ICELAND"], ["096", "BRUNEI"],
+  ["174", "COMOROS"], ["634", "QATAR"], ["492", "MONACO"], ["748", "ESWATINI"]
+]);
+
+const allTotalArrestsMap = new Map(
+  Array.from(fullCountryMap, ([id, name]) => {
+    const count = allCountryNames.find(d => d.country === name)?.count ?? null;
+    return [id, count];
+  })
+);
+
+const heroMap = Plot.plot({
+  width: window.innerWidth,
+  height: window.innerHeight,
+  projection: { type: "equal-earth" },
+  style: { background: "transparent" },
+  color: { type: "log", scheme: "YlOrRd", unknown: "#2a2a2a" },
+  marks: [
+    Plot.geo(countries110, {
+      fill: d => allTotalArrestsMap.get(d.id) ?? null,
+      stroke: "#111",
+      strokeWidth: 0.3,
+    })
+  ]
+});
+return {world,countries110,allCountryNames,allGenderByCountry,fullCountryMap,allTotalArrestsMap,heroMap};
+}});
+
+define({id: "40d12ac8", mode: "inline", inputs: ["heroMap","display"], body: async (heroMap,display) => {
+display(await(
+heroMap
+))
+}});
+
+define({id: "d1a3f687", mode: "inline", inputs: ["malePct","display"], body: async (malePct,display) => {
+display(await(
+malePct
+))
+}});
+
+define({id: "fe08f78f", inputs: ["display","Plot","genderCounts"], body: (display,Plot,genderCounts) => {
+display(Plot.plot({
+  title: "Gender Distribution of ICE Arrests (2024-2025)",
+  marginLeft: 80,
+  style: { background: "#f5f4f0", fontFamily: "Source Serif 4, Georgia, serif" },
+  color: { range: ["#8b1a1a", "#2c3e50", "#95a5a6"] },
+  marks: [
+    Plot.barY(
+      Array.from(genderCounts, ([gender, count]) => ({ gender, count })),
+      { x: "gender", y: "count", fill: "gender", tip: true }
+    ),
+    Plot.ruleY([0])
+  ]
+}))
+}});
+
+define({id: "258ba83b", inputs: ["d3","cleanData","display","Plot"], outputs: ["topCountries","top10Countries","genderByCountry","genderByCountryFlat"], body: (d3,cleanData,display,Plot) => {
+const topCountries = Array.from(
+  d3.rollup(cleanData, v => v.length, d => d.citizenship_country),
+  ([country, count]) => ({ country, count })
+).sort((a, b) => b.count - a.count).slice(0, 10);
+
+const top10Countries = topCountries.map(d => d.country);
+const genderByCountry = d3.rollup(
+  cleanData.filter(d => top10Countries.includes(d.citizenship_country)),
+  v => v.length,
+  d => d.citizenship_country,
+  d => d.gender
+);
+
+const genderByCountryFlat = Array.from(genderByCountry, ([country, genders]) =>
+  Array.from(genders, ([gender, count]) => ({ country, gender, count }))
+).flat();
+
+display(Plot.plot({
+  title: "Gender Breakdown Among Top 10 Countries of Citizenship (2024-2025)",
+  marginLeft: 120,
+  style: { background: "#f5f4f0", fontFamily: "Source Serif 4, Georgia, serif" },
+  color: { legend: true, range: ["#8b1a1a", "#2c3e50", "#95a5a6"] },
+  marks: [
+    Plot.barX(genderByCountryFlat, {
+      y: "country",
+      x: "count",
+      fill: "gender",
+      sort: { y: "-x" },
+      tip: true
+    }),
+    Plot.ruleX([0])
+  ]
+}))
+return {topCountries,top10Countries,genderByCountry,genderByCountryFlat};
+}});
+
+define({id: "2a0f53a9", inputs: ["display","Plot","countries110","allTotalArrestsMap","fullCountryMap","allGenderByCountry"], body: (display,Plot,countries110,allTotalArrestsMap,fullCountryMap,allGenderByCountry) => {
+display(Plot.plot({
+  title: "ICE Arrests by Country of Citizenship (2024-2025)",
+  width: 900,
+  height: 500,
+  style: { background: "#f5f4f0", fontFamily: "Source Serif 4, Georgia, serif" },
+  projection: { type: "equal-earth" },
+  color: { legend: true, type: "log", scheme: "YlOrRd", label: "Total Arrests", unknown: "#e0e0e0", ticks: 4 },
+  marks: [
+    Plot.geo(countries110, {
+      fill: d => allTotalArrestsMap.get(d.id) ?? null,
+      stroke: "white",
+      strokeWidth: 0.5,
+      tip: true,
+      title: d => {
+        const name = fullCountryMap.get(d.id);
+        if (!name) return null;
+        const count = allTotalArrestsMap.get(d.id);
+        if (!count) return null;
+        const genders = allGenderByCountry.get(name);
+        return `${name}\nTotal: ${count.toLocaleString()}\nMale: ${(genders?.get("Male") ?? 0).toLocaleString()}\nFemale: ${(genders?.get("Female") ?? 0).toLocaleString()}\nUnknown: ${(genders?.get("Unknown") ?? 0).toLocaleString()}`;
+      }
+    })
+  ]
+}))
+}});
+
+define({id: "beaa8ddb", inputs: ["feature","d3","cleanData","display","Plot"], outputs: ["usMap","usStates","stateArrestData","stateGenderData","stateNameToId","idToStateName","stateArrestById"], body: async (feature,d3,cleanData,display,Plot) => {
+const usMap = await fetch("https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json").then(r => r.json());
+const usStates = feature(usMap, usMap.objects.states);
+
+const stateArrestData = d3.rollup(cleanData, v => v.length, d => d.apprehension_state);
+const stateGenderData = d3.rollup(cleanData, v => v.length, d => d.apprehension_state, d => d.gender);
+
+const stateNameToId = new Map([
+  ["ALABAMA", "01"], ["ALASKA", "02"], ["ARIZONA", "04"], ["ARKANSAS", "05"],
+  ["CALIFORNIA", "06"], ["COLORADO", "08"], ["CONNECTICUT", "09"], ["DELAWARE", "10"],
+  ["DISTRICT OF COLUMBIA", "11"], ["FLORIDA", "12"], ["GEORGIA", "13"], ["HAWAII", "15"],
+  ["IDAHO", "16"], ["ILLINOIS", "17"], ["INDIANA", "18"], ["IOWA", "19"],
+  ["KANSAS", "20"], ["KENTUCKY", "21"], ["LOUISIANA", "22"], ["MAINE", "23"],
+  ["MARYLAND", "24"], ["MASSACHUSETTS", "25"], ["MICHIGAN", "26"], ["MINNESOTA", "27"],
+  ["MISSISSIPPI", "28"], ["MISSOURI", "29"], ["MONTANA", "30"], ["NEBRASKA", "31"],
+  ["NEVADA", "32"], ["NEW HAMPSHIRE", "33"], ["NEW JERSEY", "34"], ["NEW MEXICO", "35"],
+  ["NEW YORK", "36"], ["NORTH CAROLINA", "37"], ["NORTH DAKOTA", "38"], ["OHIO", "39"],
+  ["OKLAHOMA", "40"], ["OREGON", "41"], ["PENNSYLVANIA", "42"], ["RHODE ISLAND", "44"],
+  ["SOUTH CAROLINA", "45"], ["SOUTH DAKOTA", "46"], ["TENNESSEE", "47"], ["TEXAS", "48"],
+  ["UTAH", "49"], ["VERMONT", "50"], ["VIRGINIA", "51"], ["WASHINGTON", "53"],
+  ["WEST VIRGINIA", "54"], ["WISCONSIN", "55"], ["WYOMING", "56"], ["PUERTO RICO", "72"]
+]);
+
+const idToStateName = new Map(Array.from(stateNameToId, ([name, id]) => [id, name]));
+const stateArrestById = new Map(
+  Array.from(stateNameToId, ([name, id]) => [id, stateArrestData.get(name) ?? null])
+);
+
+display(Plot.plot({
+  title: "ICE Arrests by State (2024-2025)",
+  width: 900,
+  height: 560,
+  style: { background: "#f5f4f0", fontFamily: "Source Serif 4, Georgia, serif" },
+  projection: "albers-usa",
+  color: { legend: true, type: "linear", scheme: "YlOrRd", label: "Total Arrests", unknown: "#e0e0e0", ticks: 4 },
+  marks: [
+    Plot.geo(usStates, {
+      fill: d => stateArrestById.get(d.id) ?? null,
+      stroke: "#f5f4f0",
+      strokeWidth: 0.8,
+      tip: true,
+      title: d => {
+        const name = idToStateName.get(d.id);
+        if (!name) return null;
+        const total = stateArrestData.get(name);
+        if (!total) return null;
+        const genders = stateGenderData.get(name);
+        return `${name}\nTotal: ${total.toLocaleString()}\nMale: ${(genders?.get("Male") ?? 0).toLocaleString()}\nFemale: ${(genders?.get("Female") ?? 0).toLocaleString()}\nUnknown: ${(genders?.get("Unknown") ?? 0).toLocaleString()}`;
+      }
+    })
+  ]
+}))
+return {usMap,usStates,stateArrestData,stateGenderData,stateNameToId,idToStateName,stateArrestById};
+}});
+
+define({id: "664a6e35", inputs: ["cleanData","d3","display","Plot"], outputs: ["deported","deportationsByMonthGender","deportationsFlat2"], body: (cleanData,d3,display,Plot) => {
+const deported = cleanData.filter(d => d.departed_date !== null);
+
+const deportationsByMonthGender = d3.rollup(
+  deported.filter(d => {
+    const date = new Date(d.departed_date);
+    return date >= new Date("2024-01-01") && date < new Date("2026-03-01");
+  }),
+  v => v.length,
+  d => d3.timeMonth.floor(new Date(d.departed_date)),
+  d => d.gender
+);
+
+const deportationsFlat2 = Array.from(deportationsByMonthGender, ([date, genders]) =>
+  Array.from(genders, ([gender, count]) => ({ date, gender, count }))
+).flat().sort((a, b) => a.date - b.date);
+
+display(Plot.plot({
+  title: "ICE Deportations Over Time by Gender (2024-2025)",
+  width: 900,
+  height: 400,
+  marginLeft: 80,
+  marginRight: 40,
+  style: { background: "#f5f4f0", fontFamily: "Source Serif 4, Georgia, serif" },
+  x: { label: "Month", type: "utc", domain: [new Date("2024-01-01"), new Date("2026-03-01")] },
+  y: { label: "Deportations", grid: true },
+  color: { legend: true, range: ["#8b1a1a", "#2c3e50", "#95a5a6"] },
+  marks: [
+    Plot.lineY(deportationsFlat2, {
+      x: "date",
+      y: "count",
+      stroke: "gender",
+      strokeWidth: 2,
+      tip: true,
+      title: d => `${d.gender}: ${d.count.toLocaleString()}`
+    }),
+    Plot.ruleY([0])
+  ]
+}))
+return {deported,deportationsByMonthGender,deportationsFlat2};
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Interactive Data Visualization (Spring 2026)</a></li>
+  </ol>
+  <section>
+    <summary>Lessons</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lessons/1_intro_to_web_development">Intro to Web Development</a></li>
+    <li class="observablehq-link"><a href="../lessons/2_working_in_cursor">Working in Cursor</a></li>
+    <li class="observablehq-link"><a href="../lessons/3_intro_to_observable_framework">Intro to Observable Framework</a></li>
+    <li class="observablehq-link"><a href="../lessons/4_confirming_spring_upstream">Confirming Spring Upstream</a></li>
+    <li class="observablehq-link"><a href="../lessons/5_intro_to_observable_plot">Intro to Observable Plot</a></li>
+    <li class="observablehq-link"><a href="../lessons/6_transforms_and_data_manipulation">Transforms and Data Manipulation</a></li>
+    <li class="observablehq-link"><a href="../lessons/7_data_types_scales_marks">Data Types, Scales, Marks</a></li>
+    <li class="observablehq-link"><a href="../lessons/8_data_joins_and_annotations">Data Joins and Annotations</a></li>
+    <li class="observablehq-link"><a href="../lessons/9_faceting_and_svgs">Faceting and SVGs</a></li>
+    <li class="observablehq-link"><a href="../lessons/10_libraries_and_imports">Libraries and Imports</a></li>
+    <li class="observablehq-link"><a href="../lessons/11_intro_to_d3">Intro to d3.js</a></li>
+    <li class="observablehq-link"><a href="../lessons/12_charts_in_d3">Different Charts With d3.js</a></li>
+    </ol>
+  </section>
+  <details>
+    <summary>Lab 0: Getting Started</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_0/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_0/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 1: Prolific Pollinators</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_1/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_1/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 2: Subway Staffing</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_2/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_2/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 3: Mayoral Mystery</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_3/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_3/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details open class="observablehq-section-active">
+    <summary>Lab 4: Clearwater Crisis</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./readme">Instructions</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./">Dashboard</a></li>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="invisible-targets" tabindex="-1"><a class="observablehq-header-anchor" href="#invisible-targets">Invisible Targets</a></h1>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Source+Sans+3:wght@400;600&display=swap');
+
+  :root {
+    --ink: #111010;
+    --gray: #6b6b6b;
+    --light-gray: #f5f4f0;
+    --rule: #d0cfc9;
+    --accent: #8b1a1a;
+    --max-width: 720px;
+  }
+
+  #observablehq-main h1,
+  #observablehq-main h2,
+  #observablehq-main h3,
+  #observablehq-main p {
+    all: unset;
+    display: block;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', Georgia, serif !important;
+    font-size: 1rem !important;
+    color: var(--ink) !important;
+  }
+
+  .hero {
+    position: relative;
+    width: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    background: #1a1a1a;
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 5rem;
+    overflow: hidden;
+    margin-bottom: 4rem;
+  }
+
+  .hero-map {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.55;
+  }
+
+  .hero-map svg {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .hero-text {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 0 2rem;
+    max-width: 900px;
+  }
+
+  .hero-kicker {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #c8a97e;
+    margin-bottom: 1.2rem;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.0;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.4rem;
+  }
+
+  .hero-subtitle {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: #c8c4bc;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+
+  .hero-byline {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.88rem;
+    color: #a0998f;
+    letter-spacing: 0.04em;
+  }
+
+  .hero-byline strong {
+    color: #d4cec6;
+    font-weight: 600;
+  }
+
+  .article-body {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .drop-cap p:first-child::first-letter {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 4.2rem;
+    font-weight: 900;
+    float: left;
+    line-height: 0.78;
+    margin: 0.08em 0.1em 0 0;
+    color: var(--accent);
+  }
+
+  .article-body p {
+    font-family: 'Source Serif 4', Georgia, serif !important;
+    font-size: 1.08rem !important;
+    line-height: 1.95 !important;
+    color: #1a1a1a !important;
+    margin-bottom: 1.4rem !important;
+    max-width: var(--max-width) !important;
+  }
+
+  .section-label {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink);
+    max-width: var(--max-width);
+    margin: 3rem auto 0.6rem;
+    padding: 0 1.5rem;
+    border-top: 2px solid var(--ink);
+    padding-top: 0.6rem;
+  }
+
+  .stat-block {
+    background: var(--ink);
+    color: #fff;
+    padding: 3rem 3.5rem;
+    margin: 3rem auto;
+    max-width: var(--max-width);
+  }
+
+  .stat-block .number {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 5rem;
+    font-weight: 900;
+    color: #c8a97e;
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-block .label {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 1.1rem;
+    color: #c8c4bc;
+    line-height: 1.7;
+    margin-top: 0.8rem;
+    display: block;
+    font-style: italic;
+  }
+
+  .chart-caption {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.78rem;
+    color: var(--gray);
+    max-width: var(--max-width);
+    margin: 0.5rem auto 2.5rem;
+    padding: 0 1.5rem;
+    line-height: 1.6;
+  }
+
+  .closing {
+    background: var(--ink);
+    padding: 2.5rem 3rem;
+    margin: 3rem auto;
+    max-width: var(--max-width);
+  }
+
+  .closing p {
+    font-family: 'Source Serif 4', Georgia, serif !important;
+    font-size: 1.05rem !important;
+    line-height: 1.9 !important;
+    color: #c8c4bc !important;
+    margin-bottom: 0 !important;
+  }
+
+  .footnote {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.75rem;
+    color: var(--gray);
+    max-width: var(--max-width);
+    margin: 2rem auto 4rem;
+    padding: 0 1.5rem;
+    border-top: 1px solid var(--rule);
+    padding-top: 1rem;
+  }
+</style>
+<div class="observablehq observablehq--block"><!--:5f3f5c2b:--></div>
+<div class="observablehq observablehq--block"><!--:fcdf31b0:--></div>
+<div class="observablehq observablehq--block"><!--:5fcfd47d:--></div>
+<div class="hero">
+  <div class="hero-map"><observablehq-loading></observablehq-loading><!--:40d12ac8:--></div>
+  <div class="hero-text">
+    <div class="hero-kicker">An Analysis of ICE Arrest Data, 2024–2025</div>
+    <div class="hero-title">Invisible Targets</div>
+    <div class="hero-subtitle">What the data on 432,924 ICE arrests reveals about gender, race,<br>and who gets left out of the conversation.</div>
+    <div class="hero-byline"><strong>Luis E. Banegas</strong> &nbsp;·&nbsp; May 2026</div>
+  </div>
+</div>
+<div class="article-body">
+<div class="drop-cap">
+<p>In 2024 and 2025, ICE arrested 432,924 immigrants across the United States. Researchers have tracked their nationalities, where they were apprehended, and where they were deported.</p>
+<p>But not their gender.</p>
+<p>Although the vast majority of those arrested were Latino and Caribbean men, no one is talking about it.</p>
+<p>This project addresses that gap.</p>
+</div>
+</div>
+<div class="stat-block" style="margin: 2rem auto; max-width: 720px;">
+  <span class="number"><observablehq-loading></observablehq-loading><!--:d1a3f687:-->%</span>
+  <span class="label">of all ICE arrests in 2024 and 2025 were men. The gender gap persisted across every country of origin and every state in the dataset.</span>
+</div>
+<div class="article-body">
+<div class="section-label">Who ICE Arrests</div>
+<p>Of the 432,924 people arrested, 381,728 were men and 49,591 were women. The remaining 1,605 were recorded as unknown. Men outnumbered women by a ratio of nearly eight to one. That ratio held across both years.</p>
+</div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:fe08f78f:--></div>
+<p class="chart-caption">Source: Deportation Data Project. Hover over bars to see exact counts.</p>
+<div class="article-body">
+<div class="section-label">Where They Come From</div>
+<p>Ten countries account for the vast majority of all arrests. Mexico leads by a wide margin. Guatemala, Honduras, and Venezuela follow. Across every one of these countries, men vastly outnumber women. The pattern does not waver by nationality. It holds in every case, without exception.</p>
+</div>
+<div class="observablehq observablehq--block"><!--:258ba83b:--></div>
+<p class="chart-caption">Source: Deportation Data Project. Hover over bars to see the breakdown by gender.</p>
+<div class="article-body">
+<div class="section-label">A Global Pattern</div>
+<p>ICE arrested people from over 100 countries in this period. The concentration in Latin America and the Caribbean is unmistakable, but enforcement reached every continent. Hover over any country to see the total arrests and gender breakdown.</p>
+</div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:2a0f53a9:--></div>
+<p class="chart-caption">Source: Deportation Data Project. Hover over any country to see total arrests and gender breakdown.</p>
+<div class="article-body">
+<div class="section-label">Where in the United States</div>
+<p>Enforcement is concentrated in border states, but it reaches every corner of the country. In every state, men account for the overwhelming majority of those arrested. Hover over any state to see the numbers.</p>
+</div>
+<div class="observablehq observablehq--block"><!--:beaa8ddb:--></div>
+<p class="chart-caption">Source: Deportation Data Project. Hover over each state to see total arrests and gender breakdown.</p>
+<div class="article-body">
+<div class="section-label">The Surge</div>
+<p>Then came January 2025.</p>
+<p>Deportations that had held steady throughout 2024 surged dramatically in 2025, the first full calendar year of the second Trump Administration. Men bore that surge almost entirely. The gap between male and female deportations, already wide in 2024, became a chasm in 2025.</p>
+</div>
+<div class="observablehq observablehq--block"><!--:664a6e35:--></div>
+<p class="chart-caption">Source: Deportation Data Project. The sharp spike beginning January 2025 corresponds to the start of the second Trump Administration. Hover over lines to see monthly counts by gender.</p>
+<div class="closing">
+<p>The gender dimension of immigration enforcement is not a side story. It is the story the data keeps telling, month after month, state after state, country after country. Latino and Caribbean men are the primary target of the deportation regime. The numbers are unambiguous. The question is whether we are willing to see them.</p>
+</div>
+<p class="footnote">Data: Deportation Data Project, 2024–2025.</p></main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./readme"><span>Instructions</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-05-25T00:23:06">May 25, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>

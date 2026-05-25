@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>Data Joins and Annotations | Interactive Data Visualization (Spring 2026)</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-air.aad62322.css">
+<link rel="preload" as="style" href="../_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-air.aad62322.css">
+<link rel="stylesheet" type="text/css" href="../_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="modulepreload" href="../_observablehq/client.3fa0f62a.js">
+<link rel="modulepreload" href="../_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.73a8ec5a.js">
+<link rel="modulepreload" href="../_npm/d3@7.9.0/e324157d.js">
+<link rel="modulepreload" href="../_npm/htl@0.3.1/72f4716c.js">
+<link rel="modulepreload" href="../_observablehq/stdlib/inputs.4ef1d259.js">
+<link rel="modulepreload" href="../_npm/@observablehq/plot@0.6.17/7c43807f.js">
+<link rel="modulepreload" href="../_npm/d3-dsv@3.0.1/9cffc2bd.js">
+<link rel="modulepreload" href="../_npm/isoformat@0.2.1/18cbf477.js">
+<link rel="modulepreload" href="../_npm/d3-array@3.2.4/e93ca09f.js">
+<link rel="modulepreload" href="../_npm/d3-axis@3.0.0/0f2de24d.js">
+<link rel="modulepreload" href="../_npm/d3-brush@3.0.0/65eb105b.js">
+<link rel="modulepreload" href="../_npm/d3-chord@3.0.1/7ef8fb2e.js">
+<link rel="modulepreload" href="../_npm/d3-color@3.1.0/aeb57b94.js">
+<link rel="modulepreload" href="../_npm/d3-contour@4.0.2/1d2aed74.js">
+<link rel="modulepreload" href="../_npm/d3-delaunay@6.0.4/5ced1d52.js">
+<link rel="modulepreload" href="../_npm/d3-dispatch@3.0.1/9ba9c7f3.js">
+<link rel="modulepreload" href="../_npm/d3-drag@3.0.0/4202580c.js">
+<link rel="modulepreload" href="../_npm/d3-ease@3.0.1/cdd7e898.js">
+<link rel="modulepreload" href="../_npm/d3-fetch@3.0.1/b4e2ad9a.js">
+<link rel="modulepreload" href="../_npm/d3-force@3.0.0/5e804d15.js">
+<link rel="modulepreload" href="../_npm/d3-format@3.1.2/3785bf2d.js">
+<link rel="modulepreload" href="../_npm/d3-geo@3.1.1/40599fb3.js">
+<link rel="modulepreload" href="../_npm/d3-hierarchy@3.1.2/e49e792c.js">
+<link rel="modulepreload" href="../_npm/d3-interpolate@3.0.1/8d1e5425.js">
+<link rel="modulepreload" href="../_npm/d3-path@3.1.0/20d3f133.js">
+<link rel="modulepreload" href="../_npm/d3-polygon@3.0.1/7553081f.js">
+<link rel="modulepreload" href="../_npm/d3-quadtree@3.0.1/0dfd751c.js">
+<link rel="modulepreload" href="../_npm/d3-random@3.0.1/3c90ee06.js">
+<link rel="modulepreload" href="../_npm/d3-scale@4.0.2/720b7f0a.js">
+<link rel="modulepreload" href="../_npm/d3-scale-chromatic@3.1.0/ba24c2e7.js">
+<link rel="modulepreload" href="../_npm/d3-selection@3.0.0/4d94e5b7.js">
+<link rel="modulepreload" href="../_npm/d3-shape@3.2.0/6d3a6726.js">
+<link rel="modulepreload" href="../_npm/d3-time@3.1.0/9f03c579.js">
+<link rel="modulepreload" href="../_npm/d3-time-format@4.1.0/07c9626f.js">
+<link rel="modulepreload" href="../_npm/d3-timer@3.0.1/b58a267d.js">
+<link rel="modulepreload" href="../_npm/d3-transition@3.0.1/004da2ac.js">
+<link rel="modulepreload" href="../_npm/d3-zoom@3.0.0/b5786b3f.js">
+<link rel="modulepreload" href="../_npm/interval-tree-1d@1.0.4/53fe8176.js">
+<link rel="modulepreload" href="../_npm/internmap@2.0.3/e08981d9.js">
+<link rel="modulepreload" href="../_npm/delaunator@5.0.1/02d43215.js">
+<link rel="modulepreload" href="../_npm/binary-search-bounds@2.0.5/cbf6ba23.js">
+<link rel="modulepreload" href="../_npm/robust-predicates@3.0.2/aa00730b.js">
+<link rel="icon" href="../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "../_observablehq/client.3fa0f62a.js";
+import {registerFile} from "../_observablehq/stdlib.73a8ec5a.js";
+
+registerFile("../class_code/stock_data/stock_events.csv", {"name":"../class_code/stock_data/stock_events.csv","mimeType":"text/csv","path":"../_file/class_code/stock_data/stock_events.50a85bb5.csv","lastModified":1777920292598,"size":4670});
+registerFile("../class_code/stock_data/stocks.csv", {"name":"../class_code/stock_data/stocks.csv","mimeType":"text/csv","path":"../_file/class_code/stock_data/stocks.8540a255.csv","lastModified":1777920292608,"size":1966391});
+registerFile("../class_code/viewership_data/production_cost.csv", {"name":"../class_code/viewership_data/production_cost.csv","mimeType":"text/csv","path":"../_file/class_code/viewership_data/production_cost.6bd8be53.csv","lastModified":1777920292615,"size":436});
+registerFile("../class_code/viewership_data/viewership.csv", {"name":"../class_code/viewership_data/viewership.csv","mimeType":"text/csv","path":"../_file/class_code/viewership_data/viewership.ba570eb5.csv","lastModified":1777920292615,"size":610});
+
+define({id: "23ec976e", inputs: ["FileAttachment","display"], outputs: ["stocks","events"], body: async (FileAttachment,display) => {
+const stocks = await FileAttachment("../class_code/stock_data/stocks.csv").csv({ typed: true })
+const events = await FileAttachment("../class_code/stock_data/stock_events.csv").csv({ typed: true })
+display(stocks[0])
+display(events[0])
+return {stocks,events};
+}});
+
+define({id: "c5d0ccf0", inputs: ["stocks","view","Inputs"], outputs: ["allTickers","selectedStock"], body: (stocks,view,Inputs) => {
+// const allTickers = ["AAPL", "GOOG", "NFLX", "AMZN", "META"] // option 1: hardcode the values
+const allTickers = Array.from(new Set(stocks.map(d => d.Ticker))) // option 2: derive from data
+const selectedStock = view(Inputs.select(allTickers))
+return {allTickers,selectedStock};
+}});
+
+define({id: "d3d3d69d", inputs: ["Plot","selectedStock","stocks","display"], body: async (Plot,selectedStock,stocks,display) => {
+display(await(
+Plot.plot({
+  title: `Viewing: ${selectedStock}`,
+  height: 200,
+  marks: [
+    Plot.line(stocks, {
+      x: "Date",
+      y: "Close",
+      z: "Ticker",
+      stroke: d => d["Ticker"] === selectedStock ? "black" : "none",
+      tip: true
+    })
+  ]
+})
+))
+}});
+
+define({id: "9c2e767e", inputs: ["Plot","width","stocks","events","display"], body: async (Plot,width,stocks,events,display) => {
+display(await(
+Plot.plot({
+  height: 200,
+  width,
+  marks: [
+    Plot.line(stocks, {
+      x: "Date",
+      y: "Close",
+      z: "Ticker",
+      stroke: "Ticker"
+    }),
+    Plot.ruleX(events, {
+      x: "Date",
+      tip: true,
+      channels: {
+        Event: "Event Name",
+        Notes: "Notes"
+      }
+    }),
+    Plot.ruleY([0])
+  ]
+})
+))
+}});
+
+define({id: "f1b13595", inputs: ["Plot","width","stocks","events","d3","display"], body: async (Plot,width,stocks,events,d3,display) => {
+display(await(
+Plot.plot({
+  height: 200,
+  width,
+  marks: [
+    Plot.line(stocks, {
+      x: "Date",
+      y: "Close",
+      z: "Ticker",
+      stroke: "Ticker"
+    }),
+    Plot.dot(events, {
+      x: "Date",                        // ← channel (data)
+      y: d3.min(stocks, d => d.Close),  // ← constant
+      r: 3,                             // ← constant
+      stroke: "currentColor",
+      fill: "white",
+      tip: true,
+      channels: {
+        Event: "Event Name",
+        Notes: "Notes"
+      }
+    })
+  ]
+})
+))
+}});
+
+define({id: "fc7eae75", inputs: ["html","display"], body: async (html,display) => {
+display(await(
+html.fragment`<style>
+  .code {
+    font-family: monospace;
+    color: #A935D4;
+    font-size: 0.8rem;
+    font-weight: 800;
+  }
+</style>`
+))
+}});
+
+define({id: "d0859c1f", inputs: ["Plot","width","stocks","events","d3","display"], body: async (Plot,width,stocks,events,d3,display) => {
+display(await(
+Plot.plot({
+  height: 200,
+  width,
+  marks: [
+    Plot.line(stocks, {
+      x: "Date",
+      y: "Close",
+      z: "Ticker",
+      stroke: "Ticker"
+    }),
+    ...(events.length
+      ? [
+          Plot.tip([events[0]], {
+            x: "Date",
+            y: d3.quantile(stocks.map(d => d.Close), 0.5),
+            channels: {
+              Event: "Event Name",
+              Notes: "Notes"
+            }
+          })
+        ]
+      : [])
+  ]
+})
+))
+}});
+
+define({id: "27971738", outputs: ["city_to_state","people"], body: () => {
+const city_to_state = [
+  { city: "New York", state: "New York" },
+  { city: "Washington D.C.", state: null },
+  { city: "Chicago", state: "Illinois" },
+  { city: "San Francisco", state: "California" },
+  { city: "Los Angeles", state: "California" }
+]
+
+const people = [
+  { name: "Bill", city: "New York" },
+  { name: "Brandi", city: "Washington D.C." },
+  { name: "Johnny", city: "San Francisco" },
+  { name: "Taylor", city: "Chicago" },
+  { name: "June", city: "Los Angeles" }
+]
+return {city_to_state,people};
+}});
+
+define({id: "4320a5bb", inputs: ["people","city_to_state","display"], outputs: ["people_with_state"], body: (people,city_to_state,display) => {
+const people_with_state = people.map(personObject => {
+  const matchingCity = city_to_state.find(
+    cityObject => personObject.city === cityObject.city
+  )
+  return {
+    ...personObject,            // spread to keep the existing object data
+    state: matchingCity?.state  // get the state from the matching city object 
+  }
+})
+display(people_with_state)
+return {people_with_state};
+}});
+
+define({id: "81a92476", inputs: ["city_to_state"], outputs: ["city_object_entries","state_lookup"], body: (city_to_state) => {
+const city_object_entries = city_to_state.map(cityValue => Object.values(cityValue))
+const state_lookup = Object.fromEntries(city_object_entries)
+return {city_object_entries,state_lookup};
+}});
+
+define({id: "ea724565", inputs: ["display","city_object_entries"], body: (display,city_object_entries) => {
+display(city_object_entries)
+}});
+
+define({id: "8ddaa21b", inputs: ["display","state_lookup"], body: (display,state_lookup) => {
+display(state_lookup)
+}});
+
+define({id: "00ee7b80", inputs: ["people","state_lookup","display"], outputs: ["people_with_state_again"], body: (people,state_lookup,display) => {
+const people_with_state_again = people.map(personObject => ({
+  ...personObject, 
+  state: state_lookup[personObject.city]
+}))
+display(people_with_state_again)
+return {people_with_state_again};
+}});
+
+define({id: "14271182", inputs: ["view","Inputs","allTickers"], outputs: ["yetAnotherSelectedStock"], body: (view,Inputs,allTickers) => {
+const yetAnotherSelectedStock = view(Inputs.select(allTickers))
+return {yetAnotherSelectedStock};
+}});
+
+define({id: "fe3cb076", inputs: ["stocks","yetAnotherSelectedStock","events","display"], outputs: ["selectedStockData","selectedStockEvents"], body: (stocks,yetAnotherSelectedStock,events,display) => {
+const selectedStockData = stocks.filter(d => d.Ticker === yetAnotherSelectedStock) // filter the stocks
+const selectedStockEvents = events.filter(d => d["Related Tickers"].includes(yetAnotherSelectedStock)) // filter the events
+// just look at the first object of this data
+display(selectedStockData[0])
+return {selectedStockData,selectedStockEvents};
+}});
+
+define({id: "4b60438d", inputs: ["Plot","width","selectedStockData","selectedStockEvents","display"], body: async (Plot,width,selectedStockData,selectedStockEvents,display) => {
+display(await(
+Plot.plot({
+  height: 200, 
+  width,
+  marks: [
+    // the line based on the filtered (selected) stock data
+    Plot.line(selectedStockData, {
+      x: "Date",
+      y: "Close",
+    }),
+    // dots for the stock events that correspond to the selected ticker
+    Plot.dot(selectedStockEvents, {
+      x: "Date", // position at the event date
+      y: eventDataObj => {
+        // helpful console log to check out the event data at this point
+        console.log("event data:", eventDataObj)
+        // find the stock data for this date
+        const stockData = selectedStockData.find(stockDataObj => { 
+          // console.log("stock data:", stockDataObj)
+          // which stock data matches this event data date?
+          return eventDataObj.Date.toDateString() === stockDataObj.Date.toDateString()
+        })
+        // some events are on the weekend, and don't have a related stock value. 
+        // We can check for a matching stockData and if it isn't there, return 0.
+        return stockData ? stockData.Close : 0
+      },
+      stroke: "black", 
+      fill: "white",
+      tip: true,
+      channels: {
+        "Event": "Event Name", 
+        "Notes": "Notes"
+      }
+    }),
+    // an exposed tooltip for the first of the selected stock data events
+    Plot.tip([selectedStockEvents[0]["Event Name"]], {
+      x: selectedStockEvents[0].Date, // position at the event date
+      y: selectedStockData.find(e => { // y position at the ticker line value on this date
+        return e.Date.toDateString() === selectedStockEvents[0].Date.toDateString()
+      })?.Close // the ? here just means that only return it if it exists, and don't "fail" if it's undefined.
+    }),
+  ]
+})
+))
+}});
+
+define({id: "e427120e", inputs: ["FileAttachment"], outputs: ["viewership","cost"], body: (FileAttachment) => {
+const viewership = FileAttachment("../class_code/viewership_data/viewership.csv").csv({ typed: true })
+const cost = FileAttachment("../class_code/viewership_data/production_cost.csv").csv({ typed: true })
+return {viewership,cost};
+}});
+
+define({id: "36da2e0a", inputs: ["Plot","width","viewership","display"], body: async (Plot,width,viewership,display) => {
+display(await(
+Plot.plot({
+  title: "Average weekly viewers",
+  width,
+  marginLeft: 80,
+  height: 150, 
+  marks: [
+    Plot.barY(viewership, {
+      x: "show_name",
+      y: "total_estimated_viewership",
+      sort: { x: "-y" }
+    })
+  ]
+})
+))
+}});
+
+define({id: "41eae90d", inputs: ["Plot","width","cost","display"], body: async (Plot,width,cost,display) => {
+display(await(
+Plot.plot({
+  title: "Cost per episode",
+  width,
+  marginLeft: 80,
+  height: 150, 
+  marks: [
+    Plot.barY(cost, {
+      x: "show_name",
+      y: "total_production_cost_usd",
+      sort: { x: "-y" }
+    })
+  ]
+})
+))
+}});
+
+define({id: "aea6c1fc", inputs: ["Plot","viewership","cost","display"], body: async (Plot,viewership,cost,display) => {
+display(await(
+Plot.plot({
+  marginLeft: 150,
+   color: {
+    scheme: "YlOrRd",
+    legend: true,
+    label: "Viewership",
+  },
+  x: {
+    label: "Views per Dollar"
+  },
+  marks: [
+    Plot.barX(viewership, {
+      y: "show_name", 
+      x: show => {
+        // find the cost row 
+        const thisCost = cost.find(costRow => costRow.show_name === show.show_name)
+        // calculate the metric
+        return show["total_estimated_viewership"] / thisCost["total_production_cost_usd"] 
+      },
+      fill: "total_estimated_viewership",
+      sort: { y: "-x" }
+    })
+  ]
+})
+))
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Interactive Data Visualization (Spring 2026)</a></li>
+  </ol>
+  <section class="observablehq-section-active">
+    <summary>Lessons</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./1_intro_to_web_development">Intro to Web Development</a></li>
+    <li class="observablehq-link"><a href="./2_working_in_cursor">Working in Cursor</a></li>
+    <li class="observablehq-link"><a href="./3_intro_to_observable_framework">Intro to Observable Framework</a></li>
+    <li class="observablehq-link"><a href="./4_confirming_spring_upstream">Confirming Spring Upstream</a></li>
+    <li class="observablehq-link"><a href="./5_intro_to_observable_plot">Intro to Observable Plot</a></li>
+    <li class="observablehq-link"><a href="./6_transforms_and_data_manipulation">Transforms and Data Manipulation</a></li>
+    <li class="observablehq-link"><a href="./7_data_types_scales_marks">Data Types, Scales, Marks</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./8_data_joins_and_annotations">Data Joins and Annotations</a></li>
+    <li class="observablehq-link"><a href="./9_faceting_and_svgs">Faceting and SVGs</a></li>
+    <li class="observablehq-link"><a href="./10_libraries_and_imports">Libraries and Imports</a></li>
+    <li class="observablehq-link"><a href="./11_intro_to_d3">Intro to d3.js</a></li>
+    <li class="observablehq-link"><a href="./12_charts_in_d3">Different Charts With d3.js</a></li>
+    </ol>
+  </section>
+  <details>
+    <summary>Lab 0: Getting Started</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_0/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_0/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 1: Prolific Pollinators</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_1/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_1/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 2: Subway Staffing</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_2/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_2/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 3: Mayoral Mystery</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_3/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_3/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 4: Clearwater Crisis</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_4/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_4/">Dashboard</a></li>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#state-management">State management</a></li>
+<li class="observablehq-secondary-link"><a href="#annotation">Annotation</a></li>
+<li class="observablehq-secondary-link"><a href="#data-joins">Data joins</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="data-joins-and-annotations" tabindex="-1"><a class="observablehq-header-anchor" href="#data-joins-and-annotations">Data Joins and Annotations</a></h1>
+<hr>
+<p>So far, many plots draw from one table at a time. In real projects, the story often depends on two (or more) sources. It could be stock prices and earnings calls, ridership and nearby events, incidents and staffing, ratings and budgets. This lesson will cover two things that can support your Lab 2 work: <strong>annotations</strong> (layering marks so you can point at moments or categories) and <strong>data joins</strong> (lining tables up by a shared key so values from one table can drive channels for another). It builds on filtering (arrays of objects, <code>.filter</code>, comparisons), data manipulation (<a href="./6_transforms_and_data_manipulation.md">transforms and data manipulation</a>), and on marks and scales (<a href="./7_data_types_scales_marks.md">data types and scales</a>).</p>
+<hr>
+<h2 id="state-management" tabindex="-1"><a class="observablehq-header-anchor" href="#state-management">State management</a></h2>
+<p>Let's return to our AAPL stock data. We started with a line of <code>close</code> price over time. We have another file with stock prices of many companies, and events that may have affected the stock price.</p>
+<div class="observablehq observablehq--block"><!--:23ec976e:--></div>
+<p>If we wanted to plot this, we could show every ticker at once (separated by <code>z</code> / <code>stroke</code>), or add a dropdown so the reader picks one ticker. Dropdowns (<a href="https://observablehq.com/framework/inputs/select" target="_blank" rel="noopener noreferrer">select</a>) require an array of options. We could just write out all the options available, or make it dynamically if the list is significant. In order to make an array of unique values, we can do the following:</p>
+<ol>
+<li>iterate over the entire array to get all the ticker names (returns <code>["AAPL", "AAPL", "GOOG", "GOOG", "META", ...]</code>)</li>
+<li>turn it into a set, which eliminates duplicates (but returns a set, not an array, as <code>Set(5) { }</code>)</li>
+<li>turn that set back into an array, leveraging <code>Array.from( ... )</code></li>
+</ol>
+<p>This combination might feel advanced, but as long as you follow this formula, you can always get a unique set of values for your input selections:</p>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> uniqueValues = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>([<span class="hljs-variable constant_">ARRAY</span> <span class="hljs-variable constant_">GOES</span> <span class="hljs-variable constant_">HERE</span>].<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> d[<span class="hljs-variable constant_">DATA</span> <span class="hljs-variable constant_">KEY</span> <span class="hljs-variable constant_">GOES</span> <span class="hljs-variable constant_">HERE</span>])))
+</code></pre>
+<p>Here's what that looks like for these stocks:</p>
+<div class="observablehq observablehq--block"><!--:c5d0ccf0:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-comment">// const allTickers = ["AAPL", "GOOG", "NFLX", "AMZN", "META"] // option 1: hardcode the values</span>
+<span class="hljs-keyword">const</span> allTickers = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>(stocks.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> d.<span class="hljs-property">Ticker</span>))) <span class="hljs-comment">// option 2: derive from data</span>
+<span class="hljs-keyword">const</span> selectedStock = <span class="hljs-title function_">view</span>(<span class="hljs-title class_">Inputs</span>.<span class="hljs-title function_">select</span>(allTickers))
+</code></pre>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:d3d3d69d:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-title class_">Plot</span>.<span class="hljs-title function_">plot</span>({
+  <span class="hljs-attr">title</span>: <span class="hljs-string">`Viewing: <span class="hljs-subst">${selectedStock}</span>`</span>,
+  <span class="hljs-attr">height</span>: <span class="hljs-number">200</span>,
+  <span class="hljs-attr">marks</span>: [
+    <span class="hljs-title class_">Plot</span>.<span class="hljs-title function_">line</span>(stocks, {
+      <span class="hljs-attr">x</span>: <span class="hljs-string">"Date"</span>,
+      <span class="hljs-attr">y</span>: <span class="hljs-string">"Close"</span>,
+      <span class="hljs-attr">z</span>: <span class="hljs-string">"Ticker"</span>,
+      <span class="hljs-attr">stroke</span>: <span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> d[<span class="hljs-string">"Ticker"</span>] === selectedStock ? <span class="hljs-string">"black"</span> : <span class="hljs-string">"none"</span>,
+      <span class="hljs-attr">tip</span>: <span class="hljs-literal">true</span>
+    })
+  ]
+})
+</code></pre>
+<p>The selected ticker is state: the rest of the page can react to it. State gets more interesting as dashboards add inputs, but the pattern is the same—one value (here <code>selectedStock</code>) that filters or drives what you draw.</p>
+<hr>
+<h2 id="annotation" tabindex="-1"><a class="observablehq-header-anchor" href="#annotation">Annotation</a></h2>
+<p>Depending on what you are trying to point out, useful marks include lines, dots, rules, or even images. The pattern is always: add another mark that shares the plot’s scales with the main series so the reader can compare “what happened in the data” with “what we are calling out.” Lab 2 asks for at least one annotation—<code>Plot.ruleX</code>, <code>Plot.dot</code>, <a href="https://observablehq.com/plot/marks/tip" target="_blank" rel="noopener noreferrer">Plot.tip</a>, a mean/median line, etc.</p>
+<h3 id="rules-at-event-dates-plot-rule-x" tabindex="-1"><a class="observablehq-header-anchor" href="#rules-at-event-dates-plot-rule-x">Rules at event dates (<code>Plot.ruleX</code>)</a></h3>
+<p>An easy first example of annotations could be vertical rules at each event date that sit on top of the price lines. The line mark uses <code>stocks</code>; the rules use <code>events</code>. Both bind <code>Date</code> to <code>x</code>, so Plot uses one time scale. In this instance, <strong>no merge of tables required</strong>. That's because each mark is reacting to its own data, but they share the same x axis with <code>Date</code>.</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:9c2e767e:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-title class_">Plot</span>.<span class="hljs-title function_">plot</span>({
+  <span class="hljs-attr">height</span>: <span class="hljs-number">200</span>,
+  width,
+  <span class="hljs-attr">marks</span>: [
+    <span class="hljs-title class_">Plot</span>.<span class="hljs-title function_">line</span>(stocks, {
+      <span class="hljs-attr">x</span>: <span class="hljs-string">"Date"</span>,
+      <span class="hljs-attr">y</span>: <span class="hljs-string">"Close"</span>,
+      <span class="hljs-attr">z</span>: <span class="hljs-string">"Ticker"</span>,
+      <span class="hljs-attr">stroke</span>: <span class="hljs-string">"Ticker"</span>
+    }),
+    <span class="hljs-title class_">Plot</span>.<span class="hljs-title function_">ruleX</span>(events, {
+      <span class="hljs-attr">x</span>: <span class="hljs-string">"Date"</span>,
+      <span class="hljs-attr">tip</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">channels</span>: {
+        <span class="hljs-title class_">Event</span>: <span class="hljs-string">"Event Name"</span>,
+        <span class="hljs-title class_">Notes</span>: <span class="hljs-string">"Notes"</span>
+      }
+    }),
+    <span class="hljs-title class_">Plot</span>.<span class="hljs-title function_">ruleY</span>([<span class="hljs-number">0</span>])
+  ]
+})
+</code></pre>
+<h3 id="dots-on-event-days-plot-dot" tabindex="-1"><a class="observablehq-header-anchor" href="#dots-on-event-days-plot-dot">Dots on event days (<code>Plot.dot</code>)</a></h3>
+<p>Maybe instead of a vertical rule, you'd like to mark which days had an event using <code>Plot.dot</code> on the events table. In the vertical rule example, all we need to do is pass the x value. The vertical rule knows to extend the entire chart height.</p>
+<p>Dots, however, require both an <code>x</code> and a <code>y</code> position. Let's make it easy to start: <code>x</code> is the event date, and we will set <code>y</code> to a constant so every dot sits on a horizontal band. Using the minimum close in <code>stocks</code> keeps the dots near the bottom of the price range without pulling values from the events CSV.</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:f1b13595:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-title class_">Plot</span>.<span class="hljs-title function_">plot</span>({
+  <span class="hljs-attr">height</span>: <span class="hljs-number">200</span>,
+  width,
+  <span class="hljs-attr">marks</span>: [
+    <span class="hljs-title class_">Plot</span>.<span class="hljs-title function_">line</span>(stocks, {
+      <span class="hljs-attr">x</span>: <span class="hljs-string">"Date"</span>,
+      <span class="hljs-attr">y</span>: <span class="hljs-string">"Close"</span>,
+      <span class="hljs-attr">z</span>: <span class="hljs-string">"Ticker"</span>,
+      <span class="hljs-attr">stroke</span>: <span class="hljs-string">"Ticker"</span>
+    }),
+    <span class="hljs-title class_">Plot</span>.<span class="hljs-title function_">dot</span>(events, {
+      <span class="hljs-attr">x</span>: <span class="hljs-string">"Date"</span>,                        <span class="hljs-comment">// ← channel (data)</span>
+      <span class="hljs-attr">y</span>: d3.<span class="hljs-title function_">min</span>(stocks, <span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> d.<span class="hljs-property">Close</span>),  <span class="hljs-comment">// ← constant</span>
+      <span class="hljs-attr">r</span>: <span class="hljs-number">3</span>,                             <span class="hljs-comment">// ← constant</span>
+      <span class="hljs-attr">stroke</span>: <span class="hljs-string">"currentColor"</span>,
+      <span class="hljs-attr">fill</span>: <span class="hljs-string">"white"</span>,
+      <span class="hljs-attr">tip</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">channels</span>: {
+        <span class="hljs-title class_">Event</span>: <span class="hljs-string">"Event Name"</span>,
+        <span class="hljs-title class_">Notes</span>: <span class="hljs-string">"Notes"</span>
+      }
+    })
+  ]
+})
+</code></pre>
+<p>This is helpful, but wouldn't it be nice if these dots corresponded to the price at the time of the event? If so, we'd need to position the circle on the line. How could we do that?</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:fc7eae75:--></div>
+<details>
+  <summary>Answer in here ↓</summary>
+  The circle's <span class="code">y</span> attribute should be positioned <b>on the close price on that date</b>, which lives in <span class="code">stocks</span>, not in <span class="code">events</span>. To get a value from the <span class="code">stocks</span> data on a particular date, we need a lookup (or join). 
+</details>
+<br><br>
+<h3 id="tip-callout-plot-tip" tabindex="-1"><a class="observablehq-header-anchor" href="#tip-callout-plot-tip">Tip callout (<code>Plot.tip</code>)</a></h3>
+<p>The <a href="https://observablehq.com/plot/marks/tip" target="_blank" rel="noopener noreferrer">tip mark</a> draws a label or callout at a point. You typically pass one row (or a tiny array of rows) and map <code>x</code> / <code>y</code> like any other mark. Without a join, <code>y</code> might be a rough guess or a constant; with a join, <code>y</code> comes from the other table, which we discuss in the next section.</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:d0859c1f:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-title class_">Plot</span>.<span class="hljs-title function_">plot</span>({
+  <span class="hljs-attr">height</span>: <span class="hljs-number">200</span>,
+  width,
+  <span class="hljs-attr">marks</span>: [
+    <span class="hljs-title class_">Plot</span>.<span class="hljs-title function_">line</span>(stocks, {
+      <span class="hljs-attr">x</span>: <span class="hljs-string">"Date"</span>,
+      <span class="hljs-attr">y</span>: <span class="hljs-string">"Close"</span>,
+      <span class="hljs-attr">z</span>: <span class="hljs-string">"Ticker"</span>,
+      <span class="hljs-attr">stroke</span>: <span class="hljs-string">"Ticker"</span>
+    }),
+    ...(events.<span class="hljs-property">length</span>
+      ? [
+          <span class="hljs-title class_">Plot</span>.<span class="hljs-title function_">tip</span>([events[<span class="hljs-number">0</span>]], {
+            <span class="hljs-attr">x</span>: <span class="hljs-string">"Date"</span>,
+            <span class="hljs-attr">y</span>: d3.<span class="hljs-title function_">quantile</span>(stocks.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> d.<span class="hljs-property">Close</span>), <span class="hljs-number">0.5</span>),
+            <span class="hljs-attr">channels</span>: {
+              <span class="hljs-title class_">Event</span>: <span class="hljs-string">"Event Name"</span>,
+              <span class="hljs-title class_">Notes</span>: <span class="hljs-string">"Notes"</span>
+            }
+          })
+        ]
+      : [])
+  ]
+})
+</code></pre>
+<hr>
+<h2 id="data-joins" tabindex="-1"><a class="observablehq-header-anchor" href="#data-joins">Data joins</a></h2>
+<p>Labs and real world projects often include multiple datasets. You may filter to the current “state” (selected ticker), combine or derive new arrays, or read a value from one dataset while iterating another. So far, we've only tackled one dataset per plot. Let's explore a few reasons and applications for joining datasets.</p>
+<h3 id="two-datasets-shared-axis" tabindex="-1"><a class="observablehq-header-anchor" href="#two-datasets-shared-axis">Two datasets, shared axis</a></h3>
+<p>We've already done this above, but it's worth calling out that it is technically joining two datasets on a certain value. When we added rules at event dates, they share an axis of time. Each mark can pass in its own <code>Date</code> values, without having to join tables either in the plot or before the plot. See the <a href="#rules-at-event-dates-plotrulex">rules at event dates plot for more</a>.</p>
+<h3 id="two-datasets-retrieve-position" tabindex="-1"><a class="observablehq-header-anchor" href="#two-datasets-retrieve-position">Two datasets, retrieve position</a></h3>
+<p>We alluded to this circumstance when we wanted to plot the event dots <code>y</code> position on the price line. In this instance, <code>events</code> doesn't know what the price was on a certain day, so it doesn't know how far up on the chart to place the dot. We can use a lookup to figure this out. Before we get to that, let's take a brief aside to discuss lookups in JavaScript.</p>
+<h4 id="java-script-lookup" tabindex="-1"><a class="observablehq-header-anchor" href="#java-script-lookup">JavaScript lookup</a></h4>
+<p>In SQL, a join combines rows from two tables by a condition. In Python, you might <code>merge</code> in pandas with <code>left_on</code> / <code>right_on</code>. In JavaScript, without extra libraries, you usually build new arrays with <code>.map</code>, <code>.filter</code>, and <code>.find</code> / <code>.reduce</code>.</p>
+<p>Simple example: cities with a state, and people with only a city. We have two sets of arrays, one that has objects of cities and states, and one that has people. We need to combine these, to find out what state these people live in.</p>
+<div class="observablehq observablehq--block"><!--:27971738:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> city_to_state = [
+  { <span class="hljs-attr">city</span>: <span class="hljs-string">"New York"</span>, <span class="hljs-attr">state</span>: <span class="hljs-string">"New York"</span> },
+  { <span class="hljs-attr">city</span>: <span class="hljs-string">"Washington D.C."</span>, <span class="hljs-attr">state</span>: <span class="hljs-literal">null</span> },
+  { <span class="hljs-attr">city</span>: <span class="hljs-string">"Chicago"</span>, <span class="hljs-attr">state</span>: <span class="hljs-string">"Illinois"</span> },
+  { <span class="hljs-attr">city</span>: <span class="hljs-string">"San Francisco"</span>, <span class="hljs-attr">state</span>: <span class="hljs-string">"California"</span> },
+  { <span class="hljs-attr">city</span>: <span class="hljs-string">"Los Angeles"</span>, <span class="hljs-attr">state</span>: <span class="hljs-string">"California"</span> }
+]
+
+<span class="hljs-keyword">const</span> people = [
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">"Bill"</span>, <span class="hljs-attr">city</span>: <span class="hljs-string">"New York"</span> },
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">"Brandi"</span>, <span class="hljs-attr">city</span>: <span class="hljs-string">"Washington D.C."</span> },
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">"Johnny"</span>, <span class="hljs-attr">city</span>: <span class="hljs-string">"San Francisco"</span> },
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">"Taylor"</span>, <span class="hljs-attr">city</span>: <span class="hljs-string">"Chicago"</span> },
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">"June"</span>, <span class="hljs-attr">city</span>: <span class="hljs-string">"Los Angeles"</span> }
+]
+</code></pre>
+<p>We need to iterate over every <em>person</em>, then for that <em>person's city</em>, find the associated city + state value in the other dataset, then add <code>state</code>:</p>
+<div class="observablehq observablehq--block"><!--:4320a5bb:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> people_with_state = people.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">personObject</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> matchingCity = city_to_state.<span class="hljs-title function_">find</span>(
+    <span class="hljs-function"><span class="hljs-params">cityObject</span> =&gt;</span> personObject.<span class="hljs-property">city</span> === cityObject.<span class="hljs-property">city</span>
+  )
+  <span class="hljs-keyword">return</span> {
+    ...personObject,            <span class="hljs-comment">// spread to keep the existing object data</span>
+    <span class="hljs-attr">state</span>: matchingCity?.<span class="hljs-property">state</span>  <span class="hljs-comment">// get the state from the matching city object </span>
+  }
+})
+<span class="hljs-title function_">display</span>(people_with_state)
+</code></pre>
+<p>That works -- but if the relationship is a simple one key → one value map, you can build a lookup object once, and it's a bit simpler:</p>
+<div class="observablehq observablehq--block"><!--:81a92476:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> city_object_entries = city_to_state.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">cityValue</span> =&gt;</span> <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">values</span>(cityValue))
+<span class="hljs-keyword">const</span> state_lookup = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">fromEntries</span>(city_object_entries)
+</code></pre>
+<p><strong>city_object_entries</strong>:</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:ea724565:--></div>
+<p><strong>state_lookup</strong>:</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:8ddaa21b:--></div>
+<p>Then using that lookup, we can create a new array of objects:</p>
+<div class="observablehq observablehq--block"><!--:00ee7b80:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> people_with_state_again = people.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">personObject</span> =&gt;</span> ({
+  ...personObject, 
+  <span class="hljs-attr">state</span>: state_lookup[personObject.<span class="hljs-property">city</span>]
+}))
+<span class="hljs-title function_">display</span>(people_with_state_again)
+</code></pre>
+<p>There are many ways to express joins in JavaScript; the important part is to be explicit about the key you match on and what you do when there is no match (<code>undefined</code>, skip the row, etc.).</p>
+<p>~ *<em>Back to our original programming</em> * ~</p>
+<p>The join in which we want to pull the <code>y</code> value from the <code>stocks</code> data can happen <em>in the plot channel itself</em>. We will have the dot mark calculate <code>y</code> position by <strong>looking up the price on the date of the event</strong>. Some reminders as we explore this:</p>
+<ol>
+<li>Channels can be functions, so <code>y</code> can run a lookup for every event row.</li>
+<li>Name inner variables clearly. Historically we have just used the generic <code>d</code> declaration in our functions (<code>(d) =&gt; d.price</code>), but we <em>cannot</em> use <code>d</code> twice within two nested functions (<code>(d) =&gt; { d.events.filter((d) =&gt; d.attendance) }</code>) -- we have to use another variable (commonly, <code>e</code>, or a helpful word, like <code>event =&gt; event.Date</code>).</li>
+<li><code>console.log</code> inside a channel is a legitimate way to see what Plot is passing in.</li>
+</ol>
+<p>Let's add another dropdown for this example that we can use in the chart below.</p>
+<div class="observablehq observablehq--block"><!--:14271182:--></div>
+<p>We can also make some constants that could help us do this more easily.</p>
+<div class="observablehq observablehq--block"><!--:fe3cb076:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> selectedStockData = stocks.<span class="hljs-title function_">filter</span>(<span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> d.<span class="hljs-property">Ticker</span> === yetAnotherSelectedStock) <span class="hljs-comment">// filter the stocks</span>
+<span class="hljs-keyword">const</span> selectedStockEvents = events.<span class="hljs-title function_">filter</span>(<span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> d[<span class="hljs-string">"Related Tickers"</span>].<span class="hljs-title function_">includes</span>(yetAnotherSelectedStock)) <span class="hljs-comment">// filter the events</span>
+<span class="hljs-comment">// just look at the first object of this data</span>
+<span class="hljs-title function_">display</span>(selectedStockData[<span class="hljs-number">0</span>])
+</code></pre>
+<p>Now, we will add both marks with the lookup in the dot mark:</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:4b60438d:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-title class_">Plot</span>.<span class="hljs-title function_">plot</span>({
+  <span class="hljs-attr">height</span>: <span class="hljs-number">200</span>, 
+  width,
+  <span class="hljs-attr">marks</span>: [
+    <span class="hljs-comment">// the line based on the filtered (selected) stock data</span>
+    <span class="hljs-title class_">Plot</span>.<span class="hljs-title function_">line</span>(selectedStockData, {
+      <span class="hljs-attr">x</span>: <span class="hljs-string">"Date"</span>,
+      <span class="hljs-attr">y</span>: <span class="hljs-string">"Close"</span>,
+    }),
+    <span class="hljs-comment">// dots for the stock events that correspond to the selected ticker</span>
+    <span class="hljs-title class_">Plot</span>.<span class="hljs-title function_">dot</span>(selectedStockEvents, {
+      <span class="hljs-attr">x</span>: <span class="hljs-string">"Date"</span>, <span class="hljs-comment">// position at the event date</span>
+      <span class="hljs-attr">y</span>: <span class="hljs-function"><span class="hljs-params">eventDataObj</span> =&gt;</span> {
+        <span class="hljs-comment">// helpful console log to check out the event data at this point</span>
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"event data:"</span>, eventDataObj)
+        <span class="hljs-comment">// find the stock data for this date</span>
+        <span class="hljs-keyword">const</span> stockData = selectedStockData.<span class="hljs-title function_">find</span>(<span class="hljs-function"><span class="hljs-params">stockDataObj</span> =&gt;</span> { 
+          <span class="hljs-comment">// console.log("stock data:", stockDataObj)</span>
+          <span class="hljs-comment">// which stock data matches this event data date?</span>
+          <span class="hljs-keyword">return</span> eventDataObj.<span class="hljs-property">Date</span>.<span class="hljs-title function_">toDateString</span>() === stockDataObj.<span class="hljs-property">Date</span>.<span class="hljs-title function_">toDateString</span>()
+        })
+        <span class="hljs-comment">// some events are on the weekend, and don't have a related stock value. </span>
+        <span class="hljs-comment">// We can check for a matching stockData and if it isn't there, return 0.</span>
+        <span class="hljs-keyword">return</span> stockData ? stockData.<span class="hljs-property">Close</span> : <span class="hljs-number">0</span>
+      },
+      <span class="hljs-attr">stroke</span>: <span class="hljs-string">"black"</span>, 
+      <span class="hljs-attr">fill</span>: <span class="hljs-string">"white"</span>,
+      <span class="hljs-attr">tip</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">channels</span>: {
+        <span class="hljs-string">"Event"</span>: <span class="hljs-string">"Event Name"</span>, 
+        <span class="hljs-string">"Notes"</span>: <span class="hljs-string">"Notes"</span>
+      }
+    }),
+    <span class="hljs-comment">// an exposed tooltip for the first of the selected stock data events</span>
+    <span class="hljs-title class_">Plot</span>.<span class="hljs-title function_">tip</span>([selectedStockEvents[<span class="hljs-number">0</span>][<span class="hljs-string">"Event Name"</span>]], {
+      <span class="hljs-attr">x</span>: selectedStockEvents[<span class="hljs-number">0</span>].<span class="hljs-property">Date</span>, <span class="hljs-comment">// position at the event date</span>
+      <span class="hljs-attr">y</span>: selectedStockData.<span class="hljs-title function_">find</span>(<span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> { <span class="hljs-comment">// y position at the ticker line value on this date</span>
+        <span class="hljs-keyword">return</span> e.<span class="hljs-property">Date</span>.<span class="hljs-title function_">toDateString</span>() === selectedStockEvents[<span class="hljs-number">0</span>].<span class="hljs-property">Date</span>.<span class="hljs-title function_">toDateString</span>()
+      })?.<span class="hljs-property">Close</span> <span class="hljs-comment">// the ? here just means that only return it if it exists, and don't "fail" if it's undefined.</span>
+    }),
+  ]
+})
+</code></pre>
+<p>Now we have dots on the exact position of the stock price to help emphasize the relationship between this event and the resulting price. There are a few that may sit on dates that aren't included in the stock data -- either a holiday or a weekend -- and those sit at the bottom of the <code>y</code> axis.</p>
+<h3 id="two-datasets-new-metrics" tabindex="-1"><a class="observablehq-header-anchor" href="#two-datasets-new-metrics">Two datasets, new metrics</a></h3>
+<p>What if we want to create <em>new</em> metrics when joining? Like a ratio? Let's take two new files on tv viewership and production cost.</p>
+<ol>
+<li><code>viewership.csv</code>: viewership data since launch date</li>
+<li><code>production_cost.csv</code>: production cost per episode and total</li>
+</ol>
+<div class="observablehq observablehq--block"><!--:e427120e:--></div>
+<p>Just exploring the data in its existing form, we could make two bar charts -- one for viewership and one for cost.</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:36da2e0a:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:41eae90d:--></div>
+<p>Let's say we want to visualize the total <strong>value</strong> of each show. We could consider total viewers as value, but we should consider the cost of the show as well. Let's make a new metric of <em>views per dollar spent</em> for each show.</p>
+<div class="note">
+We are doing all these joins in Plot because it's a bit simpler and is leveraging Plot to its real potential, but don't forget -- you always have the option to create a new dataset to calculate new values. You can use Excel, R, Python, etc., upload the data to the `/data` folder for the lab, and import it like the other data. 
+</div>
+<p>Let's join in the channel function, like we did between stocks and events data.</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:aea6c1fc:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-title class_">Plot</span>.<span class="hljs-title function_">plot</span>({
+  <span class="hljs-attr">marginLeft</span>: <span class="hljs-number">150</span>,
+   <span class="hljs-attr">color</span>: {
+    <span class="hljs-attr">scheme</span>: <span class="hljs-string">"YlOrRd"</span>,
+    <span class="hljs-attr">legend</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">label</span>: <span class="hljs-string">"Viewership"</span>,
+  },
+  <span class="hljs-attr">x</span>: {
+    <span class="hljs-attr">label</span>: <span class="hljs-string">"Views per Dollar"</span>
+  },
+  <span class="hljs-attr">marks</span>: [
+    <span class="hljs-title class_">Plot</span>.<span class="hljs-title function_">barX</span>(viewership, {
+      <span class="hljs-attr">y</span>: <span class="hljs-string">"show_name"</span>, 
+      <span class="hljs-attr">x</span>: <span class="hljs-function"><span class="hljs-params">show</span> =&gt;</span> {
+        <span class="hljs-comment">// find the cost row </span>
+        <span class="hljs-keyword">const</span> thisCost = cost.<span class="hljs-title function_">find</span>(<span class="hljs-function"><span class="hljs-params">costRow</span> =&gt;</span> costRow.<span class="hljs-property">show_name</span> === show.<span class="hljs-property">show_name</span>)
+        <span class="hljs-comment">// calculate the metric</span>
+        <span class="hljs-keyword">return</span> show[<span class="hljs-string">"total_estimated_viewership"</span>] / thisCost[<span class="hljs-string">"total_production_cost_usd"</span>] 
+      },
+      <span class="hljs-attr">fill</span>: <span class="hljs-string">"total_estimated_viewership"</span>,
+      <span class="hljs-attr">sort</span>: { <span class="hljs-attr">y</span>: <span class="hljs-string">"-x"</span> }
+    })
+  ]
+})
+</code></pre>
+<p>By creating a new metric, we can see that the views per dollar (based on total production) for Squid Game is significantly higher than some of the other shows. Even though two other shows popped up with more viewership, the cost per viewership metric paints a picture that Squid Game is a great investment.</p>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./7_data_types_scales_marks"><span>Data Types, Scales, Marks</span></a><a rel="next" href="./9_faceting_and_svgs"><span>Faceting and SVGs</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-05-25T00:23:06">May 25, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>

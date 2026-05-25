@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>Faceting and SVGs | Interactive Data Visualization (Spring 2026)</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-air.aad62322.css">
+<link rel="preload" as="style" href="../_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-air.aad62322.css">
+<link rel="stylesheet" type="text/css" href="../_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="modulepreload" href="../_observablehq/client.3fa0f62a.js">
+<link rel="modulepreload" href="../_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.73a8ec5a.js">
+<link rel="modulepreload" href="../_npm/d3@7.9.0/e324157d.js">
+<link rel="modulepreload" href="../_npm/htl@0.3.1/72f4716c.js">
+<link rel="modulepreload" href="../_observablehq/stdlib/inputs.4ef1d259.js">
+<link rel="modulepreload" href="../_npm/@observablehq/plot@0.6.17/7c43807f.js">
+<link rel="modulepreload" href="../_npm/topojson-client@3.1.0/edd9ee95.js">
+<link rel="modulepreload" href="../_npm/d3-dsv@3.0.1/9cffc2bd.js">
+<link rel="modulepreload" href="../_npm/isoformat@0.2.1/18cbf477.js">
+<link rel="modulepreload" href="../_npm/d3-array@3.2.4/e93ca09f.js">
+<link rel="modulepreload" href="../_npm/d3-axis@3.0.0/0f2de24d.js">
+<link rel="modulepreload" href="../_npm/d3-brush@3.0.0/65eb105b.js">
+<link rel="modulepreload" href="../_npm/d3-chord@3.0.1/7ef8fb2e.js">
+<link rel="modulepreload" href="../_npm/d3-color@3.1.0/aeb57b94.js">
+<link rel="modulepreload" href="../_npm/d3-contour@4.0.2/1d2aed74.js">
+<link rel="modulepreload" href="../_npm/d3-delaunay@6.0.4/5ced1d52.js">
+<link rel="modulepreload" href="../_npm/d3-dispatch@3.0.1/9ba9c7f3.js">
+<link rel="modulepreload" href="../_npm/d3-drag@3.0.0/4202580c.js">
+<link rel="modulepreload" href="../_npm/d3-ease@3.0.1/cdd7e898.js">
+<link rel="modulepreload" href="../_npm/d3-fetch@3.0.1/b4e2ad9a.js">
+<link rel="modulepreload" href="../_npm/d3-force@3.0.0/5e804d15.js">
+<link rel="modulepreload" href="../_npm/d3-format@3.1.2/3785bf2d.js">
+<link rel="modulepreload" href="../_npm/d3-geo@3.1.1/40599fb3.js">
+<link rel="modulepreload" href="../_npm/d3-hierarchy@3.1.2/e49e792c.js">
+<link rel="modulepreload" href="../_npm/d3-interpolate@3.0.1/8d1e5425.js">
+<link rel="modulepreload" href="../_npm/d3-path@3.1.0/20d3f133.js">
+<link rel="modulepreload" href="../_npm/d3-polygon@3.0.1/7553081f.js">
+<link rel="modulepreload" href="../_npm/d3-quadtree@3.0.1/0dfd751c.js">
+<link rel="modulepreload" href="../_npm/d3-random@3.0.1/3c90ee06.js">
+<link rel="modulepreload" href="../_npm/d3-scale@4.0.2/720b7f0a.js">
+<link rel="modulepreload" href="../_npm/d3-scale-chromatic@3.1.0/ba24c2e7.js">
+<link rel="modulepreload" href="../_npm/d3-selection@3.0.0/4d94e5b7.js">
+<link rel="modulepreload" href="../_npm/d3-shape@3.2.0/6d3a6726.js">
+<link rel="modulepreload" href="../_npm/d3-time@3.1.0/9f03c579.js">
+<link rel="modulepreload" href="../_npm/d3-time-format@4.1.0/07c9626f.js">
+<link rel="modulepreload" href="../_npm/d3-timer@3.0.1/b58a267d.js">
+<link rel="modulepreload" href="../_npm/d3-transition@3.0.1/004da2ac.js">
+<link rel="modulepreload" href="../_npm/d3-zoom@3.0.0/b5786b3f.js">
+<link rel="modulepreload" href="../_npm/interval-tree-1d@1.0.4/53fe8176.js">
+<link rel="modulepreload" href="../_npm/internmap@2.0.3/e08981d9.js">
+<link rel="modulepreload" href="../_npm/delaunator@5.0.1/02d43215.js">
+<link rel="modulepreload" href="../_npm/binary-search-bounds@2.0.5/cbf6ba23.js">
+<link rel="modulepreload" href="../_npm/robust-predicates@3.0.2/aa00730b.js">
+<link rel="icon" href="../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "../_observablehq/client.3fa0f62a.js";
+import {registerFile} from "../_observablehq/stdlib.73a8ec5a.js";
+
+registerFile("../class_code/unemployment_data/geo.json", {"name":"../class_code/unemployment_data/geo.json","mimeType":"application/json","path":"../_file/class_code/unemployment_data/geo.cfb716eb.json","lastModified":1777920292614,"size":1033808});
+registerFile("../class_code/unemployment_data/us-county-unemployment.csv", {"name":"../class_code/unemployment_data/us-county-unemployment.csv","mimeType":"text/csv","path":"../_file/class_code/unemployment_data/us-county-unemployment.dd3cc76e.csv","lastModified":1777920292615,"size":109819});
+
+define({id: "681cdd2d", inputs: ["Plot","penguins","display"], body: async (Plot,penguins,display) => {
+display(await(
+Plot.plot({
+  marginLeft: 80,
+  grid: true,
+  color: { legend: true },
+  marks: [
+    Plot.barX(penguins, 
+      Plot.groupY(
+        { x: "count" },               // ← reducer
+        { y: "island", fill: "sex" }  // ← options
+      )),
+    Plot.frame()
+  ]
+})
+))
+}});
+
+define({id: "e6f339cd", inputs: ["Plot","penguins","display"], body: async (Plot,penguins,display) => {
+display(await(
+Plot.plot({
+  marginLeft: 80,
+  marginRight: 60,
+  grid: true,
+  y: { label: null },
+  fy: {label: null},
+  color: {legend: true},
+  marks: [
+    Plot.barX(penguins, 
+      Plot.groupY(
+        { x: "count" },                             // ← reducer
+        { y: "island", fill: "sex", fy: "species" } // ← options, with facet
+      )),
+    Plot.text([
+      (`While Chinstrap and Gentoo 
+        penguins were each observed
+        on only one island, Adelie 
+        penguins were observed on 
+        all three islands.`
+      )
+      ], {
+      fy: ["Adelie"],
+      frameAnchor: "top-right",
+      lineWidth: 18,
+      dx: -6,
+      dy: 6
+    }),
+    Plot.frame()
+  ]
+})
+))
+}});
+
+define({id: "d4eb0a95", inputs: ["html","display"], body: async (html,display) => {
+display(await(
+html.fragment`<svg width="200" height="200" >
+  <rect width="100" height="100" x="50" y="50" fill="red" />
+</svg>`
+))
+}});
+
+define({id: "27c81933", inputs: ["Plot","width","penguins","display"], body: async (Plot,width,penguins,display) => {
+display(await(
+Plot.plot({
+  width,
+  marks: [
+    Plot.frame(),
+    Plot.dot(penguins, {
+      // use this variable to position via x
+      x: "culmen_length_mm",
+      // use this variable to position via y 
+      y: "culmen_depth_mm",
+      // use this variable to color them
+      fill: "island",
+      tip: true
+    })
+  ]
+})
+))
+}});
+
+define({id: "65ef6ed2", inputs: ["width","penguins"], outputs: ["domain","rangeValues","range","xScale"], body: (width,penguins) => {
+// this is the entire pixel domain data could be placed.
+const domain = [0, width]
+// this is the entire range of data values for the x value, as per the data. Remove any NaNs.
+const rangeValues = penguins.map((penguin) => penguin.culmen_length_mm).filter(d => d)
+const range = [ Math.min(...rangeValues), Math.max(...rangeValues) ]
+
+const xScale = (culmen_length_mm) => {
+  const rangeSpan = range[1] - range[0];
+  const domainSpan = domain[1] - domain[0];
+  
+  // where does this value sit in the values range?
+  const normalized = (culmen_length_mm - range[0]) / rangeSpan;
+
+  // given its spot in the range, return the relative spot in the domain
+  return domain[0] + (normalized * domainSpan);
+  // in case the domain is greater than 0, we have to offset by it
+}
+return {domain,rangeValues,range,xScale};
+}});
+
+define({id: "48b868f0", inputs: ["display","xScale","penguins"], body: (display,xScale,penguins) => {
+display(xScale(penguins[0].culmen_length_mm))
+display(xScale(penguins[5].culmen_length_mm))
+display(xScale(penguins[10].culmen_length_mm))
+}});
+
+define({id: "91b2d0f9", inputs: ["view","Inputs"], outputs: ["changeTheDOM"], body: (view,Inputs) => {
+function changeTheDOM() {
+  // grab the element
+  const el = document.getElementById("something-to-manipulate")
+  
+  // change the styling
+  el.style.color = "pink"
+  el.style.fontWeight = 800
+  
+  // change the text 
+  el.textContent = "You did it!"
+
+  // append new elements
+  const childEl = document.createElement("div")
+  console.log(childEl)
+  childEl.textContent = "Hello, world."
+  el.appendChild(childEl)
+
+}
+
+view(Inputs.button("Manipulate the DOM", { value: null, reduce: changeTheDOM }))
+return {changeTheDOM};
+}});
+
+define({id: "988237a9", inputs: ["d3","penguins","width"], outputs: ["xDataDomain","d3XScale","yDataDomain","d3YScale"], body: (d3,penguins,width) => {
+const xDataDomain = d3.extent(penguins.map(d => d.culmen_length_mm))
+const d3XScale = d3.scaleLinear()
+  .domain(xDataDomain)
+  .range([0, width])
+
+const yDataDomain = d3.extent(penguins.map(d => d.culmen_depth_mm))
+const d3YScale = d3.scaleLinear()
+  .domain(yDataDomain)
+  .range([400, 0])
+return {xDataDomain,d3XScale,yDataDomain,d3YScale};
+}});
+
+define({id: "f7ae931c", inputs: ["display","d3XScale","penguins"], body: (display,d3XScale,penguins) => {
+display(d3XScale(penguins[0].culmen_length_mm))
+display(d3XScale(penguins[5].culmen_length_mm))
+display(d3XScale(penguins[10].culmen_length_mm))
+}});
+
+define({id: "3514ba84", inputs: ["d3","width","penguins","d3XScale","d3YScale","view"], outputs: ["svg"], body: (d3,width,penguins,d3XScale,d3YScale,view) => {
+const svg = d3.create('svg')
+  .attr("width", width)
+  .attr("height", 400)
+  
+svg.selectAll()
+  .data(penguins)
+  .join('circle')
+  .attr("cx", penguin => d3XScale(penguin.culmen_length_mm))
+  .attr("cy", penguin => d3YScale(penguin.culmen_depth_mm))
+  .attr("r", 3)
+  .attr("fill", penguin => penguin.island === "Dream" ? "#efb118" : penguin.island === "Biscoe" ? "#4269d0" : "#ff725c")
+
+view(svg.node())
+return {svg};
+}});
+
+define({id: "4cfabb8b", inputs: ["FileAttachment","display"], outputs: ["geo","unemployment"], body: async (FileAttachment,display) => {
+const geo = await FileAttachment("../class_code/unemployment_data/geo.json").json()
+display(geo)
+ // since the id codes are number that can have a leading zero, we want to keep those as strings and the rates can be numbers
+const unemployment = await FileAttachment("../class_code/unemployment_data/us-county-unemployment.csv")
+  .csv({ typed: false })
+  .then((data) => data.map(d => ({ ...d, rate: +d.rate})))
+display(unemployment)
+return {geo,unemployment};
+}});
+
+define({id: "1e9c33b8", inputs: ["topojson","geo","display"], outputs: ["counties"], body: (topojson,geo,display) => {
+const counties = topojson.feature(geo, geo.objects.counties)
+display(counties)
+return {counties};
+}});
+
+define({id: "bde4175b", inputs: ["unemployment"], outputs: ["unemploymentByID"], body: (unemployment) => {
+const unemploymentByID = new Map(unemployment.map(d => [d.id, d.rate]))
+return {unemploymentByID};
+}});
+
+define({id: "d40d5ab1", inputs: ["Plot","counties","unemploymentByID","display"], body: async (Plot,counties,unemploymentByID,display) => {
+display(await(
+Plot.plot({
+  projection: "albers-usa",
+  color: {
+    type: "quantile",
+    n: 9,
+    scheme: "blues",
+    label: "Unemployment (%)",
+    legend: true
+  },
+  marks: [
+    Plot.geo(counties, {
+      fill: d => unemploymentByID.get(d.id),
+      stroke: "#404040",
+      title: (d) => `${d.properties.name} ${unemploymentByID.get(d.id)}%`,
+      tip: true
+    })
+  ]
+})
+))
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Interactive Data Visualization (Spring 2026)</a></li>
+  </ol>
+  <section class="observablehq-section-active">
+    <summary>Lessons</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./1_intro_to_web_development">Intro to Web Development</a></li>
+    <li class="observablehq-link"><a href="./2_working_in_cursor">Working in Cursor</a></li>
+    <li class="observablehq-link"><a href="./3_intro_to_observable_framework">Intro to Observable Framework</a></li>
+    <li class="observablehq-link"><a href="./4_confirming_spring_upstream">Confirming Spring Upstream</a></li>
+    <li class="observablehq-link"><a href="./5_intro_to_observable_plot">Intro to Observable Plot</a></li>
+    <li class="observablehq-link"><a href="./6_transforms_and_data_manipulation">Transforms and Data Manipulation</a></li>
+    <li class="observablehq-link"><a href="./7_data_types_scales_marks">Data Types, Scales, Marks</a></li>
+    <li class="observablehq-link"><a href="./8_data_joins_and_annotations">Data Joins and Annotations</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./9_faceting_and_svgs">Faceting and SVGs</a></li>
+    <li class="observablehq-link"><a href="./10_libraries_and_imports">Libraries and Imports</a></li>
+    <li class="observablehq-link"><a href="./11_intro_to_d3">Intro to d3.js</a></li>
+    <li class="observablehq-link"><a href="./12_charts_in_d3">Different Charts With d3.js</a></li>
+    </ol>
+  </section>
+  <details>
+    <summary>Lab 0: Getting Started</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_0/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_0/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 1: Prolific Pollinators</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_1/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_1/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 2: Subway Staffing</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_2/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_2/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 3: Mayoral Mystery</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_3/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_3/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 4: Clearwater Crisis</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_4/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_4/">Dashboard</a></li>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#plot-d3-js-svg">Plot → d3.js → SVG</a></li>
+<li class="observablehq-secondary-link"><a href="#svgs">SVGs</a></li>
+<li class="observablehq-secondary-link"><a href="#dom-manipulation">DOM Manipulation</a></li>
+<li class="observablehq-secondary-link"><a href="#d3-js">d3.js</a></li>
+<li class="observablehq-secondary-link"><a href="#maps">Maps</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="facets" tabindex="-1"><a class="observablehq-header-anchor" href="#facets">Facets</a></h1>
+<p><a href="https://observablehq.com/plot/features/facets" target="_blank" rel="noopener noreferrer">Faceting</a> partitions data by ordinal or categorical value and then repeats a plot for each partition (each facet), producing small multiples for comparison. Faceting is enabled by declaring the horizontal↔︎ facet channel <code>fx</code>, the vertical↕︎ facet channel <code>fy</code>, or both, for two-dimensional faceting.</p>
+<p>We've seen this before, but its worth calling out intentionally. Let's make a basic penguins chart without faceting. We can make a simple bar chart that includes grouping on the y, with "count" as our reducer on the x direction.</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:681cdd2d:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-title class_">Plot</span>.<span class="hljs-title function_">plot</span>({
+  <span class="hljs-attr">marginLeft</span>: <span class="hljs-number">80</span>,
+  <span class="hljs-attr">grid</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">color</span>: { <span class="hljs-attr">legend</span>: <span class="hljs-literal">true</span> },
+  <span class="hljs-attr">marks</span>: [
+    <span class="hljs-title class_">Plot</span>.<span class="hljs-title function_">barX</span>(penguins, 
+      <span class="hljs-title class_">Plot</span>.<span class="hljs-title function_">groupY</span>(
+        { <span class="hljs-attr">x</span>: <span class="hljs-string">"count"</span> },               <span class="hljs-comment">// ← reducer</span>
+        { <span class="hljs-attr">y</span>: <span class="hljs-string">"island"</span>, <span class="hljs-attr">fill</span>: <span class="hljs-string">"sex"</span> }  <span class="hljs-comment">// ← options</span>
+      )),
+    <span class="hljs-title class_">Plot</span>.<span class="hljs-title function_">frame</span>()
+  ]
+})
+</code></pre>
+<p>Faceting allows us to split by another layer, to see things even more clearly. Right now, that chart shows count of penguins, split by island, colored by sex, as a stacked bar. What if we also wanted to include the split of species? That would be count of penguins, per island, per species, per sex. We would have to introduce another dimension of the visualization with faceting.</p>
+<p>We have changed dimensionality in our visualizations before, from two dimensions (scatterplots, or simply databases that don't have the right shape) to one dimension (bar charts) by using transforms. The transform actually computes new data to fit the dimensionality we want to visualize.</p>
+<p>We can think of faceting similarly, as a way to <strong>increase the dimensionality</strong> of our visualization, similar to how transforms helped us decrease dimensionality with reducing to count. By adding <code>fy: "species"</code> to our options in the transform, we are now grouping with that additional metric in mind, and it is reflected in the visualization.</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:e6f339cd:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-title class_">Plot</span>.<span class="hljs-title function_">plot</span>({
+  <span class="hljs-attr">marginLeft</span>: <span class="hljs-number">80</span>,
+  <span class="hljs-attr">marginRight</span>: <span class="hljs-number">60</span>,
+  <span class="hljs-attr">grid</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">y</span>: { <span class="hljs-attr">label</span>: <span class="hljs-literal">null</span> },
+  <span class="hljs-attr">fy</span>: {<span class="hljs-attr">label</span>: <span class="hljs-literal">null</span>},
+  <span class="hljs-attr">color</span>: {<span class="hljs-attr">legend</span>: <span class="hljs-literal">true</span>},
+  <span class="hljs-attr">marks</span>: [
+    <span class="hljs-title class_">Plot</span>.<span class="hljs-title function_">barX</span>(penguins, 
+      <span class="hljs-title class_">Plot</span>.<span class="hljs-title function_">groupY</span>(
+        { <span class="hljs-attr">x</span>: <span class="hljs-string">"count"</span> },                             <span class="hljs-comment">// ← reducer</span>
+        { <span class="hljs-attr">y</span>: <span class="hljs-string">"island"</span>, <span class="hljs-attr">fill</span>: <span class="hljs-string">"sex"</span>, <span class="hljs-attr">fy</span>: <span class="hljs-string">"species"</span> } <span class="hljs-comment">// ← options, with facet</span>
+      )),
+    <span class="hljs-title class_">Plot</span>.<span class="hljs-title function_">text</span>([
+      (<span class="hljs-string">`While Chinstrap and Gentoo 
+        penguins were each observed
+        on only one island, Adelie 
+        penguins were observed on 
+        all three islands.`</span>
+      )
+      ], {
+      <span class="hljs-attr">fy</span>: [<span class="hljs-string">"Adelie"</span>],
+      <span class="hljs-attr">frameAnchor</span>: <span class="hljs-string">"top-right"</span>,
+      <span class="hljs-attr">lineWidth</span>: <span class="hljs-number">18</span>,
+      <span class="hljs-attr">dx</span>: -<span class="hljs-number">6</span>,
+      <span class="hljs-attr">dy</span>: <span class="hljs-number">6</span>
+    }),
+    <span class="hljs-title class_">Plot</span>.<span class="hljs-title function_">frame</span>()
+  ]
+})
+</code></pre>
+<p>This new visualization includes so much more. It technically performs the transform on the data to get it to the right shape with a reduction (count), and visually it splits by species <em>and</em> island, and stacks / colors by sex. Facets are a great tool to split and explore your data even more and possibly combine two visualizations into one.</p>
+<hr>
+<h1 id="plot-d3-js-svg" tabindex="-1"><a class="observablehq-header-anchor" href="#plot-d3-js-svg">Plot → d3.js → SVG</a></h1>
+<p>Let's take some time to look under the hood and explore: How does plot work, technically?</p>
+<h2 id="svgs" tabindex="-1"><a class="observablehq-header-anchor" href="#svgs">SVGs</a></h2>
+<p>SVGs (scalable vector graphics) are HTML elements that can render two dimensional vector graphics. This can be leveraged for anything from logos to how we make our Observable Plots. SVG is the HTML mechanism that does the “drawing” of our data on the screen.</p>
+<p>SVG is a container that renders the 2 dimensional objects, which sit inside the nested structure.</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:d4eb0a95:--></div>
+<pre data-language="html"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"200"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"200"</span> &gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">rect</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"100"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"100"</span> <span class="hljs-attr">x</span>=<span class="hljs-string">"50"</span> <span class="hljs-attr">y</span>=<span class="hljs-string">"50"</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">"red"</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+</code></pre>
+<p>There's a <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element" target="_blank" rel="noopener noreferrer">myriad of elements</a> that can go inside svg, but the ones we use regularly for our visualizations are:</p>
+<ul>
+<li><code>&lt;circle&gt;</code>: a circle element, which takes properties like <code>cx</code>, <code>cy</code>, and <code>r</code></li>
+<li><code>&lt;rect&gt;</code>: a rectangular element, takes properties like <code>width</code>, <code>height</code>, <code>x</code>, and <code>y</code></li>
+<li><code>&lt;path&gt;</code>: a path, which is very flexible but needs to be created with <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorials/SVG_from_scratch/Paths" target="_blank" rel="noopener noreferrer">line commands</a></li>
+</ul>
+<p>If we peel back the curtain, plot is doing some impressive things when it takes our data and turns it into visualizations. We haven’t had to think about it too closely, but the options we provide to plot are used to devise, position, and style the elements inside the svg.</p>
+<p>Plot does this by joining <strong>data to elements</strong>. When we pass in a dataset like the penguins dataset, and tell it to position (x and y) based on certain variables, it calculates the scales and renders these things all on its own. In the following scatterplot, it assesses the domain of culmen lengths and depths, the available screen space, and adds one dot for every penguin in the exact right position given the scales.</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:27c81933:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-title class_">Plot</span>.<span class="hljs-title function_">plot</span>({
+  width,
+  <span class="hljs-attr">marks</span>: [
+    <span class="hljs-title class_">Plot</span>.<span class="hljs-title function_">frame</span>(),
+    <span class="hljs-title class_">Plot</span>.<span class="hljs-title function_">dot</span>(penguins, {
+      <span class="hljs-comment">// use this variable to position via x</span>
+      <span class="hljs-attr">x</span>: <span class="hljs-string">"culmen_length_mm"</span>,
+      <span class="hljs-comment">// use this variable to position via y </span>
+      <span class="hljs-attr">y</span>: <span class="hljs-string">"culmen_depth_mm"</span>,
+      <span class="hljs-comment">// use this variable to color them</span>
+      <span class="hljs-attr">fill</span>: <span class="hljs-string">"island"</span>,
+      <span class="hljs-attr">tip</span>: <span class="hljs-literal">true</span>
+    })
+  ]
+})
+</code></pre>
+<p>This is significantly easier than if we had to do this on our own. Even just calculating the horizontal scale would be very complicated in javascript. We can try with some quick math...</p>
+<div class="observablehq observablehq--block"><!--:65ef6ed2:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-comment">// this is the entire pixel domain data could be placed.</span>
+<span class="hljs-keyword">const</span> domain = [<span class="hljs-number">0</span>, width]
+<span class="hljs-comment">// this is the entire range of data values for the x value, as per the data. Remove any NaNs.</span>
+<span class="hljs-keyword">const</span> rangeValues = penguins.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">penguin</span>) =&gt;</span> penguin.<span class="hljs-property">culmen_length_mm</span>).<span class="hljs-title function_">filter</span>(<span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> d)
+<span class="hljs-keyword">const</span> range = [ <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">min</span>(...rangeValues), <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(...rangeValues) ]
+
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">xScale</span> = (<span class="hljs-params">culmen_length_mm</span>) =&gt; {
+  <span class="hljs-keyword">const</span> rangeSpan = range[<span class="hljs-number">1</span>] - range[<span class="hljs-number">0</span>];
+  <span class="hljs-keyword">const</span> domainSpan = domain[<span class="hljs-number">1</span>] - domain[<span class="hljs-number">0</span>];
+  
+  <span class="hljs-comment">// where does this value sit in the values range?</span>
+  <span class="hljs-keyword">const</span> normalized = (culmen_length_mm - range[<span class="hljs-number">0</span>]) / rangeSpan;
+
+  <span class="hljs-comment">// given its spot in the range, return the relative spot in the domain</span>
+  <span class="hljs-keyword">return</span> domain[<span class="hljs-number">0</span>] + (normalized * domainSpan);
+  <span class="hljs-comment">// in case the domain is greater than 0, we have to offset by it</span>
+}
+</code></pre>
+<p>Then when we have some penguin values, our function should return the relative x position:</p>
+<div class="observablehq observablehq--block"><!--:48b868f0:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-title function_">display</span>(<span class="hljs-title function_">xScale</span>(penguins[<span class="hljs-number">0</span>].<span class="hljs-property">culmen_length_mm</span>))
+<span class="hljs-title function_">display</span>(<span class="hljs-title function_">xScale</span>(penguins[<span class="hljs-number">5</span>].<span class="hljs-property">culmen_length_mm</span>))
+<span class="hljs-title function_">display</span>(<span class="hljs-title function_">xScale</span>(penguins[<span class="hljs-number">10</span>].<span class="hljs-property">culmen_length_mm</span>))
+</code></pre>
+<p>If we did this for both x and y, we could finally position a dot, something like:</p>
+<pre data-language="html"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">"[X SCALED VALUE]"</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">"[Y SCALED VALUE]"</span> <span class="hljs-attr">r</span>=<span class="hljs-string">"10"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+</code></pre>
+<p>In the above example, we'd have to plot one circle for every element in the data, so we'd be mapping over the data to produce all the values in question, and rendering them on the chart. (Aren't you glad we can just render a <code>Plot.plot</code> function instead?)</p>
+<h2 id="dom-manipulation" tabindex="-1"><a class="observablehq-header-anchor" href="#dom-manipulation">DOM Manipulation</a></h2>
+<p>Behind the scenes, Plot is doing something called DOM manipulation. This means it leverages the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model" target="_blank" rel="noopener noreferrer">DOM API</a> to change what is displayed on the page. Specifically, it is loading the data, and then using that data to change what is rendered on the page.</p>
+<p>This is doable with basic javascript, and even in the markdown pages we use for Observable Framework. Below, we will create an HTML element, then using JS, grab and manipulate that element.</p>
+<div id="something-to-manipulate" style="font-style: italic;">This is an HTML element, ready to be manipulated</div>
+<div class="observablehq observablehq--block"><!--:91b2d0f9:--></div>
+<h2 id="d3-js" tabindex="-1"><a class="observablehq-header-anchor" href="#d3-js">d3.js</a></h2>
+<p>There is a javascript library that is designed specifically for data visualization use cases, and can help us do <em>both</em> the scaling and the DOM manipulation -- <a href="https://d3js.org/what-is-d3" target="_blank" rel="noopener noreferrer">d3.js</a>. D3 has a ton of helpful methods, some of which we may have already seen, like formatting our numbers, or organizing our data. But the reason it was developed was primarily for creating HTML elements from data.</p>
+<p>We will discuss this in future classes, but just as a quick sample, d3 can help us make the scales we built before with its built in methods. We can even make a y scale based on another data element (<code>bill_depth_mm</code>).</p>
+<div class="observablehq observablehq--block"><!--:988237a9:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> xDataDomain = d3.<span class="hljs-title function_">extent</span>(penguins.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> d.<span class="hljs-property">culmen_length_mm</span>))
+<span class="hljs-keyword">const</span> d3XScale = d3.<span class="hljs-title function_">scaleLinear</span>()
+  .<span class="hljs-title function_">domain</span>(xDataDomain)
+  .<span class="hljs-title function_">range</span>([<span class="hljs-number">0</span>, width])
+
+<span class="hljs-keyword">const</span> yDataDomain = d3.<span class="hljs-title function_">extent</span>(penguins.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> d.<span class="hljs-property">culmen_depth_mm</span>))
+<span class="hljs-keyword">const</span> d3YScale = d3.<span class="hljs-title function_">scaleLinear</span>()
+  .<span class="hljs-title function_">domain</span>(yDataDomain)
+  .<span class="hljs-title function_">range</span>([<span class="hljs-number">400</span>, <span class="hljs-number">0</span>])
+</code></pre>
+<p>Let's try again with our new d3 scale:</p>
+<div class="observablehq observablehq--block"><!--:f7ae931c:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-title function_">display</span>(<span class="hljs-title function_">d3XScale</span>(penguins[<span class="hljs-number">0</span>].<span class="hljs-property">culmen_length_mm</span>))
+<span class="hljs-title function_">display</span>(<span class="hljs-title function_">d3XScale</span>(penguins[<span class="hljs-number">5</span>].<span class="hljs-property">culmen_length_mm</span>))
+<span class="hljs-title function_">display</span>(<span class="hljs-title function_">d3XScale</span>(penguins[<span class="hljs-number">10</span>].<span class="hljs-property">culmen_length_mm</span>))
+</code></pre>
+<p>It can also do the DOM manipulation <em>tied to the data</em>. It will iterate over the data, add, position, and style the element as per the data scales. With this significant help, we get a lot closer to rendering this visualization in an svg. Here's an example, but don't worry about the methods here -- the idea is that we can create elements in SVG using d3.</p>
+<div class="observablehq observablehq--block"><!--:3514ba84:--></div>
+<p>The looks about correct given the distributions we saw above. We aren't exactly rendering the same plot, but we can get it pretty close. Plot saves us a lot of trouble -- creating the scales, making some style decisions for us, but this is what is happening under the hood.</p>
+<h1 id="maps" tabindex="-1"><a class="observablehq-header-anchor" href="#maps">Maps</a></h1>
+<p>SVGs are helpful with rendering path style maps. These aren't satellite maps, but just a simple line path to imply geographical area. To do this, we need the geographical data in a certain drawable form.</p>
+<p>Most data for maps come in something called shapefiles. Shapefiles are a popular geospatial vector data format for storing the location, shape, and attributes of geographic features. A shapefile is actually a <em>collection</em> of files that work together to describe geographic features like points (cities), lines (roads, rivers), or polygons (countries, lakes, land parcels). These files are primarily used when working with GIS software (mapping, spatial analysis, etc).</p>
+<p>GeoJSONs or TopoJSONS, on the other hand, are web-tech friendly files that we can plot in an svg. There are a few steps to get from these map data files to a rendered map:</p>
+<ol>
+<li>[optional] Convert the shapefile to geoJSON: If you only have shapefiles, you'll need to convert those to GeoJSON or TopoJSON with something like <a href="https://mapshaper.org/" target="_blank" rel="noopener noreferrer">mapshaper.org</a>.</li>
+<li>[optional] Use something like <a href="https://funkeinteraktiv.github.io/geo-data-merger/" target="_blank" rel="noopener noreferrer">Geo Data Merger</a> to add data to the properties of the Geo/TopoJSON file</li>
+<li>Upload the data (shapefile, GeoJSON, and/or data) to the code base. This looks like the usual <code>FileAttachments</code>, in our case:</li>
+</ol>
+<div class="observablehq observablehq--block"><!--:4cfabb8b:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> geo = <span class="hljs-keyword">await</span> <span class="hljs-title class_">FileAttachment</span>(<span class="hljs-string">'../class_code/unemployment_data/geo.json'</span>).<span class="hljs-title function_">json</span>()
+<span class="hljs-title function_">display</span>(geo)
+ <span class="hljs-comment">// since the id codes are number that can have a leading zero, we want to keep those as strings and the rates can be numbers</span>
+<span class="hljs-keyword">const</span> unemployment = <span class="hljs-keyword">await</span> <span class="hljs-title class_">FileAttachment</span>(<span class="hljs-string">'../class_code/unemployment_data/us-county-unemployment.csv'</span>)
+  .<span class="hljs-title function_">csv</span>({ <span class="hljs-attr">typed</span>: <span class="hljs-literal">false</span> })
+  .<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">data</span>) =&gt;</span> data.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> ({ ...d, <span class="hljs-attr">rate</span>: +d.<span class="hljs-property">rate</span>})))
+<span class="hljs-title function_">display</span>(unemployment)
+</code></pre>
+<ol start="4">
+<li>Use topojson from d3 to convert this topology file into a feature collection we can render in svg:</li>
+</ol>
+<div class="observablehq observablehq--block"><!--:1e9c33b8:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> counties = topojson.<span class="hljs-title function_">feature</span>(geo, geo.<span class="hljs-property">objects</span>.<span class="hljs-property">counties</span>)
+<span class="hljs-title function_">display</span>(counties)
+</code></pre>
+<ol start="5">
+<li>[optional] If your GeoJSON data doesn't already have the data as part of the properties, you'll need to create a join to add that information.</li>
+</ol>
+<div class="observablehq observablehq--block"><!--:bde4175b:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> unemploymentByID = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>(unemployment.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> [d.<span class="hljs-property">id</span>, d.<span class="hljs-property">rate</span>]))
+</code></pre>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:d40d5ab1:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-title class_">Plot</span>.<span class="hljs-title function_">plot</span>({
+  <span class="hljs-attr">projection</span>: <span class="hljs-string">"albers-usa"</span>,
+  <span class="hljs-attr">color</span>: {
+    <span class="hljs-attr">type</span>: <span class="hljs-string">"quantile"</span>,
+    <span class="hljs-attr">n</span>: <span class="hljs-number">9</span>,
+    <span class="hljs-attr">scheme</span>: <span class="hljs-string">"blues"</span>,
+    <span class="hljs-attr">label</span>: <span class="hljs-string">"Unemployment (%)"</span>,
+    <span class="hljs-attr">legend</span>: <span class="hljs-literal">true</span>
+  },
+  <span class="hljs-attr">marks</span>: [
+    <span class="hljs-title class_">Plot</span>.<span class="hljs-title function_">geo</span>(counties, {
+      <span class="hljs-attr">fill</span>: <span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> unemploymentByID.<span class="hljs-title function_">get</span>(d.<span class="hljs-property">id</span>),
+      <span class="hljs-attr">stroke</span>: <span class="hljs-string">"#404040"</span>,
+      <span class="hljs-attr">title</span>: <span class="hljs-function">(<span class="hljs-params">d</span>) =&gt;</span> <span class="hljs-string">`<span class="hljs-subst">${d.properties.name}</span> <span class="hljs-subst">${unemploymentByID.get(d.id)}</span>%`</span>,
+      <span class="hljs-attr">tip</span>: <span class="hljs-literal">true</span>
+    })
+  ]
+})
+</code></pre>
+<p>The complicated nature of working with maps and joining with data requires a solid understanding of map data, javascript, and d3. If you're hoping to venture into this world for another dataset and map that you have, I recommend reviewing <a href="https://observablehq.com/@observablehq/build-your-first-choropleth-map-with-observable-plot" target="_blank" rel="noopener noreferrer">this tutorial from observable</a>.</p>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./8_data_joins_and_annotations"><span>Data Joins and Annotations</span></a><a rel="next" href="./10_libraries_and_imports"><span>Libraries and Imports</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-05-25T00:23:06">May 25, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>
